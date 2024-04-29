@@ -6,13 +6,13 @@ import { getFirestore } from "firebase/firestore"; // Firestore를 사용하기 
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBjkicMXAV8l-G7Y2nXS1USIZRo_xqHOAU",
-    authDomain: "ankitokidb.firebaseapp.com",
-    projectId: "ankitokidb",
-    storageBucket: "ankitokidb.appspot.com",
-    messagingSenderId: "472753733214",
-    appId: "1:472753733214:web:99725918e803fe8372fecf",
-    measurementId: "G-GJRTWGCDYN"
+    apiKey: "AIzaSyC0961QpZqkQlchSbeAZ0dvywQh1my2hbE",
+    authDomain: "ankitoki.firebaseapp.com",
+    projectId: "ankitoki",
+    storageBucket: "ankitoki.appspot.com",
+    messagingSenderId: "873952892092",
+    appId: "1:873952892092:web:e7c46b6b2846b05e126cb9",
+    measurementId: "G-E19JLRGDNQ"
 };
 
 // Initialize Firebase
