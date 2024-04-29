@@ -17,7 +17,6 @@ async function initializeKuroshiro() {
     throw error;
   }
 }
-
 export default {
   namespaced: true,
   state: {
