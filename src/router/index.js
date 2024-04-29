@@ -15,6 +15,8 @@ const router = createRouter({
       name: 'main',
       component: main,
     },
+
+    
     {
       path: '/viewWords',
       name: 'viewWords',

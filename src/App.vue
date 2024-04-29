@@ -12,13 +12,14 @@
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 
+
 export default {
   components: {
     selectWords: defineAsyncComponent(() =>
       import("@/views/selectWords.vue")
     ),
   },
-  
+
   computed: {
     ...mapGetters({
       selectWords: "state/getSelectWords",
