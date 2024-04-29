@@ -64,7 +64,6 @@ export default {
       dispatch("filter/filterWords", null, { root: true }); // 다른 네임스페이스의 액션을 호출합니다.
     },
   },
-
   
   getters: {
     getCategory: (state) => state.category,
