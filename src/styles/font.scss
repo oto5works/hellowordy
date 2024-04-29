@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap');
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--mio-theme-font-family);
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 100%;
+}
+h1 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+h3 {
+  font-size: 14px;
+  opacity: 0.4;
+  font-weight: 400;
+}
+.jp {
+  font-family: var(--mio-theme-font-family-jp);
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 130%;
+}
+.jp ruby > rt {
+  opacity: 0;
+  font-family: var(--mio-theme-font-family-jp);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  color: var(--mio-theme-color-primary);
+  transition: all 0.2s ease-in-out;
+}
+.jp.ruby rt {
+  opacity: 1;
+}
+h4, h5 {
+  font-family: var(--mio-theme-font-family-kr);
+}
+h4 {
+  font-weight: 700;
+  line-height: 100%;
+  font-size: 10px;
+}
+h5 {
+  font-weight: 400;
+  line-height: 130%;
+  font-size: 16px;
+}
+
+
+.example-jp {
+  font-family: var(--mio-theme-font-family-jp);
+  font-weight: 400;
+  line-height: 130%;
+  font-size: 15px;
+}
+.example-jp ruby > rt {
+  opacity: 0;
+  font-family: var(--mio-theme-font-family-jp);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  color: var(--mio-theme-color-primary);
+  transition: all 0.2s ease-in-out;
+}
+.example-jp.ruby rt {
+  opacity: 1;
+}
+.example-kr {
+  font-family: var(--mio-theme-font-family-kr);
+  font-weight: 400;
+  line-height: 130%;
+  font-size: 14px;
+}

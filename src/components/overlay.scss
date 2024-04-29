@@ -1,0 +1,64 @@
+@mixin absolute_100 {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+/*-- common --*/
+.overlay-container {
+  contain: layout;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  display: contents;
+}
+.overlay {
+  direction: ltr;
+  padding-inline-end: 0;
+  border-radius: inherit;
+  display: flex;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.overlay__scrim {
+  pointer-events: auto;
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: var(--mio-theme-color-on-background);
+  opacity: 0;
+  transition: all .3s ease;
+
+  &.active {
+    opacity: .32;
+  }
+}
+
+.overlay__content {
+  outline: none;
+  position: absolute;
+  pointer-events: auto;
+  contain: layout;
+  transform: translate(0);
+}
+
+.overlay-fade-enter-active,
+.overlay-fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.overlay-fade-enter-from,
+.overlay-fade-leave-to {
+  opacity: 0;
+}

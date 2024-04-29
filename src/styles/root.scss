@@ -1,0 +1,21 @@
+:root {
+  --mio-theme-color-on-background: #fff;
+  --mio-theme-color-background: #1f1f1f;
+  --mio-theme-color-primary: #8cacf5;
+  --mio-theme-color-on-primary: #1f1f1f;
+  --mio-theme-font-family: "JetBrains Mono", monospace;
+  --mio-theme-font-family-kr: 'Noto Sans KR", sans-serif';
+  --mio-theme-font-family-jp: 'Noto Sans JP", sans-serif';
+  --mio-theme-padding: 24px;
+}
+
+html[data-design-theme="design1"] {
+  // onInv Preview section padding value
+  --0-4-0: 0;
+  // onInv Preview intro host gap value
+  --8px-8px-24px: 8px;
+  // onInv Preview countdown padding value
+  --4-4-0: 4.2%;
+  // onInv Comment Bubble Writer padding value
+  --0-0-12: 0;
+}

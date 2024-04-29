@@ -1,0 +1,171 @@
+@mixin absolute_100 {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.modalDialog {
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.modalDialog > .overlay__content {
+  max-width: 480px;
+}
+.modalDialog > .overlay__content {
+  max-height: calc(100% - 48px);
+  width: calc(100% - 48px);
+  margin: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.modalDialog > .overlay__content > .dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  --v-scrollbar-offset: 0px;
+  overflow-y: auto;
+}
+.modalDialog .dialog-header {
+  position: sticky;
+  top: 0;
+}
+// list
+.dialog article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+}
+.dialog ul li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  cursor: pointer;
+  padding: 0 16px;
+}
+.dialog ul li::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  background-color: var(--mio-theme-color-primary);
+  opacity: 0;
+}
+.dialog ul li:hover::before {
+  opacity: 0.08;
+}
+.dialog ul li .title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.dialog ul li span {
+  font-size: 16px;
+  color: var(--mio-theme-color-on-background);
+}
+.dialog ul li .sub-title {
+  font-size: 12px;
+  opacity: .5;
+}
+
+
+
+/*-- dialog-header --*/
+.dialog .dialog-header {
+  padding-left: 16px;
+  padding-right: 8px;
+  height: 64px;
+}
+.dialog .dialog-header span {
+  font-size: 24px;
+  font-weight: 700;
+}
+.dialog .dialog-header button::before {
+  @include absolute_100;
+  opacity: 0.08;
+}
+.dialog .dialog-header button:hover::before {
+  opacity: 0.12;
+}
+/*-- dialog-actions --*/
+.dialog .dialog-actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 16px;
+  min-height: 52px;
+  z-index: 3;
+}
+.dialog .dialog-actions button {
+  height: 40px;
+  padding: 0 24px;
+  border-radius: var(--border-radius-24);
+}
+/*-- hr --*/
+.dialog .h-hr {
+  width: 100%;
+  height: 1px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+/*-- dialog-content --*/
+.modalDialog .dialog-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 16px 0 24px 0;
+}
+
+.dialog {
+  font-family: var(--mio-theme-font-family-1);
+  border-radius: 24px;
+  color: var(--mio-theme-color-on-background);
+  background-color: var(--mio-theme-color-background);
+  -webkit-box-shadow: 0 10px 20px -10px var(--mio-theme-color-on-background);
+  box-shadow: 0 10px 20px -10px var(--mio-theme-color-on-background);
+}
+.overlay__scrim {
+  background: var(--mio-theme-color-on-background);
+}
+.dialog .dialog-header span {
+  font-family: var(--mio-theme-font-family-2);
+}
+.dialog .dialog-header button {
+  color: var(--mio-theme-color-primary);
+}
+.dialog .dialog-header button::before {
+  border-radius: 24px;
+  background-color: var(--mio-theme-color-primary);
+}
+.dialog ul li::before {
+  border-radius: 24px;
+  background-color: var(--mio-theme-color-primary);
+}
+.dialog ul li span {
+  color: var(--mio-theme-color-on-background);
+}
+
+
+
+/*--- 태블렛 ---*/
+@media all and (max-width: 1023px) {
+  .modalDialog > .overlay__content,
+  .ifBottomSheet > .overlay__content,
+  .fileViewer > .overlay__content {
+    max-width: 480px;
+  }
+}
