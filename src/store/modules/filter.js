@@ -7,7 +7,7 @@ async function initializeKuroshiro() {
     console.log("hello world!");
     await kuroshiro.init(
       new KuromojiAnalyzer({
-        dictPath: "https://oto5works.github.io/ankitoki/dict", // 사전 파일 위치 지정
+        dictPath: "https://oto5works.github.io/assets/ankitoki/dict", // 사전 파일 위치 지정
         //   dictPath: "https://oto5works.github.io/ankitoki/dict"
         // build 할떄는 이것으로 바꾸기   dictPath: "/ankitoki/dict"
       })
