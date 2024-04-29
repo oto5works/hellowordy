@@ -1,30 +1,22 @@
-name: Deploy to GitHub Pages
+name: CI
 
 on:
   push:
-    branches:
-      - main  # 또는 빌드하고 싶은 브랜치 이름으로 변경
+    branches: [ main ]
 
 jobs:
-  deploy:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
-
-    - name: Setup Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'  # 원하는 Node.js 버전으로 설정
-
-    - name: Install and Build
+        node-version: '20' # Node.js 버전을 20으로 설정
+    - name: Install dependencies
+      run: npm install
+    - name: Build and test
       run: |
-        npm install
         npm run build
-
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.MY_PERSONAL_TOKEN }}
-        publish_dir: ./dist  # 빌드된 파일이 위치한 디렉토리
-
-        
+        npm test
