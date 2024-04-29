@@ -18,6 +18,7 @@ export default {
       import("@/views/selectWords.vue")
     ),
   },
+  
   computed: {
     ...mapGetters({
       selectWords: "state/getSelectWords",
