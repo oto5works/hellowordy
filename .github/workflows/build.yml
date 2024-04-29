@@ -24,5 +24,5 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.MY_PERSONAL_TOKEN }}
         publish_dir: ./dist  # 빌드된 파일이 위치한 디렉토리
