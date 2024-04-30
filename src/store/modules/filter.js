@@ -1,5 +1,6 @@
 /*-- filter.js --*/
 const kuroshiro = new Kuroshiro.default();
+const dictPath = "https://oto5works.github.io/storage/kuroshiro/dict"; // 올바른 절대 경로
 
 // 초기화 메서드를 정의한다.
 async function initializeKuroshiro() {
@@ -7,9 +8,8 @@ async function initializeKuroshiro() {
     console.log("hello world!");
     await kuroshiro.init(
       new KuromojiAnalyzer({
-        dictPath: "https://oto5works.github.io/storage/kuroshiro/dict", // 사전 파일 위치 지정
-        //   dictPath: "https://oto5works.github.io/ankitoki/dict"
-        //  dictPath: "/ankitoki/dict"
+        dictPath: dictPath, // 사전 파일 위치 지정
+      
       })
     );
   } catch (error) {
