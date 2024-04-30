@@ -1,23 +1,4 @@
-/*-- state.js --*/
-// Kuroshiro 인스턴스를 모듈 수준에서 정의한다.
-const kuroshiro = new Kuroshiro.default();
 
-// 초기화 메서드를 정의한다.
-async function initializeKuroshiro() {
-  try {
-    console.log("hello world!");
-    await kuroshiro.init(
-      new KuromojiAnalyzer({
-        dictPath: "https://oto5works.github.io/ankitoki/dict", // 사전 파일 위치 지정
-        //   dictPath: "https://oto5works.github.io/ankitoki/dict"
-        // build 할떄는 이것으로 바꾸기   dictPath: "/ankitoki/dict"
-      })
-    );
-  } catch (error) {
-    console.error("Error occurred during Kuroshiro initialization:", error);
-    throw error;
-  }
-}
 export default {
   namespaced: true,
   state: {
