@@ -4,6 +4,8 @@
     <h1 @click="setSelectWords()">{{ selectWords }}</h1>
     
     <selectWords v-if="selectWords" />
+    <searchWords v-if="searchWords" />
+
     <RouterView />
   </div>
 </template>
@@ -18,11 +20,16 @@ export default {
     selectWords: defineAsyncComponent(() =>
       import("@/views/selectWords.vue")
     ),
+    searchWords: defineAsyncComponent(() =>
+      import("@/views/searchWords.vue")
+    ),
   },
 
   computed: {
     ...mapGetters({
       selectWords: "state/getSelectWords",
+      searchWords: "state/getSearchWords",
+
     }),
   },
   created() {
@@ -30,7 +37,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      setSelectWords: "state/setSelectWords",
+      setSearchWords: "state/setSearchWords",
     }),
   },
 };

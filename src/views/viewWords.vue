@@ -13,7 +13,7 @@
 
     <div class="spacing-1" />
     <div class="jp" v-if="!part" @click="setSelectWords">단어가 선택되지 않았어요</div>
-    <div class="jp" v-else :class="{ ruby: showRuby }" v-html="word" />
+    <div class="jp" @click="setClipboard" v-else :class="{ ruby: showRuby }" v-html="word" />
 
     <div class="spacing-2" />
     <div class="kr">
@@ -80,7 +80,9 @@ export default {
       setNext: "filter/setNext",
       setPrevious: "filter/setPrevious",
       setSelectWords: "state/setSelectWords",
+      setClipboard: "filter/setClipboard",
 
+      
     }),
 
 

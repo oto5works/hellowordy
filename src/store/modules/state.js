@@ -8,6 +8,8 @@ export default {
     alwaysRuby: false,
     alwaysMean: false,
     selectWords: false,
+    searchWords: false,
+
   },
   mutations: {
     setInitialized(state, value) {
@@ -26,6 +28,9 @@ export default {
     setSelectWords(state) {
       state.selectWords = !state.selectWords;
   },
+  setSearchWords(state) {
+    state.searchWords = !state.searchWords;
+},
   },
   actions: {
     async initialize({ state, commit }) {
@@ -58,10 +63,15 @@ export default {
     setSelectWords({ commit }) {
       commit("setSelectWords");
     },
+    setSearchWords({ commit }) {
+      commit("setSearchWords");
+    },
   },
   getters: {
     getInitialized: (state) => state.initialized,
     getSelectWords: (state) => state.selectWords,
+    getSearchWords: (state) => state.searchWords,
+
     getShowRuby: (state) => state.showRuby,
     getShowMean: (state) => state.showMean,
 

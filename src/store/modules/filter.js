@@ -141,6 +141,22 @@ export default {
         // 선택적으로 추가적인 에러 핸들링을 수행할 수 있습니다.
       }
     },
+    async setClipboard({ state }) {
+      // state.filteredWords에서 현재 인덱스에 해당하는 단어를 가져옵니다.
+      const wordToCopy = state.filteredWords[state.index]?.word;
+      if (!wordToCopy) {
+        console.warn("복사할 단어가 없습니다.");
+        return;
+      }
+      
+      try {
+        // navigator.clipboard.writeText 함수를 사용하여 클립보드에 단어를 복사합니다.
+        await navigator.clipboard.writeText(wordToCopy);
+        console.log("클립보드에 복사되었습니다:", wordToCopy);
+      } catch (error) {
+        console.error("클립보드 복사 중 오류가 발생했습니다:", error);
+      }
+    },
     setConvertedText({ commit }, text) {
       commit("setConvertedText", text);
     },

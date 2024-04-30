@@ -1,8 +1,8 @@
 <template>
   <div class="routerView">
     <div class="spacing-1" />
+    <button @click="setSearchWords">네이버 사전 보기 {{ searchWords }}</button>
     <h2>단어 ㅂㅈㅇㅂㅈㅇㅂ</h2>
-<searchWords/>
     <div class="width_100">
       <h1>category</h1>
       <select id="category" v-model="newWord.category" required>
@@ -72,14 +72,15 @@
 </template>
 
 <script>
+import { mapGetters,mapActions } from "vuex";
+
 import db from "@/firebase/init.js";
 import { collection, addDoc } from "firebase/firestore";
 import plus from "@/components/icon/plus.vue";
-import searchWords from "@/views/searchWords.vue";
 
 
 export default {
-  components: { plus, searchWords },
+  components: { plus },
 
   data() {
     return {
@@ -91,7 +92,17 @@ export default {
       },
     };
   },
+
+  computed: {
+    ...mapGetters({
+      searchWords: "state/getSearchWords",
+
+    }),
+  },
   methods: {
+    ...mapActions({
+      setSearchWords: "state/setSearchWords",
+    }),
     addMean() {
       this.newWord.mean.push(""); // 뜻 입력 필드 추가
     },
