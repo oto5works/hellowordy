@@ -7,8 +7,7 @@ async function initializeKuroshiro() {
     console.log("hello world!");
     await kuroshiro.init(
       new KuromojiAnalyzer({
-        dictPath:
-          "https://firebasestorage.googleapis.com/v0/b/ankitoki.appspot.com/o/dict", // 사전 파일 위치 지정
+        dictPath: "https://oto5works.github.io/storage/kuroshiro/dict", // 사전 파일 위치 지정
         //   dictPath: "https://oto5works.github.io/ankitoki/dict"
         //  dictPath: "/ankitoki/dict"
       })
@@ -54,7 +53,7 @@ export default {
         console.log("이미 Kuroshiro가 초기화되었습니다.");
         return;
       }
-
+    
       console.log("Kuroshiro 초기화 중...");
       try {
         await initializeKuroshiro();
@@ -76,7 +75,7 @@ export default {
     },
 
     async convertToRuby({ commit, state }, { newIndex }) {
-      console.log("convertToRuby");
+      console.log("convertToRuby");    
       try {
         // state.words에서 현재 인덱스에 해당하는 단어를 가져옵니다.
         const currentWord = state.filteredWords[newIndex]?.word;
@@ -185,3 +184,7 @@ export default {
     getExamples: (state) => state.examples,
   },
 };
+
+
+
+
