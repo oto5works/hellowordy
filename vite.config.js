@@ -8,6 +8,7 @@ import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   plugins: [vue()],
+
   define: { "process.env": {} },
   resolve: {
     alias: {

@@ -1,15 +1,14 @@
 /*-- filter.js --*/
 const kuroshiro = new Kuroshiro.default();
-const dictPath = new URL("https://oto5works.github.io/storage/kuroshiro/dict").href;
+const dictPath = `${import.meta.env.VITE_STORAGE_URL}/dict`;
 
-// 초기화 메서드를 정의한다.
+// Initialize Kuroshiro using the absolute dictPath
 async function initializeKuroshiro() {
   try {
     console.log("hello world!");
     await kuroshiro.init(
       new KuromojiAnalyzer({
-        dictPath: dictPath, // 사전 파일 위치 지정
-      
+        dictPath: dictPath, // Use the absolute dictPath
       })
     );
   } catch (error) {
