@@ -1,13 +1,5 @@
-@mixin absolute_100 {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
 .modalDialog {
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin: auto;
 }
@@ -75,45 +67,26 @@
 }
 .dialog ul li .sub-title {
   font-size: 12px;
-  opacity: .5;
+  opacity: 0.5;
 }
-
-
 
 /*-- dialog-header --*/
 .dialog .dialog-header {
-  padding-left: 16px;
-  padding-right: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 64px;
 }
 .dialog .dialog-header span {
   font-size: 24px;
   font-weight: 700;
 }
-.dialog .dialog-header button::before {
-  @include absolute_100;
-  opacity: 0.08;
-}
-.dialog .dialog-header button:hover::before {
-  opacity: 0.12;
-}
-/*-- dialog-actions --*/
-.dialog .dialog-actions {
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 0 16px;
-  min-height: 52px;
-  z-index: 3;
-}
-.dialog .dialog-actions button {
+.dialog .dialog-header button {
+  width: 40px;
   height: 40px;
-  padding: 0 24px;
-  border-radius: var(--border-radius-24);
 }
+
 /*-- hr --*/
 .dialog .h-hr {
   width: 100%;
@@ -131,25 +104,13 @@
 }
 
 .dialog {
-  font-family: var(--mio-theme-font-family-1);
-  border-radius: 24px;
   color: var(--mio-theme-color-on-background);
-  background-color: var(--mio-theme-color-background);
-  -webkit-box-shadow: 0 10px 20px -10px var(--mio-theme-color-on-background);
-  box-shadow: 0 10px 20px -10px var(--mio-theme-color-on-background);
 }
 .overlay__scrim {
-  background: var(--mio-theme-color-on-background);
+  background: var(--mio-theme-color-background);
 }
 .dialog .dialog-header span {
   font-family: var(--mio-theme-font-family-2);
-}
-.dialog .dialog-header button {
-  color: var(--mio-theme-color-primary);
-}
-.dialog .dialog-header button::before {
-  border-radius: 24px;
-  background-color: var(--mio-theme-color-primary);
 }
 .dialog ul li::before {
   border-radius: 24px;
@@ -158,8 +119,6 @@
 .dialog ul li span {
   color: var(--mio-theme-color-on-background);
 }
-
-
 
 /*--- 태블렛 ---*/
 @media all and (max-width: 1023px) {

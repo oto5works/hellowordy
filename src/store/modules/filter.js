@@ -1,15 +1,15 @@
 /*-- filter.js --*/
 const kuroshiro = new Kuroshiro.default();
 
+const dictPath = import.meta.env.VITE_DICT_PATH;
+
 // 초기화 메서드를 정의한다.
 async function initializeKuroshiro() {
   try {
     console.log("hello world!");
     await kuroshiro.init(
       new KuromojiAnalyzer({
-        dictPath: "/dict", // 사전 파일 위치 지정
-        //   dictPath: "https://oto5works.github.io/ankitoki/dict"
-        //  dictPath: "/ankitoki/dict"
+        dictPath: dictPath, // 사전 파일 위치 지정
       })
     );
   } catch (error) {
@@ -53,7 +53,7 @@ export default {
         console.log("이미 Kuroshiro가 초기화되었습니다.");
         return;
       }
-    
+
       console.log("Kuroshiro 초기화 중...");
       try {
         await initializeKuroshiro();
@@ -74,12 +74,12 @@ export default {
       commit("setFilteredWords", filteredWords); // 필터링된 단어들을 상태에 저장합니다.
     },
 
-    async convertToRuby({ commit, state }, { newIndex }) {
-      console.log("convertToRuby");    
+    async convertToRuby({ commit, state }) {
+      console.log("convertToRuby");
       try {
         // state.words에서 현재 인덱스에 해당하는 단어를 가져옵니다.
-        const currentWord = state.filteredWords[newIndex]?.word;
-        const currentMean = state.filteredWords[newIndex]?.mean;
+        const currentWord = state.filteredWords[state.index]?.word;
+        const currentMean = state.filteredWords[state.index]?.mean;
 
         // 가져온 단어가 유효한 경우에만 변환 작업을 수행합니다.
         if (currentWord) {
@@ -100,11 +100,11 @@ export default {
         console.error("Error:", error);
       }
     },
-    async convertExamples({ commit, state }, { newIndex }) {
+    async convertExamples({ commit, state }) {
       console.log("convert Example Sentence");
       try {
         // 'words' 배열에서 현재 인덱스에 해당하는 단어의 예제들을 가져옵니다.
-        const currentExamples = state.filteredWords[newIndex]?.examples;
+        const currentExamples = state.filteredWords[state.index]?.examples;
 
         // 가져온 예제 배열이 유효한 경우에만 변환 작업을 수행합니다.
         if (currentExamples && Array.isArray(currentExamples)) {
@@ -144,33 +144,42 @@ export default {
     setConvertedText({ commit }, text) {
       commit("setConvertedText", text);
     },
-    setNext({ commit, state }) {
+    setNext({ commit, dispatch , state }) {
       const newIndex = state.index + 1;
       if (newIndex < state.filteredWords.length) {
         commit("setIndex", newIndex);
+        dispatch("setConvert");
+        dispatch("setReset");
       } else {
         // Handle when reaching the end of the word list (optional)
         console.warn("Reached the end of the word list.");
       }
     },
-    setPrevious({ commit, state }) {
+    setPrevious({ commit, dispatch , state }) {
       const newIndex = state.index - 1;
       if (newIndex >= 0) {
         commit("setIndex", newIndex);
+        dispatch("setConvert");
+        dispatch("setReset");
       } else {
         // Handle when reaching the beginning of the word list (optional)
         console.warn("Reached the beginning of the word list.");
       }
     },
-    setRandom({ commit, state }) {
+    setRandom({ commit, dispatch, state }) {
       const newIndex = Math.floor(Math.random() * state.filteredWords.length);
       commit("setIndex", newIndex);
+      dispatch("setConvert");
+      dispatch("setReset");
     },
     setIndex({ commit, dispatch }, newIndex) {
       commit("setIndex", newIndex);
-      dispatch("convertToRuby", { newIndex });
-      dispatch("convertExamples", { newIndex });
+      dispatch("setConvert");
       dispatch("setReset");
+    },
+    setConvert({ dispatch }) {
+      dispatch("convertToRuby");
+      dispatch("convertExamples");
     },
     setReset({ dispatch }) {
       dispatch("state/setReset", null, { root: true });
@@ -184,7 +193,3 @@ export default {
     getExamples: (state) => state.examples,
   },
 };
-
-
-
-

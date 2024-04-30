@@ -7,6 +7,12 @@
     <p v-if="initializationProgress > 0 && initializationProgress < 100">
       진행률: {{ initializationProgress }}%
     </p>
+
+
+    <button style="color: white" @click="addWord">
+      단어추가..!
+    </button>
+
   </div>
 </template>
 
@@ -21,7 +27,7 @@ export default {
     };
   },
   mounted() {
-   // this.handleInitialize();
+    this.handleInitialize();
   },
   computed: {
     ...mapGetters({
@@ -54,6 +60,10 @@ export default {
     navigateToViewWords() {
       this.$router.push({ name: "viewWords" });
     },
+    addWord() {
+      this.$router.push({ name: "add" });
+    },
+    
   },
 };
 </script>

@@ -39,9 +39,10 @@
   background: var(--mio-theme-color-on-background);
   opacity: 0;
   transition: all .3s ease;
-
+  filter: blur(0); /* 블러 효과 추가 */
   &.active {
     opacity: .32;
+    filter: blur(4px); /* 블러 효과 추가 */
   }
 }
 

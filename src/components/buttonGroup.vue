@@ -1,13 +1,21 @@
 <template>
   <div class="buttonGroup">
-    <btn class="show" @click="setRandom()"><check /></btn>
-    <btn class="show kr" :class="{ selected: showMean }" @click="setShowMean()"
-      ><span>가</span></btn
-    >
-    <btn class="show jp" :class="{ selected: showRuby }" @click="setShowRuby()"
-      ><span>あ</span></btn
-    >
-    <btn class="show selected" @click="setRandom()"><dice /></btn>
+    <div class="content">
+      <btn class="show" @click="setRandom()"><check /></btn>
+      <btn
+        class="show kr"
+        :class="{ selected: showMean }"
+        @click="setShowMean()"
+        ><span>가</span></btn
+      >
+      <btn
+        class="show jp"
+        :class="{ selected: showRuby }"
+        @click="setShowRuby()"
+        ><span>あ</span></btn
+      >
+      <btn class="show selected" @click="setRandom()"><dice /></btn>
+    </div>
   </div>
 </template>
 

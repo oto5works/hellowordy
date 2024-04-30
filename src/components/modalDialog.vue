@@ -10,13 +10,11 @@
         />
         <div class="overlay__content" :class="{ active: loaded }">
           <div class="dialog">
-            <div
-              class="z-index_3 flex align-items_center justify-content_space-between gap_4 dialog-header"
-            >
+            <div class="dialog-header">
               <span class="font-size_24">{{ title }}</span>
-              <button class="icon_48" @click="closeDialog">
+              <btn @click="closeDialog">
                 <icon><x /></icon>
-              </button>
+              </btn>
             </div>
             <div class="dialog-content">
               <slot></slot>
@@ -43,6 +41,17 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+  },
+  watch: {
+    dialog(newValue) {
+      if (newValue) {
+        // 대화상자가 열리면 `body`에 `no-scroll` 클래스를 추가합니다.
+        document.body.classList.add("no-scroll");
+      } else {
+        // 대화상자가 닫히면 `no-scroll` 클래스를 제거합니다.
+        document.body.classList.remove("no-scroll");
+      }
     },
   },
   data() {

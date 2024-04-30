@@ -34,11 +34,22 @@
 .buttonGroup {
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 var(--mio-theme-padding);
   width: 100%;
   bottom: var(--mio-theme-padding);
 }
+.buttonGroup .content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 420px;
+}
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
 /*--- 모바일 ---*/
 @media all and (max-width: 479px) {
 

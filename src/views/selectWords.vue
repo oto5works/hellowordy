@@ -1,5 +1,5 @@
 <template>
-  <modalDialog :dialog="selectWords" @update:dialog="updateDialog">
+  <modalDialog title="단어 선택" :dialog="selectWords" @update:dialog="updateDialog">
     <p>category: {{ category }} part: {{ part }}</p>
 
     <div v-for="(value, index) in categoryOptions" :key="index">
@@ -37,6 +37,10 @@ export default {
       fetchWords: "words/fetchWords",
       setCategory: "words/setCategory",
       setPart: "words/setPart",
+      setIndex: "filter/setIndex",
+
+
+      
     }),
     updateDialog(value) {
       this.setSelectWords();
@@ -48,6 +52,12 @@ export default {
     updatePart(value) {
       console.log ('눌러요', value)
       this.setPart(value); // Dispatch the setCategory action with the option as payload
+      this.setIndex(0);
+
+      this.setSelectWords();
+      this.$router.push({ name: "viewWords" });
+
+      
     },
   },
 };

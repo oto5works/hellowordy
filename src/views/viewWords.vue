@@ -12,7 +12,9 @@
     <headers />
 
     <div class="spacing-1" />
-    <div class="jp" :class="{ ruby: showRuby }" v-html="word" />
+    <div class="jp" v-if="!part" @click="setSelectWords">단어가 선택되지 않았어요</div>
+    <div class="jp" v-else :class="{ ruby: showRuby }" v-html="word" />
+
     <div class="spacing-2" />
     <div class="kr">
       <div class="kr-item" v-for="(item, index) in mean" :key="index">
@@ -66,24 +68,34 @@ export default {
       mean: "filter/getMean",
       examples: "filter/getExamples",
       
+      category: "words/getCategory",
+      part: "words/getPart",
 
+      
     }),
   },
   methods: {
     ...mapActions({
       initialize: "filter/initialize",
-      setIndex: "filter/setIndex",
       setNext: "filter/setNext",
       setPrevious: "filter/setPrevious",
+      setSelectWords: "state/setSelectWords",
 
-      
     }),
 
 
     async handleInitialize() {
-      await this.initialize();
-      await this.setIndex(0);
-    },
+  await this.initialize();
+
+  // category 또는 part 값이 비어있는지 확인합니다.
+  if (!this.category || !this.part) {
+    // setSelectWords 함수를 호출합니다.
+    // 이때, 필요한 값을 인자로 전달할 수 있습니다.
+    // 예제에서는 인자를 전달하지 않는 형태로 남겨두었습니다.
+    // 필요한 값을 전달해야 하는 경우에는 해당 값을 적절히 조정하세요.
+    this.setSelectWords();
+  }
+},
 
 
     startSwipe(event) {
