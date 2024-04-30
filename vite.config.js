@@ -1,3 +1,4 @@
+/*-- vite.config.js --*/
 // Plugins
 import vue from "@vitejs/plugin-vue";
 
@@ -8,7 +9,6 @@ import { fileURLToPath, URL } from "node:url";
 export default defineConfig({
   plugins: [vue()],
 
-  base: "/",
   define: { "process.env": {} },
   resolve: {
     alias: {
