@@ -2,7 +2,7 @@
   <div class="routerView">
     <div class="spacing-1" />
     <h2>단어 ㅂㅈㅇㅂㅈㅇㅂ</h2>
-
+<searchWords/>
     <div class="width_100">
       <h1>category</h1>
       <select id="category" v-model="newWord.category" required>
@@ -75,9 +75,11 @@
 import db from "@/firebase/init.js";
 import { collection, addDoc } from "firebase/firestore";
 import plus from "@/components/icon/plus.vue";
+import searchWords from "@/views/searchWords.vue";
+
 
 export default {
-  components: { plus },
+  components: { plus, searchWords },
 
   data() {
     return {

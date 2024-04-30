@@ -1,5 +1,6 @@
 <template>
   <modalDialog title="단어 선택" :dialog="selectWords" @update:dialog="updateDialog">
+    
     <p>category: {{ category }} part: {{ part }}</p>
 
     <div v-for="(value, index) in categoryOptions" :key="index">
