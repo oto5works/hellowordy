@@ -47,6 +47,7 @@ export default {
   mounted() {
     //this.handleInitialize();
   },
+  
   computed: {
     ...mapGetters({
       initialized: "filter/getInitialized",
