@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import wordsMenu from "@/views/words/wordsMenu.vue";
+import wordsMenu from "@/views/words/wordMenu.vue";
 
 export default {
   components: {
