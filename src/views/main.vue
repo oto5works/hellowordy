@@ -1,18 +1,5 @@
 <template>
   <div>
-    <button @click="isOpen = true">Open modal</button>
-  <SwipeModal
-    v-model="isOpen"
-    snapPoint="480px"
-    :is-backdrop="false"
-    :is-scrollLock="false"
-  >
-    <button @click="isOpen = false">Close modal</button>
-    Modal content
-  </SwipeModal>
-
-
-
     <button style="color: white" @click="navigateToViewWords">
       Go to Kuromoji
     </button>
@@ -20,34 +7,22 @@
     <p v-if="initializationProgress > 0 && initializationProgress < 100">
       진행률: {{ initializationProgress }}%
     </p>
-
-
-    <button style="color: white" @click="addWord">
-      단어추가..!
-    </button>
-
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { SwipeModal } from "@takuma-ru/vue-swipe-modal"
 
 export default {
-  components: {
-    SwipeModal
-  },
   data() {
     return {
-      isOpen: false,
       message: "",
       initializationProgress: 0,
     };
   },
   mounted() {
-    //this.handleInitialize();
+    this.handleInitialize();
   },
-  
   computed: {
     ...mapGetters({
       initialized: "filter/getInitialized",
@@ -79,10 +54,6 @@ export default {
     navigateToViewWords() {
       this.$router.push({ name: "viewWords" });
     },
-    addWord() {
-      this.$router.push({ name: "add" });
-    },
-    
   },
 };
 </script>

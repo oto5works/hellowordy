@@ -8,15 +8,11 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@takuma-ru/vue-swipe-modal": "^5.0.2",
     "axios": "^0.27.2",
     "chalk": "^4.1.2",
     "core-js": "^3.27.1",
     "firebase": "^10.11.1",
     "js-cookie": "^3.0.1",
-    "kuroshiro": "^1.2.0",
-    "kuroshiro-analyzer-kuromoji": "^1.1.0",
-    "mecab-async": "^0.1.2",
     "path": "^0.12.7",
     "vite-plugin-define": "^1.0.6",
     "vue": "^3.2.38",
