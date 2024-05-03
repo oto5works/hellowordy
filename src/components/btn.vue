@@ -1,8 +1,6 @@
 <template>
-  <button>
-    <div class="slot">
+  <button class="buttonDefault">
       <slot></slot>
-    </div>
 
     <div class="overlay" />
     <div class="underlay" />
@@ -16,29 +14,29 @@ export default {};
 
 <style scoped>
 /*--- 공통사항 ---*/
-button .shadow {
+.buttonDefault .shadow {
   z-index: -2;
 }
-button .underlay {
+.buttonDefault .underlay {
   z-index: -1;
 }
-button .overlay {
+.buttonDefault .overlay {
   z-index: 0;
 }
-button .fnOption-text {
+.buttonDefault .fnOption-text {
   z-index: 3;
 }
-button .more {
+.buttonDefault .more {
   z-index: 5;
 }
-button span,
-button svg,
-button p {
+.buttonDefault span,
+.buttonDefault svg,
+.buttonDefault p {
   z-index: 6;
 }
-button .overlay,
-button .underlay,
-button .shadow {
+.buttonDefault .overlay,
+.buttonDefault .underlay,
+.buttonDefault .shadow {
   position: absolute;
   content: "";
   width: 100%;
@@ -48,7 +46,7 @@ button .shadow {
   border-radius: inherit;
   pointer-events: none;
 }
-button .overlay {
+.buttonDefault .overlay {
   position: absolute;
   content: "";
   width: 100%;
@@ -59,15 +57,16 @@ button .overlay {
   transition: all 0.2s ease-in-out;
   opacity: 0;
 }
-button:hover .overlay {
+.buttonDefault:hover .overlay {
   opacity: 0.08;
 }
 
-button {
+.buttonDefault {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   flex-shrink: 0;
   z-index: 1;
   border-radius: 36px;
@@ -77,58 +76,45 @@ button {
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none
+  
 }
-button:hover svg {
+.buttonDefault:hover svg {
   stroke-width: 26;
 }
-button:disabled {
+.buttonDefault:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
-button span {
-  color: currentColor;
-  font-size: 14px;
-  font-family: var(--mio-theme-font-family);
-  font-weight: 400;
-}
-button .slot {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-}
-button.selected {
+.buttonDefault.selected {
   color: var(--mio-theme-color-on-primary);
 }
 /*-- overlay --*/
-button .overlay {
+.buttonDefault .overlay {
   background-color: var(--mio-theme-color-on-background);
   opacity: 0.02;
 }
-button:hover .overlay {
+.buttonDefault:hover .overlay {
   opacity: 0.04;
 }
-button.selected .overlay {
+.buttonDefault.selected .overlay {
   background-color: var(--mio-theme-color-primary);
   opacity: 0.12;
 }
 /*-- underlay --*/
-button .underlay {
+.buttonDefault .underlay {
   background-color: var(--mio-theme-color-on-background);
   opacity: .12;
 }
-button.selected .underlay {
+.buttonDefault.selected .underlay {
   background-color: var(--mio-theme-color-primary);
   opacity: 1;
 }
 /*-- shadow --*/
-button .shadow {
+.buttonDefault .shadow {
   box-shadow: 0 0 0 0 var(--mio-theme-color-primary);
   opacity: 0;
 }
-button.selected .shadow {
+.buttonDefault.selected .shadow {
   box-shadow: 0px 7px 29px 0px var(--mio-theme-color-primary);
   opacity: 0.2;
 }

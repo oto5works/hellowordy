@@ -2,6 +2,22 @@
 @import "./font.scss";
 @import "./root.scss";
 
+.sp_128 {
+  height: 128px;
+}
+.sp_160 {
+  height: 160px;
+}
+.width_100 {
+  width: 100%;
+}
+.height_40 {
+  height: 40px;
+}
+.icon_16 {
+  width: 16px;
+  height: 16px;
+}
 .routerView {
   position: relative;
   width: 100%;
@@ -13,7 +29,10 @@
   color: var(--mio-theme-color-on-background);
 }
 
-
+select {
+  color: inherit;
+  font-size: 16px;
+}
 
 
 
@@ -49,7 +68,9 @@
   overflow: hidden;
   height: 100%;
 }
-
+button {
+  color: inherit;
+}
 /*--- 모바일 ---*/
 @media all and (max-width: 479px) {
 

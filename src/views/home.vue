@@ -45,7 +45,7 @@ export default {
     };
   },
   mounted() {
-    //this.handleInitialize();
+    this.handleInitialize();
   },
   computed: {
     ...mapGetters({

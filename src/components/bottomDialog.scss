@@ -1,0 +1,57 @@
+/*-- bottom Sheet --*/
+.bottomDialog {
+  align-items: flex-end;
+  justify-content: center;
+  margin: auto;
+}
+.bottomDialog > .overlay__content {
+  max-width: 480px;
+}
+.bottomDialog > .overlay__content {
+  height: 480px;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+  &.active {
+    transform: translateY(0%);
+  }
+  &.full {
+    height: 100%;
+  }
+}
+.bottomDialog > .overlay__content > .dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  --v-scrollbar-offset: 0px;
+  overflow-y: auto;
+  height: 100%;
+}
+.bottomDialog > .overlay__content > .dialog .dialog-header {
+  height: 40px;
+}
+.bottomDialog > .overlay__content > .dialog .dialog-header span {
+  font-size: 14px;
+}
+.bottomDialog .dialog-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 24px 24px 0  0;
+  overflow: hidden;
+}
+.bottomDialog button {
+  width: 40px;
+  height: 40px;
+}
+/*--- 태블렛 ---*/
+@media all and (max-width: 1023px) {
+  .bottomDialog > .overlay__content {
+    max-width: 480px;
+  }
+}

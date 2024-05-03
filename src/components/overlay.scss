@@ -6,6 +6,19 @@
   top: 0;
   left: 0;
 }
+/*-- Dialog --*/
+.overlay {
+  z-index: 2400;
+}
+.dialog .dialog-header button::before {
+  z-index: -1;
+}
+.dialog .dialog-content {
+  z-index: 1;
+}
+.dialog .dialog-actions {
+  z-index: 3;
+}
 /*-- common --*/
 .overlay-container {
   contain: layout;

@@ -1,0 +1,14 @@
+button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button span {
+    color: currentColor;
+    font-size: 14px;
+    font-family: var(--mio-theme-font-family-kr);
+    font-weight: 400;
+    line-height: 100%;
+  }

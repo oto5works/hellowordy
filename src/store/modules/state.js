@@ -1,4 +1,3 @@
-
 export default {
   namespaced: true,
   state: {
@@ -9,14 +8,14 @@ export default {
     alwaysMean: false,
     selectWords: false,
     searchWords: false,
-
+    searchWord: 'がいぶ',
   },
   mutations: {
     setInitialized(state, value) {
       state.initialized = value;
     },
     setShowRuby(state) {
-        state.showRuby = !state.showRuby;
+      state.showRuby = !state.showRuby;
     },
     setShowMean(state) {
       state.showMean = !state.showMean;
@@ -27,10 +26,15 @@ export default {
     },
     setSelectWords(state) {
       state.selectWords = !state.selectWords;
-  },
-  setSearchWords(state) {
-    state.searchWords = !state.searchWords;
-},
+    },
+    
+    setSearchWords(state) {
+      state.searchWords = !state.searchWords;
+    },
+    setSearchWord(state, word) {
+      // state의 searchWord를 업데이트
+      state.searchWord = word;
+    },
   },
   actions: {
     async initialize({ state, commit }) {
@@ -39,7 +43,7 @@ export default {
         console.log("이미 Kuroshiro가 초기화되었습니다.");
         return;
       }
-    
+
       console.log("Kuroshiro 초기화 중...");
       try {
         await initializeKuroshiro();
@@ -66,17 +70,18 @@ export default {
     setSearchWords({ commit }) {
       commit("setSearchWords");
     },
+    setSearchWord({ commit }, word) {
+      // 여기서는 단순히 mutation을 commit합니다.
+      commit('setSearchWord', word);
+    }
   },
   getters: {
     getInitialized: (state) => state.initialized,
     getSelectWords: (state) => state.selectWords,
     getSearchWords: (state) => state.searchWords,
+    getSearchWord: (state) => state.searchWord,
 
     getShowRuby: (state) => state.showRuby,
     getShowMean: (state) => state.showMean,
-
-
-    
-
   },
 };

@@ -1,6 +1,6 @@
 /*-- words.js --*/
-import db from "@/firebase/init.js";
-import { collection, query, where, getDocs } from "firebase/firestore";
+//import db from "@/firebase/init.js";
+//import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 
 export default {
   namespaced: true,
@@ -30,22 +30,23 @@ export default {
       try {
         // 'words' 컬렉션에 대한 참조를 생성합니다.
         const wordsCollectionRef = collection(db, "words");
-
-        // 카테고리에 따라 데이터를 필터링합니다. (예: state.category의 값으로 필터링)
+    
+        // 카테고리에 따라 데이터를 필터링하고, 'createdAt' 필드에 따라 정렬합니다.
         const q = query(
           wordsCollectionRef,
-          where("category", "==", state.category)
+          where("category", "==", state.category),
+          //orderBy("createdAt") // 여기서 정렬 설정을 추가합니다.
         );
-
+    
         // 쿼리를 실행하고 결과 문서 스냅샷을 가져옵니다.
         const querySnapshot = await getDocs(q);
-
+    
         // 결과 데이터를 배열로 변환합니다.
         const words = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(), // 문서 데이터와 함께 문서 ID도 포함합니다.
         }));
-
+    
         // 가져온 데이터를 Vuex 상태에 저장합니다.
         commit("setWords", words);
       } catch (error) {

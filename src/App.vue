@@ -1,6 +1,7 @@
 <!-- App.vue -->
 <template>
   <div class="app">
+    isAuthenticated = {{ isAuthenticated }}
     <h1 @click="setSelectWords()">{{ selectWords }}</h1>
     
     <selectWords v-if="selectWords" />
@@ -29,6 +30,7 @@ export default {
     ...mapGetters({
       selectWords: "state/getSelectWords",
       searchWords: "state/getSearchWords",
+      isAuthenticated: "users/isAuthenticated",
 
     }),
   },
@@ -38,6 +40,8 @@ export default {
   methods: {
     ...mapActions({
       setSearchWords: "state/setSearchWords",
+
+     
     }),
   },
 };
@@ -48,7 +52,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: darkolivegreen;
+  background-color: var(--mio-theme-color-background);
 }
 
 #app {

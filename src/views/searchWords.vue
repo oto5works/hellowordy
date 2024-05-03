@@ -3,12 +3,12 @@
 
 
 <template>
-  <fullDialog title="단어 선택" :dialog="searchWords" @update:dialog="updateDialog">
+  <bottomDialog title="단어 선택" :dialog="searchWords" @update:dialog="updateDialog">
     
-    <iframe src="https://ja.dict.naver.com/#/main" width="100%" height="100%"></iframe>
+    <iframe :src="`https://ja.dict.naver.com/#/mini/search?query=${searchWord}`" width="100%" height="100%"></iframe>
 
    
-  </fullDialog>
+  </bottomDialog>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
@@ -19,6 +19,7 @@ export default {
   computed: {
     ...mapGetters({
       searchWords: "state/getSearchWords",
+      searchWord: "state/getSearchWord",
     }),
   },
   methods: {

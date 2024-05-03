@@ -68,8 +68,8 @@ export default {
     filterWords({ commit, rootState }) {
       const part = rootState.words.part; // words 모듈의 현재 part 값을 가져옵니다.
       const allWords = rootState.words.words; // words 모듈의 전체 단어 목록을 가져옵니다.
-      const startIndex = (part - 1) * 10;
-      const endIndex = part * 10;
+      const startIndex = (part - 1) * 50;
+      const endIndex = part * 50;
       const filteredWords = allWords.slice(startIndex, endIndex);
       commit("setFilteredWords", filteredWords); // 필터링된 단어들을 상태에 저장합니다.
     },
