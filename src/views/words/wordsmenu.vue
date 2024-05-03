@@ -15,6 +15,7 @@
 import { defineAsyncComponent } from "vue";
 import { mapActions } from "vuex";
 
+
 export default {
   components: {
     wordsForm: defineAsyncComponent(() =>
