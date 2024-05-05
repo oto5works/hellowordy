@@ -1,6 +1,6 @@
 <template>
   <modalDialog title="추가" :dialog="dialog" @update:dialog="updateDialog">
-    {{ currentWordID }}<br/>
+    {{ currentWordID }}<br />
     {{ isEditMode }}
     <div class="word-field">
       <textField label="Enter Word" v-model="word" type="text">
@@ -34,9 +34,9 @@
           <div class="example-index">
             <span>example {{ index + 1 }}</span>
 
-            <button @click="handleDeleteExample(index)">
+            <buttonDefault @click="handleDeleteExample(index)">
               <icon class="icon_16"><x /></icon>
-            </button>
+            </buttonDefault>
           </div>
           <textField
             :label="`Enter Sentence ${index + 1}`"
@@ -57,8 +57,8 @@
         ><icon class="icon_16"><plus /></icon><span>예문 추가</span></buttonText
       >
     </div>
-    <button v-if="!isEditMode" @click="handleCreateWord">단어장 생성</button>
-    <button v-else @click="handleUpdateWord">단어장 수정</button>
+    <buttonDefault v-if="!isEditMode" @click="handleCreateWord">단어장 생성</buttonDefault>
+    <buttonDefault v-else @click="handleUpdateWord">단어장 수정</buttonDefault>
   </modalDialog>
 </template>
 
@@ -73,7 +73,7 @@ export default {
   props: {
     dialog: { type: Boolean },
   },
-  emits: ['update:dialog', 'close'],
+  emits: ["update:dialog", "close"],
   data() {
     return {
       word: "",
@@ -138,7 +138,7 @@ export default {
         {}
       );
       try {
-        console.log ('updateData: ', updateData)
+        console.log("updateData: ", updateData);
         await this.updateWord(updateData);
         this.closeForm();
       } catch (error) {

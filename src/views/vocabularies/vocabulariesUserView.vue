@@ -26,11 +26,11 @@ export default {
     }),
   },
   created() {
-    this.fetchVocabularies();
+    this.fetchUserVocabularies();
   },
   methods: {
     ...mapActions({
-      fetchVocabularies: "vocabularies/fetchVocabularies",
+      fetchUserVocabularies: "vocabularies/fetchUserVocabularies",
     }),
   },
 };

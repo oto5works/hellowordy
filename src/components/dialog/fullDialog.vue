@@ -2,16 +2,17 @@
 <template>
   <teleport to="body">
     <div class="overlay-container" v-if="dialog">
-      <div class="overlay bottomDialog">
-        
-        <div class="overlay__content" :class="{ active: loaded, full: isFull }">
+      <div class="overlay fullDialog">
+        <div
+          class="overlay__scrim"
+          @click="closeDialog"
+          :class="{ active: loaded }"
+        />
+        <div class="overlay__content" :class="{ active: loaded }">
           <div class="dialog">
-            <div class="dialog-header">
-              <span class="font-size_24">{{ title }}</span>
-              <btn @click="closeDialog">
-                <icon><x /></icon>
-              </btn>
-            </div>
+            <button @click="closeDialog">
+              <icon><x /></icon>
+            </button>
             <div class="dialog-content">
               <slot></slot>
             </div>
@@ -23,8 +24,8 @@
 </template>
 
 <script>
-import "@/components/overlay.scss";
-import "@/components/bottomDialog.scss";
+import "@/components/dialog/overlay.scss";
+import "@/components/dialog/fullDialog.scss";
 import x from "@/components/icon/x.vue";
 
 export default {
@@ -43,8 +44,6 @@ export default {
   data() {
     return {
       loaded: false,
-      isFull: false,
-
     };
   },
   mounted() {

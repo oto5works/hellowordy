@@ -13,6 +13,7 @@ import {
   deleteDoc,
   orderBy,
   updateDoc,
+  writeBatch
 } from "firebase/firestore"; // 이 부분이 추가되었습니다.
 
 // firebase.js Vuex module
@@ -36,7 +37,36 @@ export default {
 
   // Actions
   actions: {
+    async deleteWordsByVocabularyID({ dispatch }, vocabularyID) {
+      try {
+        console.log("vocabularyID로 단어 삭제 시작:", vocabularyID);
+        const wordsRef = collection(db, "words");
+        const q = query(wordsRef, where("vocabularyID", "==", vocabularyID));
+        const querySnapshot = await getDocs(q);
+
+        // 각 단어를 삭제합니다.
+        const batch = writeBatch(db); // Batch 작업을 시작합니다.
+        querySnapshot.forEach((docSnapshot) => {
+          const docRef = doc(db, "words", docSnapshot.id); // 'doc' 대신 'docSnapshot'을 사용합니다.
+          batch.delete(docRef); // Batch에 삭제 작업을 추가합니다.
+        });
+        await batch.commit(); // Batch 작업을 커밋하여 모든 삭제를 한 번에 처리합니다.
+
+        console.log(
+          "vocabularyID에 해당하는 모든 단어 삭제 완료:",
+          vocabularyID
+        );
+
+        // 필요한 경우, 여기서 추가적인 후처리 작업을 수행할 수 있습니다.
+        // 예를 들어, 관련 단어장이나 UI를 업데이트할 수 있습니다.
+        // await dispatch("fetchWords"); // 예시: 단어 목록을 새로고침합니다.
+      } catch (error) {
+        console.error("단어 삭제 중 오류 발생:", error);
+        throw error;
+      }
+    },
     async fetchWords({ commit, rootGetters }) {
+      console.log("fetchWords!!");
       try {
         const vocabularyID = rootGetters["vocabularies/getCurrentVocabularyID"];
         console.log("vocabularyID: ", vocabularyID);
@@ -56,6 +86,12 @@ export default {
       } catch (error) {
         console.error("단어 불러오기 실패:", error);
       }
+    },
+
+    async resetWords({ commit }) {
+      console.log("words Null을 설정합니다. ");
+
+      commit("setWords", null); // 현재 선택된 단어장 ID를 null로 설정
     },
 
     async createWord({ dispatch, rootGetters }, { word, mean, examples }) {
@@ -122,8 +158,25 @@ export default {
         throw error;
       }
     },
+    async deleteWordsByUserID({ commit }, userID) {
+      try {
+        const wordsRef = collection(db, "words");
+        const q = query(wordsRef, where("userID", "==", userID));
+        const querySnapshot = await getDocs(q);
+        const batch = writeBatch(db);
+        querySnapshot.forEach((docSnapshot) => {
+          batch.delete(doc(db, "words", docSnapshot.id));
+        });
+        await batch.commit();
+        console.log("사용자의 모든 words 삭제 완료");
+      } catch (error) {
+        console.error("words 삭제 중 오류 발생: ", error);
+        throw error;
+      }
+    },
+
     async updateWord({ dispatch, state }, payload) {
-      console.log ('payload: ', payload)
+      console.log("payload: ", payload);
 
       try {
         const wordID = state.currentWordID; // 현재 선택된 단어장 ID를 상태에서 가져옵니다.

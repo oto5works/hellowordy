@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap");
 h1,
 h2,
 h3,
@@ -18,8 +18,54 @@ h3 {
   font-style: normal;
   line-height: 100%;
 }
-
-
+.--mio-theme-font-family {
+  font-family: var(--mio-theme-font-family);
+}
+.--mio-theme-font-family-kr {
+  font-family: var(--mio-theme-font-family-kr);
+}
+.--mio-theme-font-family-jp {
+  font-family: var(--mio-theme-font-family-jp);
+}
+.font-size_12 {
+  font-size: 12px;
+}
+.font-size_14 {
+  font-size: 14px;
+}
+.font-size_16 {
+  font-size: 16px;
+}
+.font-size_18 {
+  font-size: 18px;
+}
+.font-size_24 {
+  font-size: 24px;
+}
+.font-size_28 {
+  font-size: 28px;
+}
+.font-size_32 {
+  font-size: 32px;
+}
+.font-size_36 {
+  font-size: 36px;
+}
+.font-weight_400 {
+  font-weight: 400;
+}
+.font-weight_500 {
+  font-weight: 500;
+}
+.font-weight_600 {
+  font-weight: 600;
+}
+.font-weight_700 {
+  font-weight: 700;
+}
+.font-weight_800 {
+  font-weight: 800;
+}
 h1 {
   font-size: 16px;
   font-weight: 400;
@@ -51,7 +97,8 @@ h3 {
 .jp.ruby rt {
   opacity: 1;
 }
-h4, h5 {
+h4,
+h5 {
   font-family: var(--mio-theme-font-family-kr);
 }
 h4 {
@@ -64,7 +111,6 @@ h5 {
   line-height: 130%;
   font-size: 16px;
 }
-
 
 .example-jp {
   font-family: var(--mio-theme-font-family-jp);

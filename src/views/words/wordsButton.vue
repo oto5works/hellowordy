@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <button @click="handleCreateWord()">추가</button>
+  <buttonDefault class="width_100 height_64" @click="handleCreateWord()"
+    ><span>단어 추가</span>
     <wordsForm
       v-if="dialog"
       :dialog="dialog"
       @update:dialog="dialog = $event"
     />
-  </div>
+  </buttonDefault>
 </template>
 
 <script>
@@ -18,7 +18,6 @@ export default {
     wordsForm: defineAsyncComponent(() =>
       import("@/views/words/wordsForm.vue")
     ),
-    
   },
   data() {
     return {

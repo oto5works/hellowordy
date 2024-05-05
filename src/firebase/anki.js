@@ -33,42 +33,34 @@ export default {
       state.currentVocabularyID = vocabularyID;
     },
   },
+
   // Actions
   actions: {
     /*-- Vocabulary --*/
     async createVocabulary(
       { dispatch, rootGetters },
-      { language, title, content, share }
+      { category, title, content }
     ) {
       try {
         const userID = rootGetters["users/getUserID"];
-        const displayName = rootGetters["users/getDisplayName"];
-        const photoURL = rootGetters["users/getPhotoURL"];
-
-        console.log("userID:", userID);
-        console.log("displayName:", displayName);
         const vocabulariesRef = collection(db, "vocabularies");
         const vocabularyData = {
-          language: language,
+          category: category,
           title: title,
           content: content,
-          share: share,
           createdAt: new Date(),
           userID: userID,
-          displayName: displayName,
-          photoURL: photoURL,
         };
         await addDoc(vocabulariesRef, vocabularyData);
-        await dispatch("fetchUserVocabularies"); // 단어장을 생성한 후 목록을 갱신합니다.
+        await dispatch("fetchVocabularies"); // 단어장을 생성한 후 목록을 갱신합니다.
       } catch (error) {
         throw error;
       }
     },
-
-    async fetchUserVocabularies({ commit, dispatch, rootGetters }) {
+    async fetchVocabularies({ commit, dispatch, rootGetters }) {
       try {
         // 사용자 인증 상태 준비를 기다립니다.
-        await dispatch("users/ensureAuthReady", {}, { root: true });
+        await dispatch("users/waitForAuth", {}, { root: true });
 
         const userID = rootGetters["users/getUserID"];
         console.log("userID:", userID);
@@ -83,21 +75,6 @@ export default {
           where("userID", "==", userID),
           orderBy("createdAt", "desc")
         );
-        const querySnapshot = await getDocs(q);
-        const vocabularies = [];
-        querySnapshot.forEach((doc) => {
-          vocabularies.push({ id: doc.id, ...doc.data() });
-        });
-        commit("setVocabularies", vocabularies);
-      } catch (error) {
-        console.error("단어장 리스트 불러오기 실패:", error);
-      }
-    },
-
-    async fetchAllVocabularies({ commit }) {
-      try {
-        const vocabulariesRef = collection(db, "vocabularies");
-        const q = query(vocabulariesRef, orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
         const vocabularies = [];
         querySnapshot.forEach((doc) => {
@@ -140,35 +117,29 @@ export default {
         console.log("vocabularyID", vocabularyID);
         const vocabularyRef = doc(db, "vocabularies", vocabularyID);
 
-        await dispatch("words/deleteWordsByVocabularyID", vocabularyID, {
-          root: true,
+        // 해당 단어장 ID와 연결된 모든 단어를 찾습니다.
+        const wordsRef = collection(db, "words"); // 'words'는 단어들이 저장된 컬렉션 이름입니다.
+        const q = query(wordsRef, where("vocabularyID", "==", vocabularyID));
+        const querySnapshot = await getDocs(q);
+
+        // 각 단어를 삭제합니다.
+        const batch = writeBatch(db); // Batch 작업을 시작합니다.
+        querySnapshot.forEach((docSnapshot) => {
+          const docRef = doc(db, "words", docSnapshot.id); // 'doc' 대신 'docSnapshot'을 사용합니다.
+          batch.delete(docRef); // Batch에 삭제 작업을 추가합니다.
         });
+        await batch.commit(); // Batch 작업을 커밋하여 모든 삭제를 한 번에 처리합니다.
 
         // 마지막으로 단어장 자체를 삭제합니다.
         await deleteDoc(vocabularyRef);
 
-        await dispatch("fetchUserVocabularies"); // 단어장을 삭제한 후 목록을 갱신합니다.
+        await dispatch("fetchVocabularies"); // 단어장을 삭제한 후 목록을 갱신합니다.
       } catch (error) {
         console.error("단어장 및 단어 삭제 중 오류 발생:", error);
         throw error;
       }
     },
-    async deleteVocabulariesByUserID({ commit }, userID) {
-      try {
-        const vocabulariesRef = collection(db, "vocabularies");
-        const q = query(vocabulariesRef, where("userID", "==", userID));
-        const querySnapshot = await getDocs(q);
-        const batch = writeBatch(db);
-        querySnapshot.forEach((docSnapshot) => {
-          batch.delete(doc(db, "vocabularies", docSnapshot.id));
-        });
-        await batch.commit();
-        console.log("사용자의 모든 vocabularies 삭제 완료");
-      } catch (error) {
-        console.error("vocabularies 삭제 중 오류 발생: ", error);
-        throw error;
-      }
-    },
+
     async updateVocabulary({ dispatch, state }, payload) {
       try {
         const vocabularyID = state.currentVocabularyID; // 현재 선택된 단어장 ID를 상태에서 가져옵니다.
@@ -190,7 +161,7 @@ export default {
           console.log("업데이트할 데이터가 없습니다.");
         }
 
-        await dispatch("fetchUserVocabularies"); // 업데이트 후 단어장 목록을 새로고침합니다.
+        await dispatch("fetchVocabularies"); // 업데이트 후 단어장 목록을 새로고침합니다.
       } catch (error) {
         console.error("단어장 업데이트 중 오류 발생:", error);
         throw error;
@@ -201,11 +172,6 @@ export default {
       console.log("CurrentVocabularyID: ", vocabularyID);
 
       commit("setCurrentVocabularyID", vocabularyID);
-    },
-    async resetCurrentVocabularyID({ commit }) {
-      console.log("voca Null을 설정합니다. ");
-
-      commit("setCurrentVocabularyID", null); // 현재 선택된 단어장 ID를 null로 설정
     },
   },
 

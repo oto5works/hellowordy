@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="handleCreateVocabulary()">생성</button>
+    <buttonDefault class="width_100 height_64" @click="handleCreateVocabulary()"><span>만들기</span></buttonDefault>
     <vocabulariesForm
       v-if="dialog"
       :dialog="dialog"

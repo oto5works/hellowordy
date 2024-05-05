@@ -2,6 +2,31 @@
 @import "./font.scss";
 @import "./root.scss";
 
+.display_flex {
+  display: flex;
+  
+}
+.flex-direction_column{
+  flex-direction: column;
+}
+.align-items_flex-start {
+  align-items: flex-start;
+}
+.align-items_center {
+  align-items: center;
+}
+.align-items_flex-end {
+  align-items: flex-end;
+}
+.justify-content_center {
+  justify-content: center;
+}
+.justify-content_space-between {
+  justify-content: space-between;
+}
+.sp_24 {
+  height: 24px;
+}
 .sp_128 {
   height: 128px;
 }
@@ -14,9 +39,44 @@
 .height_40 {
   height: 40px;
 }
+.height_64 {
+  height: 64px;
+}
 .icon_16 {
   width: 16px;
   height: 16px;
+}
+.icon_24 {
+  width: 24px;
+  height: 24px;
+}
+.icon_48 {
+  width: 48px;
+  height: 48px;
+}
+.gap_4 {
+  gap: 4px;
+}
+.gap_6 {
+  gap: 6px;
+}
+.gap_8 {
+  gap: 8px;
+}
+.gap_12 {
+  gap: 12px;
+}
+.sp_8 {
+  height: 8px;
+}
+.sp_12 {
+  height: 12px;
+}
+
+
+
+.border-radius_12 {
+  border-radius: 12px;
 }
 .routerView {
   position: relative;

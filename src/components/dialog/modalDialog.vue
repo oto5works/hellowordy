@@ -2,7 +2,7 @@
 <template>
   <teleport to="body">
     <div class="overlay-container" v-if="dialog">
-      <div class="overlay fullDialog">
+      <div class="overlay modalDialog">
         <div
           class="overlay__scrim"
           @click="closeDialog"
@@ -10,9 +10,12 @@
         />
         <div class="overlay__content" :class="{ active: loaded }">
           <div class="dialog">
-            <btn @click="closeDialog">
-              <icon><x /></icon>
-            </btn>
+            <div class="dialog-header">
+              <span class="font-size_24">{{ title }}</span>
+              <button @click="closeDialog">
+                <icon><x /></icon>
+              </button>
+            </div>
             <div class="dialog-content">
               <slot></slot>
             </div>
@@ -22,10 +25,9 @@
     </div>
   </teleport>
 </template>
-
 <script>
-import "@/components/overlay.scss";
-import "@/components/fullDialog.scss";
+import "@/components/dialog/overlay.scss";
+import "@/components/dialog/modalDialog.scss";
 import x from "@/components/icon/x.vue";
 
 export default {
@@ -39,6 +41,17 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+  },
+  watch: {
+    dialog(newValue) {
+      if (newValue) {
+        // 대화상자가 열리면 `body`에 `no-scroll` 클래스를 추가합니다.
+        document.body.classList.add("no-scroll");
+      } else {
+        // 대화상자가 닫히면 `no-scroll` 클래스를 제거합니다.
+        document.body.classList.remove("no-scroll");
+      }
     },
   },
   data() {

@@ -7,7 +7,7 @@ Firestore Database
 │       ├── state: user
 │       └── joinDate: 가입 날짜
 │
-├── profilePictures (collection)
+├── profileImages (collection)
 │   └── userID (document)  // 'users' 컬렉션의 'userID'와 일치합니다.
 │       └── url: 프로필 사진 URL
 │
@@ -16,6 +16,7 @@ Firestore Database
 │       ├── category: 카테고리
 │       ├── title: 단어장 제목
 │       ├── content: 단어장 설명
+│       ├── share: 공유 여부
 │       ├── createdAt: 생성 날짜
 │       └── userID: 작성자 ID
 │
@@ -45,4 +46,4 @@ Firestore Database
     └── favoriteID (document)
         ├── userID: 즐겨찾기를 추가한 사용자 ID
         ├── vocabularyID: 즐겨찾기에 추가된 단어장 ID
-        └── addedAt: 즐겨찾기에 추가된 날짜
+        └── createdAt: 즐겨찾기에 추가된 날짜
