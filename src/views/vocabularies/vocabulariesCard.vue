@@ -86,14 +86,12 @@ export default {
 <style scoped>
 .card {
   width: 120px;
-  color: black;
 }
 .card-cover {
   position: relative;
   width: 100%;
   height: 160px;
   border-radius: 24px;
-  background-color: black;
   cursor: pointer;
   overflow: hidden;
 }
@@ -109,7 +107,7 @@ export default {
   font-weight: 800;
   bottom: 12px;
   right: 12px;
-  color: white;
+  color: rgb(var(--mio-theme-color-on-background));
   font-family: var(--mio-theme-font-family-jp);
   z-index: 2;
 }

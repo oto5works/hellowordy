@@ -4,7 +4,6 @@
       <slot></slot>
     </div>
     <div class="overlay" />
-
   </button>
 </template>
 
@@ -20,7 +19,7 @@ export default {};
   padding: 8px;
   font-size: 13px;
   transition: all 0.4s ease-in-out;
-  color: var(--mio-theme-color-primary);
+  color: rgb(var(--mio-theme-color-primary));
   align-items: center;
 }
 .buttonText .slot {
@@ -37,7 +36,7 @@ export default {};
   width: 100%;
   height: 100%;
   border-radius: 24px;
-  background-color: var(--mio-theme-color-primary);
+  background-color: rgb(var(--mio-theme-color-primary));
   opacity: 0;
 }
 .buttonText:hover .overlay {

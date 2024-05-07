@@ -110,6 +110,6 @@ export default {};
   box-shadow: 0 0 0 0 rgba(var(--mio-theme-color-primary), 0);
 }
 .buttonDefault.selected .shadow {
-  box-shadow: 0px 7px 29px 0px rgba(var(--mio-theme-color-primary), 1);
+  box-shadow: 0px 7px 29px 0px rgba(var(--mio-theme-color-primary), 0.3);
 }
 </style>

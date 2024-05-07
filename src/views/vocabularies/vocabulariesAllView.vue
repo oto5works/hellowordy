@@ -1,12 +1,14 @@
 <template>
-  <div class="vocabulary-list">
+  <div class="routerView">
     <vocabulariesButton />
-
-    <vocabulariesCard
-      v-for="item in vocabularies"
-      :key="item.id"
-      :vocabulary="item"
-    />
+    <div class="sp_24" />
+    <div class="display_flex flex-wrap_wrap gap_12">
+      <vocabulariesCard
+        v-for="item in vocabularies"
+        :key="item.id"
+        :vocabulary="item"
+      />
+    </div>
   </div>
 </template>
 

@@ -1,26 +1,50 @@
 <template>
-  <div>
-    <button style="color: white" @click="navigateToViewWords">
-      Go to Kuromoji
-    </button>
-    <p>{{ message }}</p>
+  <div class="routerView">
+    <div class="display_flex justify-content_center">
+      <homeImage />
+    </div>
+    <div class="font-size_48 font-weight_500 --mio-theme-font-family text-align_center">
+      ankitoki
+    </div>
 
-    <p v-if="initializationProgress > 0 && initializationProgress < 100">
-      진행률: {{ initializationProgress }}%
-    </p>
-    isAuthenticated = {{ isAuthenticated }}
+    <div v-if="currentUser">
+      <div class="font-size_12">email: {{ currentUser.email }}</div>
+      <div class="font-size_12">displayName: {{ currentUser.displayName }}</div>
+    </div>
 
-    currentUser = <h1>{{ currentUser }}</h1>
-    <buttonDefault class="height_64 width_100" v-if="!isAuthenticated" @click="navigateToSignIn()">로그인</buttonDefault>
-    <buttonDefault class="height_64 width_100" v-if="!isAuthenticated" @click="navigateToRegister()">회원가입</buttonDefault>
+    <buttonDefault
+      class="height_64 width_100"
+      v-if="!isAuthenticated"
+      @click="navigateToSignIn()"
+      >로그인</buttonDefault
+    >
+    <buttonDefault
+      class="height_64 width_100"
+      v-if="!isAuthenticated"
+      @click="navigateToRegister()"
+      >회원가입</buttonDefault
+    >
 
-    <buttonDefault class="height_64 width_100" v-if="isAuthenticated" @click="navigateToMyVoca()">내 단어장</buttonDefault>
-    <buttonDefault class="height_64 width_100" v-if="isAuthenticated" @click="navigateToVoca()">전체 단어장</buttonDefault>
+    <buttonDefault
+      class="height_64 width_100"
+      v-if="isAuthenticated"
+      @click="navigateToMyVoca()"
+      >내 단어장</buttonDefault
+    >
+    <buttonDefault
+      class="height_64 width_100"
+      v-if="isAuthenticated"
+      @click="navigateToVoca()"
+      >전체 단어장</buttonDefault
+    >
 
-    <buttonDefault class="height_64 width_100" v-if="isAuthenticated" @click="navigateToStudy()"><span>공부하럭가기</span></buttonDefault>
+    <buttonDefault
+      class="height_64 width_100"
+      v-if="isAuthenticated"
+      @click="navigateToStudy()"
+      ><span>공부하럭가기</span></buttonDefault
+    >
     <usersSignOut v-if="isAuthenticated" />
-
-
   </div>
 </template>
 
@@ -28,10 +52,12 @@
 import { mapGetters, mapActions } from "vuex";
 
 import usersSignOut from "@/views/users/usersSignOut.vue";
+import homeImage from "@/views/home/homeImage.vue";
 
 export default {
   components: {
     usersSignOut,
+    homeImage,
   },
   data() {
     return {
@@ -47,8 +73,6 @@ export default {
       initialized: "filter/getInitialized",
       isAuthenticated: "users/isAuthenticated",
       currentUser: "users/getCurrentUser",
-
-      
     }),
   },
   methods: {

@@ -123,16 +123,7 @@
 .border-radius_12 {
   border-radius: 12px;
 }
-.routerView {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 0 var(--mio-theme-padding);
-  color: var(--mio-theme-color-on-background);
-}
+
 
 select {
   color: inherit;
@@ -154,27 +145,11 @@ select {
   width: 100%;
 }
 
-
-.buttonGroup {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  padding: 0 var(--mio-theme-padding);
+.routerView {
+  position: relative;
   width: 100%;
-  bottom: var(--mio-theme-padding);
-}
-.buttonGroup .content {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 420px;
-}
-.no-scroll {
-  overflow: hidden;
-  height: 100%;
-}
-button {
-  color: inherit;
+  min-height: 100%;
+  padding: 0 var(--mio-theme-padding-1);
 }
 /*--- 모바일 ---*/
 @media all and (max-width: 479px) {
