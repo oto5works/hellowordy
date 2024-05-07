@@ -17,7 +17,7 @@
     <buttonDefault class="height_64 width_100" v-if="isAuthenticated" @click="navigateToMyVoca()">내 단어장</buttonDefault>
     <buttonDefault class="height_64 width_100" v-if="isAuthenticated" @click="navigateToVoca()">전체 단어장</buttonDefault>
 
-    <buttonDefault class="height_64 width_100" v-if="isAuthenticated" @click="navigateToAnki()"><span>공부하럭가기</span></buttonDefault>
+    <buttonDefault class="height_64 width_100" v-if="isAuthenticated" @click="navigateToStudy()"><span>공부하럭가기</span></buttonDefault>
     <usersSignOut v-if="isAuthenticated" />
 
 
@@ -89,8 +89,8 @@ export default {
     navigateToMyVoca() {
       this.$router.push({ name: "vocabulariesUserView" });
     },
-    navigateToAnki() {
-      this.$router.push({ name: "ankiFilter" });
+    navigateToStudy() {
+      this.$router.push({ name: "studyView" });
     },
   },
 };

@@ -1,15 +1,30 @@
 <template>
-  <div>
+  <div class="display_flex gap_12 width_100">
+
+    <img class="wiwi" :src="vocabulary.coverURL" />
+
+<div>
     language: {{ vocabulary.language }}<br />
     title: {{ vocabulary.title }}<br />
     content: {{ vocabulary.content }}
+
+    <profile
+      :userID="vocabulary.userID"
+      :photoURL="vocabulary.photoURL"
+      :displayName="vocabulary.displayName"
+    />
+  </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import profile from "@/components/profile/profile.vue";
 
 export default {
+  components: {
+    profile,
+  },
   data() {
     return {
       vocabulary: {
@@ -39,3 +54,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.wiwi {
+  position: relative;
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+}
+</style>

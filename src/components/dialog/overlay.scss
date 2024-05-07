@@ -49,12 +49,12 @@
   position: fixed;
   right: 0;
   top: 0;
-  background: var(--mio-theme-color-on-background);
+  background-color: rgb(var(--mio-theme-color-on-background));
   opacity: 0;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   filter: blur(0); /* 블러 효과 추가 */
   &.active {
-    opacity: .32;
+    opacity: 0.32;
     filter: blur(4px); /* 블러 효과 추가 */
   }
 }

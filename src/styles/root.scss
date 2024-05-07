@@ -1,12 +1,14 @@
 :root {
-  --mio-theme-color-on-background: #000;
-  --mio-theme-color-background: #fff;
-  --mio-theme-color-primary: #8cacf5;
+  --mio-theme-color-on-background: 0, 0, 0;
+  --mio-theme-color-background: 255,255,255;
+  --mio-theme-color-primary: 140,172,245;
   --mio-theme-color-on-primary: #1f1f1f;
   --mio-theme-font-family: "JetBrains Mono", monospace;
   --mio-theme-font-family-kr: 'Noto Sans KR", sans-serif';
   --mio-theme-font-family-jp: 'Noto Sans JP", sans-serif';
-  --mio-theme-padding: 24px;
+  --mio-theme-padding-2: 24px;
+  --mio-theme-padding-1: 16px;
+
 }
 
 html[data-design-theme="design1"] {

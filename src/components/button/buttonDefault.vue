@@ -1,6 +1,6 @@
 <template>
   <button class="buttonDefault">
-      <slot></slot>
+    <slot></slot>
 
     <div class="overlay" />
     <div class="underlay" />
@@ -70,13 +70,13 @@ export default {};
   flex-shrink: 0;
   z-index: 1;
   border-radius: 36px;
-  color: var(--mio-theme-color-on-background);
+  color: rgb(var(--mio-theme-color-on-background));
   transition: all 0.4s ease-in-out;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
-  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: rgb(var(--mio-theme-color-background));
 }
 .buttonDefault:hover svg {
   stroke-width: 26;
@@ -86,36 +86,30 @@ export default {};
   cursor: not-allowed;
 }
 .buttonDefault.selected {
-  color: var(--mio-theme-color-on-primary);
+  color: rgb(var(--mio-theme-color-on-primary));
 }
 /*-- overlay --*/
 .buttonDefault .overlay {
-  background-color: var(--mio-theme-color-on-background);
-  opacity: 0.02;
+  background-color: rgba(var(--mio-theme-color-on-background), 0.02);
 }
 .buttonDefault:hover .overlay {
-  opacity: 0.04;
+  background-color: rgba(var(--mio-theme-color-on-background), 0.04);
 }
 .buttonDefault.selected .overlay {
-  background-color: var(--mio-theme-color-primary);
-  opacity: 0.12;
+  background-color: rgba(var(--mio-theme-color-primary), 0.12);
 }
 /*-- underlay --*/
 .buttonDefault .underlay {
-  background-color: var(--mio-theme-color-on-background);
-  opacity: .12;
+  background-color: rgba(var(--mio-theme-color-on-background), 0.12);
 }
 .buttonDefault.selected .underlay {
-  background-color: var(--mio-theme-color-primary);
-  opacity: 1;
+  background-color: rgba(var(--mio-theme-color-primary), 1);
 }
 /*-- shadow --*/
 .buttonDefault .shadow {
-  box-shadow: 0 0 0 0 var(--mio-theme-color-primary);
-  opacity: 0;
+  box-shadow: 0 0 0 0 rgba(var(--mio-theme-color-primary), 0);
 }
 .buttonDefault.selected .shadow {
-  box-shadow: 0px 7px 29px 0px var(--mio-theme-color-primary);
-  opacity: 0.2;
+  box-shadow: 0px 7px 29px 0px rgba(var(--mio-theme-color-primary), 1);
 }
 </style>

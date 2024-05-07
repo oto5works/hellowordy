@@ -7,7 +7,6 @@
 
     <div class="words-list">
       <wordsCard v-for="item in words" :key="item.id" :word="item" />
-
     </div>
   </div>
 </template>

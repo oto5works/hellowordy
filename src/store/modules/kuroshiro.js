@@ -45,13 +45,9 @@ export default {
         throw error;
       }
     },
-    async convertToRuby({ commit, state }) {
-      console.log("convertToRuby");
+    async convertToRuby({ commit, state }, currentWord) {
+      console.log('@ACTIONS: convertToRuby!', currentWord);
       try {
-        // state.words에서 현재 인덱스에 해당하는 단어를 가져옵니다.
-        const currentWord = state.filteredWords[state.index]?.word;
-        const currentMean = state.filteredWords[state.index]?.mean;
-
         // 가져온 단어가 유효한 경우에만 변환 작업을 수행합니다.
         if (currentWord) {
           // 이미 초기화된 Kuroshiro 인스턴스를 사용하여 변환 작업을 수행합니다.
@@ -59,15 +55,11 @@ export default {
             mode: "furigana",
             to: "hiragana",
           });
-          commit("setConvertedText", {
-            word: result,
-            mean: currentMean,
-          });
+          return result
         } else {
           console.warn("현재 인덱스에 해당하는 단어가 없습니다.");
         }
       } catch (error) {
-        commit("setConvertedText", error.message || "에러가 발생했습니다.");
         console.error("Error:", error);
       }
     },
@@ -117,3 +109,5 @@ export default {
     getInitialized: (state) => state.initialized,
   },
 };
+
+

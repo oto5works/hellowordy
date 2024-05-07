@@ -1,5 +1,5 @@
 <template>
-  <div title="추가">
+  <modalDialog title="추가" :dialog="dialog" @update:dialog="updateDialog">
     {{ currentWordID }}<br />
     {{ isEditMode }}
     <div class="word-field">
@@ -57,11 +57,9 @@
         ><icon class="icon_16"><plus /></icon><span>예문 추가</span></buttonText
       >
     </div>
-    <buttonDefault v-if="!isEditMode" @click="handleCreateWord"
-      >단어장 생성</buttonDefault
-    >
+    <buttonDefault v-if="!isEditMode" @click="handleCreateWord">단어장 생성</buttonDefault>
     <buttonDefault v-else @click="handleUpdateWord">단어장 수정</buttonDefault>
-  </div>
+  </modalDialog>
 </template>
 
 <script>
@@ -72,6 +70,10 @@ import book from "@/components/icon/book.vue";
 
 export default {
   components: { plus, x, book },
+  props: {
+    dialog: { type: Boolean },
+  },
+  emits: ["update:dialog", "close"],
   data() {
     return {
       word: "",
@@ -111,7 +113,10 @@ export default {
           examples: this.examples,
         });
         alert("단어가 생성되었습니다.");
-        (this.word = ""), (this.mean = [""]), (this.examples = []);
+        (this.word = ""),
+          (this.mean = [""]),
+          (this.examples = []),
+          this.updateDialog(false);
       } catch (error) {
         console.error("단어 생성 중 오류 발생:", error);
         alert("단어 생성에 실패했습니다.");
@@ -154,6 +159,9 @@ export default {
           alert("단어 불러오는데 실패했습니다.");
         }
       }
+    },
+    updateDialog(value) {
+      this.$emit("update:dialog", value);
     },
     closeForm() {
       // 'close' 이벤트 발생

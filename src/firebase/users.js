@@ -125,6 +125,10 @@ export default {
       }
     },
 
+
+
+
+    
     async checkDisplayName({ commit }, displayName) {
       // Firestore에서 'users' 컬렉션 쿼리를 준비합니다.
       const usersRef = collection(db, "users");

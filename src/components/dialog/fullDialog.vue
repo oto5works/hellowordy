@@ -10,7 +10,7 @@
         />
         <div class="overlay__content" :class="{ active: loaded }">
           <div class="dialog">
-            <button @click="closeDialog">
+            <button class="close" @click="closeDialog">
               <icon><x /></icon>
             </button>
             <div class="dialog-content">
@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     closeDialog() {
+      console.log ('closeDialog')
       this.$emit("update:dialog", false);
     },
   },

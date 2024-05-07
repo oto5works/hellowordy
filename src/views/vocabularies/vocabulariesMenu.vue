@@ -32,13 +32,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      deleteVocabulary: "vocabularies/deleteVocabulary",
+      deleteVocabularyByCurrentVocabularyID: "vocabularies/deleteVocabularyByCurrentVocabularyID",
       updateCurrentVocabularyID: "vocabularies/updateCurrentVocabularyID",
     }),
     async handleDeleteVocabulary() {
+      const vocabularyID = this.vocabularyID;
+      this.updateCurrentVocabularyID(vocabularyID);
       try {
         // Vuex 액션을 통해 단어장을 삭제합니다.
-        await this.deleteVocabulary(this.vocabularyID); // 'vocabularyID'로 수정
+        await this.deleteVocabularyByCurrentVocabularyID(); // 'vocabularyID'로 수정
         // 단어장 목록을 최신 상태로 갱신합니다.
         alert("단어장이 삭제.");
       } catch (error) {
@@ -51,6 +53,7 @@ export default {
       this.appDialog = true;
       //this.updateDialog(false);
     },
+
     updateDialog(value) {
       console.log ('닫아요')
       this.$emit("update:dialog", value);

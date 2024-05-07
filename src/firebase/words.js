@@ -65,6 +65,38 @@ export default {
         throw error;
       }
     },
+    async deleteWordsByCurrentVocabularyID({ rootGetters }) {
+      console.log ('FIREBASE! deleteWordsByCurrentVocabularyID')
+
+      try {
+        const vocabularyID = rootGetters["vocabularies/getCurrentVocabularyID"];
+
+        console.log("vocabularyID로 단어 삭제 시작:", vocabularyID);
+        const wordsRef = collection(db, "words");
+        const q = query(wordsRef, where("vocabularyID", "==", vocabularyID));
+        const querySnapshot = await getDocs(q);
+
+        // 각 단어를 삭제합니다.
+        const batch = writeBatch(db); // Batch 작업을 시작합니다.
+        querySnapshot.forEach((docSnapshot) => {
+          const docRef = doc(db, "words", docSnapshot.id); // 'doc' 대신 'docSnapshot'을 사용합니다.
+          batch.delete(docRef); // Batch에 삭제 작업을 추가합니다.
+        });
+        await batch.commit(); // Batch 작업을 커밋하여 모든 삭제를 한 번에 처리합니다.
+
+        console.log(
+          "vocabularyID에 해당하는 모든 단어 삭제 완료:",
+          vocabularyID
+        );
+
+        // 필요한 경우, 여기서 추가적인 후처리 작업을 수행할 수 있습니다.
+        // 예를 들어, 관련 단어장이나 UI를 업데이트할 수 있습니다.
+        // await dispatch("fetchWords"); // 예시: 단어 목록을 새로고침합니다.
+      } catch (error) {
+        console.error("단어 삭제 중 오류 발생:", error);
+        throw error;
+      }
+    },
     async fetchWords({ commit, rootGetters }) {
       console.log("fetchWords!!");
       try {
@@ -149,6 +181,18 @@ export default {
     },
 
     async deleteWord({ dispatch }, wordID) {
+      try {
+        console.log("wordID", wordID);
+        const wordRef = doc(db, "words", wordID);
+        await deleteDoc(wordRef);
+        await dispatch("fetchWords"); // 단어장을 삭제한 후 목록을 갱신합니다.
+      } catch (error) {
+        throw error;
+      }
+    },
+    async deleteCurrentWordID({ dispatch, state }) {
+      console.log ('@FIREBASE! deleteCurrentWordID')
+      const wordID = state.currentWordID; // 현재 선택된 단어장 ID를 상태에서 가져옵니다.
       try {
         console.log("wordID", wordID);
         const wordRef = doc(db, "words", wordID);

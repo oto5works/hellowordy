@@ -15,11 +15,12 @@ import vocabulariesAllView from "@/views/vocabularies/vocabulariesAllView.vue";
 
 import vocabulariesUserView from "@/views/vocabularies/vocabulariesUserView.vue";
 import wordsView from "@/views/words/wordsView.vue";
-// anki
-import ankiFilter from "@/views/anki/ankiFilter.vue";
+// study
+import studyView from "@/views/study/studyView.vue";
 
 // admin
 import usersAllView from "@/views/users/usersAllView.vue";
+import test from "@/test/test.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -61,11 +62,16 @@ const router = createRouter({
       name: "wordsView",
       component: wordsView,
     },
-    // anki
     {
-      path: "/anki/select",
-      name: "ankiFilter",
-      component: ankiFilter,
+      path: "/voca/test/:id",
+      name: "test",
+      component: test,
+    },
+    // study
+    {
+      path: "/study",
+      name: "studyView",
+      component: studyView,
     },
     // admin
     {

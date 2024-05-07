@@ -15,7 +15,6 @@
 import { defineAsyncComponent } from "vue";
 import { mapActions } from "vuex";
 
-
 export default {
   components: {
     wordsForm: defineAsyncComponent(() =>
@@ -33,13 +32,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      deleteWord: "words/deleteWord",
+      deleteCurrentWordID: "words/deleteCurrentWordID",
       updateCurrentWordID: "words/updateCurrentWordID",
     }),
     async handleDeleteWord() {
       try {
         // Vuex 액션을 통해 단어장을 삭제합니다.
-        await this.deleteWord(this.wordID); // 'wordId'로 수정
+        const wordID = this.wordID;
+        this.updateCurrentWordID(wordID);
+        await this.deleteCurrentWordID(); // 'wordId'로 수정
         // 단어장 목록을 최신 상태로 갱신합니다.
         alert("단어장이 삭제.");
       } catch (error) {

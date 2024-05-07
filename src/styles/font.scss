@@ -27,6 +27,9 @@ h3 {
 .--mio-theme-font-family-jp {
   font-family: var(--mio-theme-font-family-jp);
 }
+.font-size_11 {
+  font-size: 11px;
+}
 .font-size_12 {
   font-size: 12px;
 }
@@ -79,28 +82,8 @@ h3 {
   opacity: 0.4;
   font-weight: 400;
 }
-.jp {
-  font-family: var(--mio-theme-font-family-jp);
-  font-weight: 700;
-  font-size: 56px;
-  line-height: 130%;
-}
-.jp ruby > rt {
-  opacity: 0;
-  font-family: var(--mio-theme-font-family-jp);
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 100%;
-  color: var(--mio-theme-color-primary);
-  transition: all 0.2s ease-in-out;
-}
-.jp.ruby rt {
-  opacity: 1;
-}
-h4,
-h5 {
-  font-family: var(--mio-theme-font-family-kr);
-}
+
+
 h4 {
   font-weight: 700;
   line-height: 100%;
@@ -112,27 +95,4 @@ h5 {
   font-size: 16px;
 }
 
-.example-jp {
-  font-family: var(--mio-theme-font-family-jp);
-  font-weight: 400;
-  line-height: 130%;
-  font-size: 16px;
-}
-.example-jp ruby > rt {
-  opacity: 0;
-  font-family: var(--mio-theme-font-family-jp);
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 100%;
-  color: var(--mio-theme-color-primary);
-  transition: all 0.2s ease-in-out;
-}
-.example-jp.ruby rt {
-  opacity: 1;
-}
-.example-kr {
-  font-family: var(--mio-theme-font-family-kr);
-  font-weight: 400;
-  line-height: 130%;
-  font-size: 14px;
-}
+

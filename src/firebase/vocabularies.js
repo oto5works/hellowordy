@@ -23,14 +23,18 @@ export default {
   state: {
     vocabularies: [],
     currentVocabularyID: null,
+    currentVocabulary: null,
   },
   // Mutations
   mutations: {
-    setVocabularies(state, vocabularies) {
-      state.vocabularies = vocabularies;
+    setVocabularies(state, payload) {
+      state.vocabularies = payload;
     },
-    setCurrentVocabularyID(state, vocabularyID) {
-      state.currentVocabularyID = vocabularyID;
+    setCurrentVocabularyID(state, payload) {
+      state.currentVocabularyID = payload;
+    },
+    setCurrentVocabulary(state, payload) {
+      state.currentVocabulary = payload;
     },
   },
   // Actions
@@ -38,7 +42,7 @@ export default {
     /*-- Vocabulary --*/
     async createVocabulary(
       { dispatch, rootGetters },
-      { language, title, content, share }
+      { language, title, content, share, file }
     ) {
       try {
         const userID = rootGetters["users/getUserID"];
@@ -58,7 +62,24 @@ export default {
           displayName: displayName,
           photoURL: photoURL,
         };
-        await addDoc(vocabulariesRef, vocabularyData);
+        const docRef = await addDoc(vocabulariesRef, vocabularyData);
+
+        let coverURL = null; // 이미지 URL을 저장할 변수 초기화
+        // 이미지 업로드 로직
+        if (file) {
+          coverURL = await dispatch(
+            "vocabularyImages/uploadVocabularyImages",
+            { vocabularyID: docRef.id, file },
+            { root: true }
+          );
+          // 업로드된 이미지 URL을 단어장 문서에 저장
+          if (coverURL) {
+            await updateDoc(doc(db, "vocabularies", docRef.id), {
+              coverURL: coverURL,
+            });
+          }
+        }
+
         await dispatch("fetchUserVocabularies"); // 단어장을 생성한 후 목록을 갱신합니다.
       } catch (error) {
         throw error;
@@ -134,7 +155,30 @@ export default {
         throw error;
       }
     },
+    async getVocabularyByCurrentVocabularyID({ state, commit }) {
+      try {
+        const vocabularyID = state.currentVocabularyID;
+        if (!vocabularyID) {
+          throw new Error("현재 선택된 단어장 ID가 없습니다.");
+        }
 
+        const vocabularyRef = doc(db, "vocabularies", vocabularyID);
+        const docSnap = await getDoc(vocabularyRef);
+
+        if (docSnap.exists()) {
+          const vocabulary = { id: docSnap.id, ...docSnap.data() };
+          // 필요한 경우, 여기서 추가 작업을 수행할 수 있습니다. 예를 들어, 상태를 업데이트하거나 다른 액션을 호출할 수 있습니다.
+          console.log("단어장 데이터:", vocabulary);
+          commit("setCurrentVocabulary", vocabulary);
+        } else {
+          console.log("해당 ID를 가진 단어장이 없습니다.");
+          commit("setCurrentVocabulary", '해당 ID를 가진 단어장이 없습니다.');
+        }
+      } catch (error) {
+        console.error("단어장 가져오기 실패:", error);
+        throw error;
+      }
+    },
     async deleteVocabulary({ dispatch }, vocabularyID) {
       try {
         console.log("vocabularyID", vocabularyID);
@@ -144,6 +188,24 @@ export default {
           root: true,
         });
 
+        // 마지막으로 단어장 자체를 삭제합니다.
+        await deleteDoc(vocabularyRef);
+
+        await dispatch("fetchUserVocabularies"); // 단어장을 삭제한 후 목록을 갱신합니다.
+      } catch (error) {
+        console.error("단어장 및 단어 삭제 중 오류 발생:", error);
+        throw error;
+      }
+    },
+    async deleteVocabularyByCurrentVocabularyID({ dispatch, state }) {
+      try {
+        const vocabularyID = state.currentVocabularyID; // 현재 선택된 단어장 ID를 상태에서 가져옵니다.
+        console.log("vocabularyID", vocabularyID);
+        const vocabularyRef = doc(db, "vocabularies", vocabularyID);
+        await dispatch('vocabularyImages/deleteVocabularyImageByCurrentVocabularyID', { vocabularyID }, { root: true });
+        await dispatch('words/deleteWordsByCurrentVocabularyID', { vocabularyID }, { root: true });
+
+       
         // 마지막으로 단어장 자체를 삭제합니다.
         await deleteDoc(vocabularyRef);
 
@@ -169,7 +231,7 @@ export default {
         throw error;
       }
     },
-    async updateVocabulary({ dispatch, state }, payload) {
+    async updateVocabularyByCurrentVocabularyID({ dispatch, state }, payload) {
       try {
         const vocabularyID = state.currentVocabularyID; // 현재 선택된 단어장 ID를 상태에서 가져옵니다.
         const vocabularyRef = doc(db, "vocabularies", vocabularyID);
@@ -213,5 +275,7 @@ export default {
   getters: {
     getVocabularies: (state) => state.vocabularies,
     getCurrentVocabularyID: (state) => state.currentVocabularyID,
+    getCurrentVocabulary: (state) => state.currentVocabulary,
+
   },
 };
