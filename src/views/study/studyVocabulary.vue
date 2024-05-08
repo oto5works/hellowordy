@@ -1,7 +1,7 @@
 <template>
   <div class="display_flex align-items_flex-end gap_18" @click="setShowFilter()">
     <div v-if="currentVocabulary" class="font-size_16 font-weight_400 --mio-theme-font-family line-height_100">
-      {{ currentVocabulary.title }} PART {{ part }}
+      {{ currentVocabulary.title }} PART {{ part + 1 }}
     </div>
     <icon class="icon_16"><caretDown /></icon>
   </div>
@@ -18,7 +18,7 @@ export default {
    },
   computed: {
     ...mapGetters({
-      part: "filter/getPart",
+      part: "study/getPart",
       currentVocabulary: "vocabularies/getCurrentVocabulary",
     }),
   },

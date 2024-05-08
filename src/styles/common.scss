@@ -1,7 +1,9 @@
 @import "./reset.scss";
 @import "./font.scss";
 @import "./root.scss";
-
+.pa_32 {
+  padding: 0 32px;
+}
 .display_flex {
   display: flex;
   
@@ -39,21 +41,19 @@
 .sp_40 {
   height: 40px;
 }
+.sp_80 {
+  height: 80px;
+}
+.sp_120 {
+  height: 120px;
+}
 .sp_128 {
   height: 128px;
 }
 .sp_160 {
   height: 160px;
 }
-.width_100 {
-  width: 100%;
-}
-.height_40 {
-  height: 40px;
-}
-.height_64 {
-  height: 64px;
-}
+
 .icon_16 {
   width: 16px;
   height: 16px;
@@ -80,6 +80,9 @@
 }
 .gap_18 {
   gap: 18px;
+}
+.gap_28 {
+  gap: 28px;
 }
 .sp_8 {
   height: 8px;
@@ -144,13 +147,26 @@ select {
 .width_100 {
   width: 100%;
 }
-
+.height_32 {
+  height: 32px;
+}
+.height_40 {
+  height: 40px;
+}
+.height_56 {
+  height: 56px;
+}
+.height_64 {
+  height: 64px;
+}
 .routerView {
   position: relative;
   width: 100%;
   min-height: 100%;
   padding: 0 var(--mio-theme-padding-1);
 }
+
+
 /*--- 모바일 ---*/
 @media all and (max-width: 479px) {
 

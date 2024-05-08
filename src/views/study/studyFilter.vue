@@ -1,73 +1,77 @@
 <template>
   <div class="vocabulary-list">
     <div class="vocabulary-1 display_flex flex-direction_column gap_4">
+      <div class="sp_120"/>
       <buttonDefault
         v-for="item in vocabularies"
         :key="item.id"
         @click="handleFetchWords(item.id)"
         class="height_64 width_100"
         :class="{ selected: item.id === currentVocabularyID }"
-        ><span>Part {{ item.title }}</span></buttonDefault
+        ><span>{{ item.title }}</span></buttonDefault
       >
     </div>
-
     <div class="vocabulary-2 display_flex flex-direction_column gap_4">
-      <div v-for="item in partOptions" :key="`part-${item}`">
-        <buttonDefault
-          class="height_40 width_100"
-          :class="{ selected: item === part }"
-          @click="handleUpdatePart(item)"
-          ><span>Part {{ item }}</span></buttonDefault
-        >
-      </div>
+      <div class="sp_80"/>
+      <studyFilterPartSize />
+      <studyFilterPart
+        v-for="(wordsInPart, index) in filteredWords"
+        :key="index"
+        @click="handleUpdatePart(index)"
+        :class="{ selected: index === part }"
+        :part="index"
+        :total="wordsInPart.length"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import studyFilterPart from "@/views/study/studyFilterPart.vue";
+import studyFilterPartSize from "@/views/study/studyFilterPartSize.vue";
+
 
 export default {
-  components: {},
+  components: { studyFilterPart, studyFilterPartSize },
   computed: {
     ...mapGetters({
       vocabularies: "vocabularies/getVocabularies",
       currentVocabularyID: "vocabularies/getCurrentVocabularyID",
       words: "words/getWords",
-      part: "filter/getPart",
+      part: "study/getPart",
+      filteredWords: "filter/getFilteredWords",
     }),
-
-    partOptions() {
-      if (this.words && this.words.length > 0) {
-        const partsCount = Math.ceil(this.words.length / 50);
-        return Array.from({ length: partsCount }, (_, i) => i + 1);
-      } else {
-        return [];
-      }
-    },
   },
 
   methods: {
     ...mapActions({
       updateCurrentVocabularyID: "vocabularies/updateCurrentVocabularyID",
       fetchWords: "words/fetchWords",
-      setPart: "filter/setPart",
+      fetchFilterWords: "filter/fetchFilterWords",
+
+      setPart: "study/setPart",
       initializeStudy: "study/initializeStudy",
       getVocabularyByCurrentVocabularyID:
         "vocabularies/getVocabularyByCurrentVocabularyID",
-        setShowFilter: "filter/setShowFilter",
+      setShowFilter: "filter/setShowFilter",
+      getCheckedWordsByCurrentVocabularyID:
+        "checkedWords/getCheckedWordsByCurrentVocabularyID",
     }),
-    handleFetchWords(vocabularyID) {
-      this.updateCurrentVocabularyID(vocabularyID);
-      this.getVocabularyByCurrentVocabularyID();
+    async handleFetchWords(vocabularyID) {
+      console.log("@CLIENT: handleFetchWords!", vocabularyID);
       this.setPart(null);
-      this.fetchWords();
+      await this.updateCurrentVocabularyID(vocabularyID);
+      await this.getVocabularyByCurrentVocabularyID();
+      await this.fetchWords();
+      await this.fetchFilterWords();
+      await this.getCheckedWordsByCurrentVocabularyID();
     },
 
     async handleUpdatePart(item) {
       await this.setPart(item);
       await this.initializeStudy();
-      this.setShowFilter()
+      this.setShowFilter();
     },
   },
 };

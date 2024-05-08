@@ -12,7 +12,7 @@
   margin: 24px;
   display: flex;
   flex-direction: column;
-  background-color: antiquewhite;
+  background-color: rgb(var(--mio-theme-color-background));
 }
 .modalDialog > .overlay__content > .dialog {
   position: relative;
@@ -83,9 +83,10 @@
   font-size: 24px;
   font-weight: 700;
 }
-.dialog .dialog-header button {
+.dialog .dialog-header .close {
   width: 40px;
   height: 40px;
+  color: rgb(var(--mio-theme-color-on-background));
 }
 
 /*-- hr --*/

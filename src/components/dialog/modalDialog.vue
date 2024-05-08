@@ -12,7 +12,7 @@
           <div class="dialog">
             <div class="dialog-header">
               <span class="font-size_24">{{ title }}</span>
-              <button @click="closeDialog">
+              <button class="close" @click="closeDialog">
                 <icon><x /></icon>
               </button>
             </div>

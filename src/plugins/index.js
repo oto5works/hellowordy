@@ -4,6 +4,7 @@ import router from "../router";
 // button
 import buttonDefault from "@/components/button/buttonDefault.vue";
 import buttonText from "@/components/button/buttonText.vue";
+import buttonSwitch from "@/components/button/buttonSwitch.vue";
 
 // dialog
 import modalDialog from "@/components/dialog/modalDialog.vue";
@@ -25,6 +26,9 @@ export function registerPlugins(app) {
     .use(router)
     .component("buttonDefault", buttonDefault)
     .component("buttonText", buttonText)
+    .component("buttonSwitch", buttonSwitch)
+
+    
     .component("textField", textField)
     .component("icon", icon)
     .component("modalDialog", modalDialog)

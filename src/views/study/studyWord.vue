@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="word" :class="{ showRuby: showRuby }" v-html="word" />
+    <div class="word" :class="{ showRuby: showRuby || alwaysRuby }" v-html="word" />
     <div class="sp_12" />
     <div class="display_flex flex-wrap_wrap gap_12">
       <div
@@ -9,7 +9,7 @@
         :key="index"
       >
         <div class="font-size_12 font-weight_700">{{ index + 1 }}.</div>
-        <div class="item" :class="{ showMean: showMean }" >{{ item }}</div>
+        <div class="item" :class="{ showMean: showMean || alwaysMean  }" >{{ item }}</div>
       </div>
     </div>
     <div class="sp_24" />
@@ -20,8 +20,8 @@
         :key="item.id"
         :examples="item"
       >
-        <div class="sentence" :class="{ showRuby: showRuby }" v-html="item.sentence"></div>
-        <div class="translation" :class="{ showMean: showMean }">
+        <div class="sentence" :class="{ showRuby: showRuby || alwaysRuby }" v-html="item.sentence"></div>
+        <div class="translation" :class="{ showMean: showMean || alwaysMean }">
           {{ item.translation }}
         </div>
       </div>
@@ -41,6 +41,8 @@ export default {
       examples: "study/getExamples",
       showRuby: "study/getShowRuby",
       showMean: "study/getShowMean",
+      alwaysRuby: "study/getAlwaysRuby",
+      alwaysMean: "study/getAlwaysMean",
     }),
   },
   methods: {

@@ -1,4 +1,3 @@
-
 import { createStore } from "vuex";
 
 import state from "./modules/state";
@@ -11,10 +10,9 @@ import study from "./modules/study";
 import users from "../firebase/users";
 import vocabularies from "../firebase/vocabularies";
 import vocabularyImages from "../firebase/vocabularyImages";
-
+import checkedWords from "../firebase/checkedWords";
 import words from "../firebase/words";
 import profileImages from "../firebase/profileImages";
-
 
 const store = createStore({
   modules: {
@@ -26,7 +24,8 @@ const store = createStore({
     study,
     vocabularies,
     profileImages,
-    vocabularyImages
+    vocabularyImages,
+    checkedWords,
   },
 });
 

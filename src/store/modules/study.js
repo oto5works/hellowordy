@@ -2,24 +2,34 @@
 export default {
   namespaced: true,
   state: {
+    currentWordID: null,
     currentIndex: null,
     lastIndex: null,
     word: null,
     mean: null,
+    part: null,
     examples: [],
     showRuby: false,
     showMean: false,
     alwaysRuby: false,
     alwaysMean: false,
+    showDict: false,
   },
   mutations: {
-    setCurrentIndex(state, index) {
-      console.log("@MUTATIONS: setCurrentIndex", index);
-      state.currentIndex = index;
+    setCurrentWordID(state, payload) {
+      state.currentWordID = payload;
     },
-    setLastIndex(state, index) {
-      console.log("@MUTATIONS: setLastIndex", index);
-      state.lastIndex = index; // 마지막 인덱스 설정
+    setCurrentIndex(state, payload) {
+      console.log("@MUTATIONS: setCurrentIndex", payload);
+      state.currentIndex = payload;
+    },
+    setLastIndex(state, payload) {
+      console.log("@MUTATIONS: setLastIndex", payload);
+      state.lastIndex = payload; // 마지막 인덱스 설정
+    },
+    setPart(state, payload) {
+      console.log("@MUTATIONS: setPart", payload);
+      state.part = payload;
     },
     setWord(state, payload) {
       state.word = payload;
@@ -36,17 +46,51 @@ export default {
     setShowMean(state) {
       state.showMean = !state.showMean;
     },
+    setAlwaysRuby(state) {
+      state.alwaysRuby = !state.alwaysRuby;
+    },
+    setAlwaysMean(state) {
+      state.alwaysMean = !state.alwaysMean;
+    },
     setReset(state) {
       state.showRuby = false;
       state.showMean = false;
     },
   },
   actions: {
+    async initializeStudy({ commit, dispatch }) {
+      try {
+        console.log("@ACTIONS: initializeStudy!");
+        commit("setReset");
+        await dispatch("filter/fetchFilterWords", null, { root: true });
+        commit("setCurrentIndex", 0);
+        dispatch("study/setLastIndex", null, { root: true });
+        dispatch("study/configureWord", null, { root: true });
+      } catch (error) {
+        // Error handling logic
+        console.error(`Error occurred during initializeStudy: ${error}`);
+        // Here you can add more actions for handling the error, such as notifying the user.
+      }
+    },
+    async configureWord({ commit, rootGetters, dispatch, state }) {
+      try {
+        console.log("@ACTIONS: configureWord!");
+        commit("setReset");
+        dispatch("study/setCurrentWordID", null, { root: true });
+        dispatch("study/setWord", null, { root: true });
+        dispatch("study/setMean", null, { root: true });
+        dispatch("study/setExamples", null, { root: true });
+      } catch (error) {
+        // Error handling logic
+        console.error(`Error occurred during initializeStudy: ${error}`);
+        // Here you can add more actions for handling the error, such as notifying the user.
+      }
+    },
     async setWord({ commit, rootGetters, dispatch, state }) {
       try {
         console.log("@ACTIONS: setWord!");
         const filteredWords = rootGetters["filter/getFilteredWords"];
-        const currentWord = filteredWords[state.currentIndex]?.word;
+        const currentWord = filteredWords[state.part][state.currentIndex]?.word;
         // 현재 단어가 없는 경우, 추가적인 처리나 경고를 할 수 있습니다.
         if (!currentWord) {
           console.warn("Current word is undefined.");
@@ -63,12 +107,28 @@ export default {
         // 에러 발생 시, 사용자에게 알리는 등의 추가적인 처리를 할 수 있습니다.
       }
     },
-
+    async setCurrentWordID({ commit, rootGetters, dispatch, state }) {
+      try {
+        console.log("@ACTIONS: setCurrentWordID!");
+        const filteredWords = rootGetters["filter/getFilteredWords"];
+        const currentWordID = filteredWords[state.part][state.currentIndex]?.id;
+        // 현재 단어가 없는 경우, 추가적인 처리나 경고를 할 수 있습니다.
+        if (!currentWordID) {
+          console.warn("Current word is undefined.");
+          return; // 현재 단어가 없으면 함수 실행을 중단합니다.
+        }
+        commit("setCurrentWordID", currentWordID); // 변환된 단어를 상태에 저장합니다.
+      } catch (error) {
+        console.error("An error occurred in setCurrentWordID:", error);
+        // 에러 발생 시, 사용자에게 알리는 등의 추가적인 처리를 할 수 있습니다.
+      }
+    },
     setMean({ commit, rootGetters, state }) {
       try {
         console.log("@ACTIONS: setMean");
         const filteredWords = rootGetters["filter/getFilteredWords"];
-        const currentMean = filteredWords[state.currentIndex]?.mean;
+        const currentMean = filteredWords[state.part][state.currentIndex]?.mean;
+
         commit("setMean", currentMean); // Commit that value using the mutation
       } catch (error) {
         console.error("An error occurred in setWord:", error);
@@ -80,7 +140,8 @@ export default {
       try {
         console.log("@ACTIONS: setExamples!");
         const filteredWords = rootGetters["filter/getFilteredWords"];
-        const currentExamples = filteredWords[state.currentIndex]?.examples;
+        const currentExamples =
+          filteredWords[state.part][state.currentIndex]?.examples;
 
         if (!currentExamples) {
           console.log("No current examples to convert.");
@@ -113,40 +174,30 @@ export default {
       commit("setPart", value); // Commit that value using the mutation
     },
 
-    async configureWord({ commit, rootGetters, dispatch, state }) {
-      try {
-        console.log("@ACTIONS: configureWord!");
-        commit("setReset");
-        dispatch("study/setWord", null, { root: true });
-        dispatch("study/setMean", null, { root: true });
-        dispatch("study/setExamples", null, { root: true });
-      } catch (error) {
-        // Error handling logic
-        console.error(`Error occurred during initializeStudy: ${error}`);
-        // Here you can add more actions for handling the error, such as notifying the user.
-      }
+    setPart({ commit, dispatch }, value) {
+      console.log("@ACTIONS: setPart", value);
+      commit("setPart", value); // Commit that value using the mutation
     },
 
-    async initializeStudy({ commit, dispatch }) {
+    /*-- Checked --*/
+    async checkedWord({ commit, dispatch, state, rootGetters }) {
       try {
-        console.log("@ACTIONS: initializeStudy!");
-        commit("setReset");
-        await dispatch("filter/fetchFilterWords", null, { root: true });
-        commit("setCurrentIndex", 0);
-        dispatch("study/setLastIndex", null, { root: true });
-        dispatch("study/configureWord", null, { root: true });
+        const currentWordID = filteredWords[state.part][state.currentIndex]?.id;
+        const checkedWords = rootGetters["checkedWords/getCheckedWords"];
+       
       } catch (error) {
-        // Error handling logic
-        console.error(`Error occurred during initializeStudy: ${error}`);
-        // Here you can add more actions for handling the error, such as notifying the user.
+        // 오류 처리 로직
+        console.error(`Error occurred in setNext: ${error}`);
+        // 여기서 사용자에게 오류를 알리는 등의 추가적인 처리를 할 수 있습니다.
       }
     },
+    /*-- Checked --*/
 
     async setNext({ commit, dispatch, state, rootGetters }) {
       try {
         const filteredWords = rootGetters["filter/getFilteredWords"];
         const newIndex = state.currentIndex + 1;
-        if (newIndex < filteredWords.length) {
+        if (newIndex < filteredWords[state.part].length) {
           await commit("setCurrentIndex", newIndex);
           dispatch("study/configureWord", null, { root: true });
         } else {
@@ -180,9 +231,11 @@ export default {
       try {
         console.log("@ACTIONS: setRandom!");
         const filteredWords = rootGetters["filter/getFilteredWords"];
-        if (filteredWords.length === 0)
+        if (filteredWords[state.part].length === 0)
           throw new Error("필터된 단어가 없습니다.");
-        const newIndex = Math.floor(Math.random() * filteredWords.length);
+        const newIndex = Math.floor(
+          Math.random() * filteredWords[state.part].length
+        );
         await commit("setCurrentIndex", newIndex);
         await dispatch("study/configureWord", null, { root: true });
       } catch (error) {
@@ -209,7 +262,9 @@ export default {
     setLastIndex({ commit, dispatch, state, rootGetters }) {
       console.log("@ACTIONS: setLastIndex");
       const filteredWords = rootGetters["filter/getFilteredWords"];
-      const lastIndex = filteredWords.length;
+
+      const lastIndex = filteredWords[state.part].length;
+
       if (lastIndex) {
         commit("setLastIndex", lastIndex);
       } else {
@@ -225,8 +280,21 @@ export default {
       console.log("@ACTIONS: setShowMean!");
       commit("setShowMean");
     },
+    setAlwaysRuby({ commit }) {
+      console.log("@ACTIONS: setAlwaysRuby!");
+      commit("setAlwaysRuby");
+    },
+    setAlwaysMean({ commit }) {
+      console.log("@ACTIONS: setAlwaysMean!");
+      commit("setAlwaysMean");
+    },
+    setShowDict({ commit }) {
+      console.log("@ACTIONS: setShowDict!");
+      commit("setShowDict");
+    },
   },
   getters: {
+    getCurrentWordID: (state) => state.currentWordID,
     getFilteredWords: (state) => state.filteredWords,
     getCurrentIndex: (state) => state.currentIndex,
     getLastIndex: (state) => state.lastIndex,
@@ -235,5 +303,9 @@ export default {
     getExamples: (state) => state.examples,
     getShowRuby: (state) => state.showRuby,
     getShowMean: (state) => state.showMean,
+    getAlwaysRuby: (state) => state.alwaysRuby,
+    getAlwaysMean: (state) => state.alwaysMean,
+    getShowDict: (state) => state.showMean,
+    getPart: (state) => state.part,
   },
 };

@@ -1,16 +1,13 @@
 <template>
   <div class="routerView">
     <div class="display_flex justify-content_center">
-      <homeImage />
-    </div>
-    <div class="font-size_48 font-weight_500 --mio-theme-font-family text-align_center">
-      ankitoki
     </div>
 
     <div v-if="currentUser">
       <div class="font-size_12">email: {{ currentUser.email }}</div>
       <div class="font-size_12">displayName: {{ currentUser.displayName }}</div>
     </div>
+    <usersSignOut v-if="isAuthenticated" />
 
     <buttonDefault
       class="height_64 width_100"
@@ -44,7 +41,6 @@
       @click="navigateToStudy()"
       ><span>공부하럭가기</span></buttonDefault
     >
-    <usersSignOut v-if="isAuthenticated" />
   </div>
 </template>
 
@@ -52,12 +48,10 @@
 import { mapGetters, mapActions } from "vuex";
 
 import usersSignOut from "@/views/users/usersSignOut.vue";
-import homeImage from "@/views/home/homeImage.vue";
 
 export default {
   components: {
     usersSignOut,
-    homeImage,
   },
   data() {
     return {
