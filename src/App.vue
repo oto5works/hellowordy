@@ -1,6 +1,7 @@
 <!-- App.vue -->
 <template>
   <div class="app">
+    <headerView />
     <RouterView />
   </div>
 </template>
@@ -8,9 +9,10 @@
 <script>
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
+import headerView from "@/views/common/headerView.vue";
 
 export default {
-  components: {},
+  components: {headerView},
 
   computed: {
     ...mapGetters({

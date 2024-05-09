@@ -1,7 +1,7 @@
 <template>
   <buttonDefault class="width_100 height_64" @click="handleCreateWord()"
     ><span>단어 추가</span>
-    <wordsForm
+    <wordsFormDialog
       v-if="dialog"
       :dialog="dialog"
       @update:dialog="dialog = $event"
@@ -15,8 +15,8 @@ import { defineAsyncComponent } from "vue";
 
 export default {
   components: {
-    wordsForm: defineAsyncComponent(() =>
-      import("@/views/words/wordsForm.vue")
+    wordsFormDialog: defineAsyncComponent(() =>
+      import("@/views/words/wordsFormDialog.vue")
     ),
   },
   data() {

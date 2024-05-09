@@ -74,4 +74,5 @@ export default {
   height: 4px;
   border-radius: 4px;
 }
+
 </style>

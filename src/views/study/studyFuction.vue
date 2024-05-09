@@ -1,11 +1,4 @@
 <template>
-  <div>
-    <buttonDefault class="height_40" @click="setNext()"
-      ><span>NEXT</span></buttonDefault
-    >
-    <buttonDefault class="height_40" @click="setPrevious()"
-      ><span>PREVIOUS</span></buttonDefault
-    >
     <div class="studyFuction display_flex justify-content_space-between">
       <buttonDefault
         class="show --mio-theme-font-family-kr"
@@ -30,7 +23,6 @@
         ><icon><dice /></icon
       ></buttonDefault>
     </div>
-  </div>
 </template>
 
 <script>
@@ -62,8 +54,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      setNext: "study/setNext",
-      setPrevious: "study/setPrevious",
       setRandom: "study/setRandom",
       setShowMean: "study/setShowMean",
       setShowRuby: "study/setShowRuby",
@@ -83,15 +73,15 @@ export default {
   padding: 0 var(--mio-theme-padding-1);
 }
 .show {
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
 }
 .show span {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 }
 .dice svg {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
 }
 </style>

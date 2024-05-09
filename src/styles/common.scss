@@ -1,6 +1,18 @@
 @import "./reset.scss";
 @import "./font.scss";
 @import "./root.scss";
+.pa_8 {
+  padding: 0 8px;
+}
+.pa_12 {
+  padding: 0 12px;
+}
+.pa_16 {
+  padding: 0 16px;
+}
+.pa_24 {
+  padding: 0 24px;
+}
 .pa_32 {
   padding: 0 32px;
 }
@@ -41,6 +53,9 @@
 .sp_40 {
   height: 40px;
 }
+.sp_56 {
+  height: 56px;
+}
 .sp_80 {
   height: 80px;
 }
@@ -53,10 +68,21 @@
 .sp_160 {
   height: 160px;
 }
-
+.icon_12 {
+  width: 12px;
+  height: 12px;
+}
+.icon_14 {
+  width: 14px;
+  height: 14px;
+}
 .icon_16 {
   width: 16px;
   height: 16px;
+}
+.icon_18 {
+  width: 18px;
+  height: 18px;
 }
 .icon_24 {
   width: 24px;
@@ -92,6 +118,9 @@
 }
 .sp_48 {
   height: 48px;
+}
+.sp_96 {
+  height: 96px;
 }
 .line-height_100 {
   line-height: 100%;
@@ -147,6 +176,9 @@ select {
 .width_100 {
   width: 100%;
 }
+.height_24 {
+  height: 24px;
+}
 .height_32 {
   height: 32px;
 }
@@ -159,11 +191,14 @@ select {
 .height_64 {
   height: 64px;
 }
+.cursor_pointer {
+  cursor: pointer;
+}
 .routerView {
   position: relative;
   width: 100%;
   min-height: 100%;
-  padding: 0 var(--mio-theme-padding-1);
+  padding: 56px var(--mio-theme-padding-2);
 }
 
 

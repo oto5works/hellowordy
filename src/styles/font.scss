@@ -1,23 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap");
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-h1,
-h2,
-h3 {
-  font-family: var(--mio-theme-font-family);
-  font-optical-sizing: auto;
+
+@font-face {
+  font-family: "Noto Sans JP";
   font-style: normal;
-  line-height: 100%;
+  font-weight: 100.900;
+  src: url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap);
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF; /* Japanese Hiragana, Katakana, and halfwidth/fullwidth characters */
 }
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 100.900;
+  src: url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap);
+  unicode-range: U+AC00-D7AF; /* Korean */
+}
+
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal, italic;
+  font-weight: 100.700;
+  src: url(https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap);
+  unicode-range: U+0020-007F; /* Basic Latin for English and numbers, includes italic */
+}
+
+body {
+  font-family: "Roboto Mono", "Noto Sans KR", "Noto Sans JP", sans-serif;
+}
+
 .--mio-theme-font-family {
   font-family: var(--mio-theme-font-family);
 }
@@ -41,6 +50,9 @@ h3 {
 }
 .font-size_18 {
   font-size: 18px;
+}
+.font-size_20 {
+  font-size: 20px;
 }
 .font-size_24 {
   font-size: 24px;

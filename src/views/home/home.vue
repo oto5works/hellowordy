@@ -35,12 +35,7 @@
       >전체 단어장</buttonDefault
     >
 
-    <buttonDefault
-      class="height_64 width_100"
-      v-if="isAuthenticated"
-      @click="navigateToStudy()"
-      ><span>공부하럭가기</span></buttonDefault
-    >
+  
   </div>
 </template>
 
@@ -107,9 +102,7 @@ export default {
     navigateToMyVoca() {
       this.$router.push({ name: "vocabulariesUserView" });
     },
-    navigateToStudy() {
-      this.$router.push({ name: "studyView" });
-    },
+
   },
 };
 </script>

@@ -3,8 +3,9 @@ export default {
   namespaced: true,
   state: {
     currentWordID: null,
-    currentIndex: null,
-    lastIndex: null,
+    currentWord: null,
+    currentIndex: 0,
+    lastIndex: 100,
     word: null,
     mean: null,
     part: null,
@@ -18,6 +19,9 @@ export default {
   mutations: {
     setCurrentWordID(state, payload) {
       state.currentWordID = payload;
+    },
+    setCurrentWord(state, payload) {
+      state.currentWord = payload;
     },
     setCurrentIndex(state, payload) {
       console.log("@MUTATIONS: setCurrentIndex", payload);
@@ -51,6 +55,9 @@ export default {
     },
     setAlwaysMean(state) {
       state.alwaysMean = !state.alwaysMean;
+    },
+    setShowDict(state) {
+      state.showDict = !state.showDict;
     },
     setReset(state) {
       state.showRuby = false;
@@ -101,6 +108,7 @@ export default {
           currentWord,
           { root: true }
         );
+        commit("setCurrentWord", currentWord); // 변환된 단어를 상태에 저장합니다.
         commit("setWord", convertToRuby); // 변환된 단어를 상태에 저장합니다.
       } catch (error) {
         console.error("An error occurred in setWord:", error);
@@ -295,6 +303,8 @@ export default {
   },
   getters: {
     getCurrentWordID: (state) => state.currentWordID,
+    getCurrentWord: (state) => state.currentWord,
+
     getFilteredWords: (state) => state.filteredWords,
     getCurrentIndex: (state) => state.currentIndex,
     getLastIndex: (state) => state.lastIndex,
@@ -305,7 +315,7 @@ export default {
     getShowMean: (state) => state.showMean,
     getAlwaysRuby: (state) => state.alwaysRuby,
     getAlwaysMean: (state) => state.alwaysMean,
-    getShowDict: (state) => state.showMean,
+    getShowDict: (state) => state.showDict,
     getPart: (state) => state.part,
   },
 };

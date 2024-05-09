@@ -1,12 +1,15 @@
 <template>
-  <div class="height_40 width_100">
-    <textField>
-    <select  class="width_100" v-model="selectedPartSize">
-      <option value="10"><span>10개씩 보기</span></option>
-      <option value="50"><span>50개씩 보기</span></option>
-      <option value="100"><span>100개씩 보기</span></option>
+  <div class="display_flex align-items_center justify-content_space-between width_100">
+    <div class="font-size_14">몇개씩볼래</div>
+    <buttonSelect class="height_32 pa_8 gap_4">
+    <select v-model="selectedPartSize">
+      <option value="10"><span class="font-size_13">10개씩 보기</span></option>
+      <option value="50"><span class="font-size_13">50개씩 보기</span></option>
+      <option value="100">
+        <span class="font-size_13">100개씩 보기</span>
+      </option>
     </select>
-  </textField>
+  </buttonSelect>
   </div>
   
 </template>
@@ -53,3 +56,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+select {
+  font-size: 13px;
+}
+</style>

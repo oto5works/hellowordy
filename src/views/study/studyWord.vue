@@ -4,7 +4,7 @@
     <div class="sp_12" />
     <div class="display_flex flex-wrap_wrap gap_12">
       <div
-        class="mean display_flex gap_4"
+        class="mean display_flex align-items_flex-end gap_4"
         v-for="(item, index) in mean"
         :key="index"
       >
@@ -12,7 +12,7 @@
         <div class="item" :class="{ showMean: showMean || alwaysMean  }" >{{ item }}</div>
       </div>
     </div>
-    <div class="sp_24" />
+    <div class="sp_32" />
     <div class="display_flex flex-direction_column gap_8">
       <div
         class="examples"
@@ -55,14 +55,18 @@ export default {
 <style scoped>
 .mean {
   font-family: var(--mio-theme-font-family-kr);
+}
+.mean .item,
+.translation {
+  color: rgb(var(--mio-theme-color-primary));
+  background-color: rgb(var(--mio-theme-color-primary));
+  border-radius: 24px;
+  padding: 0 2px;
+}
+.mean .item.showMean,
+.translation.showMean {
   color: rgb(var(--mio-theme-color-on-background));
-}
-.mean .item {
-  background-color: rgba(var(--mio-theme-color-on-background), 1);
-  transition: all 0.2s ease-in-out;
-}
-.mean .item.showMean {
-  background-color: rgba(var(--mio-theme-color-on-background), 0);
+  background-color: unset;
 }
 .translation {
   font-family: var(--mio-theme-font-family-kr);
@@ -70,10 +74,6 @@ export default {
   width: fit-content;
   line-height: 130%;
   font-size: 13px;
-  background-color: rgba(var(--mio-theme-color-on-background), 1);
-}
-.translation.showMean {
-  background-color: rgba(var(--mio-theme-color-on-background), 0);
 }
 </style>
 <style>

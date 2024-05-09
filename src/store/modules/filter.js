@@ -4,7 +4,7 @@ export default {
   state: {
     showFilter: false,
     filteredWords: [],
-    partSize: 10,
+    partSize: 50,
   },
   mutations: {
     setFilteredWords(state, payload) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="words-view">
+  <div class="routerView">
     <vocabulariesCurrentInfo />
     <div class="sp_24"/>
     <wordsButton />
@@ -26,7 +26,6 @@ export default {
     ...mapGetters({
       words: "words/getWords",
       currentVocabulary: "words/getWords",
-
     }),
     vocabularyID() {
       return this.$route.params.id;
@@ -53,9 +52,6 @@ export default {
 };
 </script>
 <style scoped>
-.words-view {
-  padding: 16px;
-}
 .words-list {
   width: 100%;
   display: grid;
