@@ -1,6 +1,5 @@
 <template>
   <div class="routerView">
-    <div class="sp_48" />
     <study404 v-if="this.part === null" />
 
     <div v-if="this.part !== null">

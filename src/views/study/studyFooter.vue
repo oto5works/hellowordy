@@ -2,19 +2,17 @@
   <div
     class="studyFooter display_flex align-items_center justify-content_space-between width_100"
   >
-    <buttonText class="gap_4" @click="setShowDict()"
+    <buttonText class="selected gap_4" @click="setShowDict()"
       ><icon><book /></icon
       ><span class="font-size_14">네이버 사전 보기</span></buttonText
     >
     <div class="display_flex align-items_center gap_12">
-      <buttonDefault class="height_32 pa_12 gap_4" @click="setPrevious()"
+      <buttonIcon class="height_32 pa_12 gap_4" @click="setPrevious()"
         ><icon class="icon_18"><caretLeft /></icon
-        ><span>Previous</span></buttonDefault
-      >
-      <buttonDefault class="height_32 pa_12 gap_4" @click="setNext()">
-        <span>Next</span>
+      ></buttonIcon>
+      <buttonIcon class="height_32 pa_12 gap_4" @click="setNext()">
         <icon class="icon_18"><caretRight /></icon>
-      </buttonDefault>
+      </buttonIcon>
     </div>
     <dict v-if="showDict" :word="currentWord" />
   </div>
@@ -29,17 +27,16 @@ import caretLeft from "@/components/icon/caretLeft";
 import caretRight from "@/components/icon/caretRight";
 
 export default {
-  components: { book, caretLeft, caretRight,
-    dict: defineAsyncComponent(() =>
-      import("@/views/dict/dict.vue")
-    ),
-   },
+  components: {
+    book,
+    caretLeft,
+    caretRight,
+    dict: defineAsyncComponent(() => import("@/views/dict/dict.vue")),
+  },
   computed: {
     ...mapGetters({
       currentWord: "study/getCurrentWord",
       showDict: "study/getShowDict",
-
-      
     }),
   },
   methods: {
@@ -54,7 +51,6 @@ export default {
 
 <style scoped>
 .studyFooter {
-  height: 56px;
   border-top: 1px solid rgba(var(--mio-theme-color-on-background), 0.4);
 }
 </style>

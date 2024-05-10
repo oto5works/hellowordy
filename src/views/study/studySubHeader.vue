@@ -4,21 +4,29 @@
   >
     <studyChecked />
 
-    <div class="display_flex align-items_center gap_28">
+    <div class="display_flex align-items_center gap_18">
       <div class="display_flex align-items_center gap_6">
-        <div class="always font-size_12 font-weight_600 --mio-theme-font-family-kr" :class="{ 'selected': alwaysMean }">
+        <div
+          class="always font-size_12 font-weight_600 --mio-theme-font-family-kr"
+          :class="{ selected: alwaysMean }"
+        >
           가
         </div>
         <buttonSwitch v-model="alwaysMean" @update:modelValue="setAlwaysMean" />
       </div>
 
       <div class="display_flex align-items_center gap_6">
-        <div class="always font-size_12 font-weight_600 --mio-theme-font-family-jp" :class="{ 'selected': alwaysRuby }">
+        <div
+          class="always font-size_12 font-weight_600 --mio-theme-font-family-jp"
+          :class="{ selected: alwaysRuby }"
+        >
           あ
         </div>
         <buttonSwitch v-model="alwaysRuby" @update:modelValue="setAlwaysRuby" />
-
       </div>
+      <buttonText>
+        <icon class="icon_16"><settings/></icon>
+      </buttonText>
     </div>
   </div>
 </template>
@@ -27,10 +35,12 @@
 import { mapGetters, mapActions } from "vuex";
 
 import studyChecked from "@/views/study/studyChecked.vue";
+import settings from "@/components/icon/settings.vue";
+
 
 export default {
   components: {
-    studyChecked,
+    studyChecked, settings
   },
   data() {
     return {
@@ -41,10 +51,7 @@ export default {
     ...mapGetters({
       alwaysRuby: "study/getAlwaysRuby",
       alwaysMean: "study/getAlwaysMean",
-
-      
     }),
-
   },
   methods: {
     ...mapActions({
@@ -52,7 +59,6 @@ export default {
       setAlwaysMean: "study/setAlwaysMean",
     }),
   },
-  
 };
 </script>
 

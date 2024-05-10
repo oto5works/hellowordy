@@ -14,6 +14,9 @@ export default {};
   display: flex;
   align-items: center;
   font-weight: 500;
+  color: rgb(var(--mio-theme-color-on-background));
+}
+.buttonText.selected {
   color: rgb(var(--mio-theme-color-primary));
 }
 .buttonText:hover {
