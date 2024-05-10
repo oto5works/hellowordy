@@ -2,18 +2,18 @@
   <button @click="setShowFilter()">
     <div v-if="currentVocabulary" class="display_flex align-items_center gap_8">
       <div
-        class="font-size_20 font-weight_400 --mio-theme-font-family line-height_100"
+        class="font-size_20 font-weight_400 kr line-height_100"
       >
         {{ currentVocabulary.title }}
       </div>
       <buttonSelect class="height_24 pa_8 gap_4"
-        ><span class="font-size_13">part {{ part + 1 }}</span
+        ><span class="font-size_13 en">part {{ part + 1 }}</span
         ><icon class="icon_12"><caretDown /></icon>
       </buttonSelect>
     </div>
     <div
       v-else
-      class="font-size_20 font-weight_400 --mio-theme-font-family line-height_100"
+      class="font-size_20 font-weight_400 en line-height_100"
     >Select</div>
   </button>
 </template>

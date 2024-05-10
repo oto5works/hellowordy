@@ -10,7 +10,7 @@
       <buttonToggle class="height_32 gap_8 pa_12" :class="{ selected: isStudyView }" @click="handleClickAnki()">
         <icon v-if="isStudyView" class="icon_18"><x/></icon>
        <icon v-else class="icon_18"><anki/></icon>
-       <span>Anki</span>
+       <span class="font-size_14 en">Anki</span>
       </buttonToggle>
       <buttonIcon v-if="!isStudyView">
         <icon><squares /></icon>

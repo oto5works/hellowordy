@@ -7,7 +7,7 @@
     <div class="display_flex align-items_center gap_18">
       <div class="display_flex align-items_center gap_6">
         <div
-          class="always font-size_12 font-weight_600 --mio-theme-font-family-kr"
+          class="always font-size_12 font-weight_600 kr"
           :class="{ selected: alwaysMean }"
         >
           가
@@ -17,7 +17,7 @@
 
       <div class="display_flex align-items_center gap_6">
         <div
-          class="always font-size_12 font-weight_600 --mio-theme-font-family-jp"
+          class="always font-size_12 font-weight_600 jp"
           :class="{ selected: alwaysRuby }"
         >
           あ

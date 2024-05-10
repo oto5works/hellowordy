@@ -1,7 +1,7 @@
 <template>
-  <div class="display_flex gap_8" @click="dialog = true">
-    <div class="font-size_14 font-weight_500">학습한 단어</div>
-    <div class="font-size_15 font-weight_700 length">
+  <div class="display_flex align-items_center gap_8" @click="dialog = true">
+    <div class="font-size_14 kr font-weight_500">학습한 단어</div>
+    <div class="font-size_15 en font-weight_700 length">
       {{ matchedWords.length }}
     </div>
 

@@ -1,42 +1,42 @@
 
 @font-face {
-  font-family: "Custom Font";
+  font-family: "Noto Sans JP";
   font-style: normal;
-  font-weight: 100.700;
+  font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/notoSansJPVariable.ttf) format('ttf-variations');
+  src: url(https://ankitoki.web.app/font/notoSansJPVariable.ttf) format('truetype');
   unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF; /* Japanese Hiragana, Katakana, and halfwidth/fullwidth characters */
 }
 
 @font-face {
-  font-family: "Custom Font";
+  font-family: "suit";
   font-style: normal;
-  font-weight: 100.700;
+  font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/suitVariable.woff2) format('woff2-variations');
+  src: url(https://ankitoki.web.app/font/suitVariable.woff2) format('woff2');
   unicode-range: U+AC00-D7AF; /* Korean */
 }
 
 @font-face {  
-  font-family: "Custom Font";
+  font-family: "Roboto Mono";
   font-style: normal;
-  font-weight: 100.700;
+  font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/robotoMonoVariable.ttf) format('ttf-variations');
+  src: url(https://ankitoki.web.app/font/robotoMonoVariable.ttf) format('truetype');
   unicode-range: U+0020-007F; /* Basic Latin for English and numbers, includes italic */
 }
 
 body {
-  font-family: "Custom Font", sans-serif;
-}
-
-.--mio-theme-font-family {
-  font-family: var(--mio-theme-font-family);
-}
-.--mio-theme-font-family-kr {
   font-family: var(--mio-theme-font-family-kr);
 }
-.--mio-theme-font-family-jp {
+
+.en {
+  font-family: var(--mio-theme-font-family-en);
+}
+.kr {
+  font-family: var(--mio-theme-font-family-kr);
+}
+.jp {
   font-family: var(--mio-theme-font-family-jp);
 }
 .font-size_11 {

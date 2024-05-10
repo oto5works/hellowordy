@@ -1,5 +1,5 @@
 <template>
-  <div class="display_flex flex-direction_column align-items_flex-end gap_4 --mio-theme-font-family line-height_100">
+  <div class="display_flex flex-direction_column align-items_flex-end gap_4 en line-height_100">
     <div class="font-size_24 font-weight_700">
       {{ currentIndex + 1 }}
     </div>

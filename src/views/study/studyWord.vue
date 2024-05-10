@@ -4,11 +4,11 @@
     <div class="sp_12" />
     <div class="display_flex flex-wrap_wrap gap_12">
       <div
-        class="mean display_flex align-items_flex-end gap_4"
+        class="mean display_flex align-items_center gap_4"
         v-for="(item, index) in mean"
         :key="index"
       >
-        <div class="font-size_12 font-weight_700">{{ index + 1 }}.</div>
+        <div class="font-size_12 en font-weight_700">{{ index + 1 }}.</div>
         <div class="item" :class="{ showMean: showMean || alwaysMean  }" >{{ item }}</div>
       </div>
     </div>

@@ -4,7 +4,7 @@
   >
     <buttonText class="selected gap_4" @click="setShowDict()"
       ><icon><book /></icon
-      ><span class="font-size_14">네이버 사전 보기</span></buttonText
+      ><span class="font-size_14 kr">네이버 사전 보기</span></buttonText
     >
     <div class="display_flex align-items_center gap_12">
       <buttonIcon class="height_32 pa_12 gap_4" @click="setPrevious()"
