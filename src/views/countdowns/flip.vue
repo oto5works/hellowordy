@@ -1,11 +1,6 @@
 <template>
   <div ref="tick">
-    <div class="tick__item" data-repeat="true" data-layout="horizontal" >
-      <!-- 글자를 따로 써야 할때는 하기와 같이
-              <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
-            글자를 같이 써야 할때는 하기
-                <div data-key="value" data-transform="pad(00)">
-      -->
+    <div class="tick__item" data-repeat="true" data-layout="horizontal">
       <div data-key="value" data-transform="pad(00)">
         <span data-view="flip"></span>
       </div>
@@ -14,12 +9,11 @@
 </template>
 
 <script>
-import Tick from "@/views/countdowns/flip.min.js";
+import Tick from "@pqina/flip";
 
 export default {
   props: {
-    date: { type: String },
-    time: { type: String },
+    date: { type: String, default: "2024-08-21" }, // 기본값으로 "2024-08-21" 설정
   },
   data() {
     return {
@@ -28,9 +22,11 @@ export default {
     };
   },
   mounted() {
-    this.counter = Tick.count.down(`${this.date}T${this.time}:00`);
-          this.tick = Tick.DOM.create(this.$refs.tick, {
-          value: this.counter.value,
+    // `time` prop을 사용하지 않고, 기본값으로 설정된 `date`만 사용
+    // 시간을 명시적으로 지정하지 않으므로, 00:00:00 (자정)으로 간주될 수 있음
+    this.counter = Tick.count.down(`${this.date}T00:00:00`);
+    this.tick = Tick.DOM.create(this.$refs.tick, {
+      value: this.counter.value,
     });
     this.counter.onupdate = (value) => {
       this.tick.value = value;
@@ -39,4 +35,6 @@ export default {
 };
 </script>
 
-
+<style scoped>
+.tick {}
+</style>

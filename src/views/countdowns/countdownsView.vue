@@ -1,24 +1,21 @@
 <template>
-  <div class="width_100">
-    <flip v-if="shouldRenderFlip" :date="date" :time="time" />
+  <div class="countdownsView width_100">
+    <flip />
   </div>
 </template>
 
 <script>
-import "@/modules/countdown/flip.scss";
-import flip from "@/modules/countdown/flip.vue";
+import "@/views/countdowns/flip.scss";
+import flip from "@/views/countdowns/flip.vue";
 
 export default {
   components: { flip },
-  props: {
-    date: { type: String },
-    time: { type: String },
-  },
   data() {
     return {
       shouldRenderFlip: true,
     };
   },
+  /*
   watch: {
     date: function () {
       this.reloadFlip();
@@ -27,6 +24,7 @@ export default {
       this.reloadFlip();
     },
   },
+  */
   methods: {
     reloadFlip() {
       this.shouldRenderFlip = false;
@@ -37,3 +35,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.countdownsView {
+  width: 100%;
+  height: 200px;
+  background-color: aqua;
+}
+</style>

@@ -1,6 +1,7 @@
 <template>
   <div class="routerView">
     <div class="display_flex justify-content_center">
+      <countdownsView />
     </div>
 
     <div v-if="currentUser">
@@ -41,12 +42,17 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { defineAsyncComponent } from "vue";
 
 import usersSignOut from "@/views/users/usersSignOut.vue";
+
 
 export default {
   components: {
     usersSignOut,
+    countdownsView: defineAsyncComponent(() =>
+      import("@/views/countdowns/countdownsView.vue")
+    ),
   },
   data() {
     return {
