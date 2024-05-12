@@ -13,7 +13,7 @@ import {
   deleteDoc,
   orderBy,
   updateDoc,
-  writeBatch
+  writeBatch,
 } from "firebase/firestore"; // 이 부분이 추가되었습니다.
 
 // firebase.js Vuex module
@@ -35,8 +35,68 @@ export default {
     },
   },
 
-  // Actions
   actions: {
+    // 완료
+    // vocaID를 넣어서 해당 값이 있다면 return 값으로 전달한다.
+    // vocabulariesDetailWords.js에서 사용중
+    async returnWordsByPayload({ commit, rootGetters }, vocabularyID) {
+      try {
+        console.log("@FIREBASE: returnWordsByPayload!", vocabularyID);
+        const wordsRef = collection(db, "words");
+        const q = query(wordsRef, where("vocabularyID", "==", vocabularyID));
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+          console.log("없어요");
+          return [];
+        } else {
+          const words = [];
+          querySnapshot.forEach((doc) => {
+            words.push({
+              id: doc.id,
+              ...doc.data(),
+            });
+          });
+          console.log("있습네다", words);
+          return words;
+        }
+      } catch (error) {
+        console.error("Error fetching checked words: ", error);
+        throw error;
+      }
+    },
+    // 완료?
+    async deleteWordsByPayload({ rootGetters, dispatch }, vocabularyID) {
+      try {
+        const wordsRef = collection(db, "words");
+        const q = query(wordsRef, where("vocabularyID", "==", vocabularyID));
+        const querySnapshot = await getDocs(q);
+
+        // 각 단어를 삭제합니다.
+        const batch = writeBatch(db); // Batch 작업을 시작합니다.
+        querySnapshot.forEach((docSnapshot) => {
+          const docRef = doc(db, "words", docSnapshot.id); // 'doc' 대신 'docSnapshot'을 사용합니다.
+          batch.delete(docRef); // Batch에 삭제 작업을 추가합니다.
+        });
+        await batch.commit(); // Batch 작업을 커밋하여 모든 삭제를 한 번에 처리합니다.
+
+        console.log(
+          "vocabularyID에 해당하는 모든 단어 삭제 완료:",
+          vocabularyID
+        );
+        await dispatch("returnWordsByPayload");
+      } catch (error) {
+        console.error("단어 삭제 중 오류 발생:", error);
+        throw error;
+      }
+    },
+
+
+
+
+
+
+
+    
     async deleteWordsByVocabularyID({ dispatch }, vocabularyID) {
       try {
         console.log("vocabularyID로 단어 삭제 시작:", vocabularyID);
@@ -66,7 +126,7 @@ export default {
       }
     },
     async deleteWordsByCurrentVocabularyID({ rootGetters }) {
-      console.log ('FIREBASE! deleteWordsByCurrentVocabularyID')
+      console.log("FIREBASE! deleteWordsByCurrentVocabularyID");
 
       try {
         const vocabularyID = rootGetters["vocabularies/getCurrentVocabularyID"];
@@ -191,7 +251,7 @@ export default {
       }
     },
     async deleteCurrentWordID({ dispatch, state }) {
-      console.log ('@FIREBASE! deleteCurrentWordID')
+      console.log("@FIREBASE! deleteCurrentWordID");
       const wordID = state.currentWordID; // 현재 선택된 단어장 ID를 상태에서 가져옵니다.
       try {
         console.log("wordID", wordID);

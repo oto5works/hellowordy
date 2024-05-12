@@ -1,7 +1,8 @@
 <!-- App.vue -->
 <template>
   <div class="app">
-    <headerView />
+    <headerView v-if="!isAuth" />
+    <navbar v-if="!isAnki" />
     <RouterView />
   </div>
 </template>
@@ -10,14 +11,21 @@
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import headerView from "@/views/common/headerView.vue";
+import navbar from "@/views/common/navbar.vue";
 
 export default {
-  components: {headerView},
+  components: {headerView, navbar},
 
   computed: {
     ...mapGetters({
       isAuthenticated: "users/isAuthenticated",
     }),
+  isAuth() {
+    return this.$route.name === 'auth'
+  },
+  isAnki() {
+    return this.$route.name === 'anki'
+  },
   },
   created() {},
   methods: {

@@ -9,11 +9,10 @@
 </template>
 
 <script>
-import Tick from "@pqina/flip";
 
 export default {
   props: {
-    date: { type: String, default: "2024-08-21" }, // 기본값으로 "2024-08-21" 설정
+    date: { type: String, default: "2024-07-21" }, // 기본값으로 "2024-08-21" 설정
   },
   data() {
     return {

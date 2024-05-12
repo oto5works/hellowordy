@@ -6,15 +6,17 @@ import home from "@/views/home/home.vue";
 //import add from "@/views/add.vue";
 //import search from "@/views/searchWords2.vue";
 //import db from "@/views/db.vue";
-// auth
-import usersRegister from "@/views/users/usersRegister.vue";
-import usersSignIn from "@/views/users/usersSignIn.vue";
-import usersSignOut from "@/views/users/usersSignOut.vue";
+// users
+import usersAuth from "@/views/users/usersAuth.vue";
+import usersMy from "@/views/users/usersMy.vue";
+
 // voca
 import vocabulariesAllView from "@/views/vocabularies/vocabulariesAllView.vue";
-
-import vocabulariesUserView from "@/views/vocabularies/vocabulariesUserView.vue";
+import vocabulariesDetail from "@/views/vocabularies/vocabulariesDetail.vue";
+import vocabulariesUser from "@/views/vocabularies/vocabulariesUser.vue";
 import wordsView from "@/views/words/wordsView.vue";
+
+
 // study
 import studyView from "@/views/study/studyView.vue";
 
@@ -30,49 +32,52 @@ const router = createRouter({
       name: "home",
       component: home,
     },
-    // auth
+    // users
     {
-      path: "/register",
-      name: "usersRegister",
-      component: usersRegister,
+      path: "/auth",
+      name: "auth",
+      component: usersAuth,
     },
     {
-      path: "/signIn",
-      name: "usersSignIn",
-      component: usersSignIn,
+      path: "/my",
+      name: "my",
+      component: usersMy,
     },
     {
-      path: "/signOut",
-      name: "usersSignOut",
-      component: usersSignOut,
+      path: "/user/:id",
+      name: "user",
+      component: vocabulariesUser,
     },
     // voca
     {
+      path: "/voca/:id",
+      name: "vocaDetail",
+      component: vocabulariesDetail,
+    },
+    {
       path: "/voca",
-      name: "vocabulariesAllView",
+      name: "voca",
       component: vocabulariesAllView,
     },
-    {
-      path: "/voca/my",
-      name: "vocabulariesUserView",
-      component: vocabulariesUserView,
-    },
-    {
-      path: "/voca/words/:id",
-      name: "wordsView",
-      component: wordsView,
-    },
+   
     {
       path: "/voca/test/:id",
       name: "test",
       component: test,
     },
-    // study
+    // anki
     {
-      path: "/study",
-      name: "studyView",
+      path: "/anki",
+      name: "anki",
       component: studyView,
     },
+    {
+      path: "/anki:id",
+      name: "ankiDetail",
+      component: studyView,
+    },
+ 
+
     // admin
     {
       path: "/admin/users",

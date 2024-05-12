@@ -61,9 +61,9 @@ export default {
       fetchUserVocabularies: "vocabularies/fetchUserVocabularies",
     }),
     async handleInitialize() {
-      if (!this.currentVocabularyID || !this.part) {
-        this.setShowFilter();
-      }
+      //if (!this.currentVocabularyID || !this.part) {
+      //  this.setShowFilter();
+      //}
       await this.fetchUserVocabularies();
     },
   },

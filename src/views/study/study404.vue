@@ -1,14 +1,15 @@
 <template>
   <div class="display_flex align-items_center flex-direction_column width_100">
-    <icon class="rabbit404-image"><rabbit404 /></icon>
+    <div class="sp_48" />
+    <div class="rabbit404-image"><rabbit3 /></div>
     <div class="sp_12" />
-    <div class="rabbit404-text font-size_14 font-weight_400">
-      집에서는 물론 이동 중에도 녹화하고 업로드할 수 있습니다. 공개 상태로
-      설정한 모든 콘텐츠가 여기에 표시됩니다.
+    <div class="rabbit404-text font-size_13 kr font-weight_400 line-height_130">
+      단어장이 선택되지 않았습니다.
+      암기를 시작하려면 먼저 암기할 단어장을 선택하세요.
     </div>
     <div class="sp_24" />
-    <buttonDefault class="height_40 pa_16 selected" @click="setShowFilter()">
-      <span>선택하기</span>
+    <buttonDefault class="height_40 pa_16" @click="setShowFilter()">
+      <span>단어장 선택하기</span>
     </buttonDefault>
   </div>
 </template>
@@ -16,11 +17,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-import rabbit404 from "@/components/icon/rabbit404.vue";
+import rabbit3 from "@/components/icon/rabbit3.vue";
 
 export default {
   components: {
-    rabbit404,
+    rabbit3,
   },
   methods: {
     ...mapActions({
@@ -32,12 +33,13 @@ export default {
 <style scoped>
 .rabbit404-image {
   position: relative;
-  width: 50%;
+  width: 70%;
   height: auto;
 }
 .rabbit404-image svg {
   width: 100%;
   height: 100%;
+  stroke-width: 1
 }
 .rabbit404-text {
   max-width: 80%;

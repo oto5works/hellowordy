@@ -11,8 +11,6 @@ export default {};
 <style scoped>
 .buttonText {
   position: relative;
-  display: flex;
-  align-items: center;
   font-weight: 500;
   color: rgb(var(--mio-theme-color-on-background));
 }

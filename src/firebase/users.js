@@ -6,6 +6,8 @@ import {
   signOut,
   deleteUser as firebaseDeleteUser,
   updateProfile,
+  GoogleAuthProvider, // 이 부분을 추가하세요.
+  signInWithPopup,
 } from "firebase/auth";
 
 import {
@@ -42,6 +44,141 @@ export default {
 
   // Actions
   actions: {
+    // 완료
+    // 초기 로딩시 작동됨.
+    async initAuthState({ dispatch, commit }) {
+      console.log("initAuthState");
+      auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          console.log("user: ", user);
+          commit("setUser", user);
+          await Promise.all([
+            dispatch(
+              "vocabularies/getVocabulariesByUserID",
+              {},
+              { root: true }
+            ),
+            dispatch("favorites/getFavoritesByUserID", {}, { root: true }),
+            dispatch(
+              "checkedWords/getCheckedWordsByUserID",
+              {},
+              { root: true }
+            ),
+          ]);
+        } else {
+          commit("setUser", null);
+        }
+      });
+    },
+    // 완료
+    // 구글 로그인
+    async signInWithGoogle({ commit, dispatch }) {
+      try {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        commit("setUser", result.user);
+        const userRef = doc(db, "users", result.user.uid);
+        const docSnap = await getDoc(userRef);
+        // 사용자 정보가 이미 데이터베이스에 존재하지 않는 경우에만 새로운 문서를 생성
+        if (!docSnap.exists()) {
+          await setDoc(userRef, {
+            email: result.user.email,
+            displayName: result.user.displayName || "",
+            state: "user",
+            photoURL: result.user.photoURL || "",
+            createdAt: new Date(),
+          });
+        }
+      } catch (error) {
+        throw error;
+      }
+    },
+    // 완료 
+    async returnUserByPayload({ state, commit }, userID) {
+      try {
+        if (!userID) {
+          throw new Error("현재 선택된 단어장 ID가 없습니다.");
+        }
+        const userRef = doc(db, "users", userID);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+          const user = { id: docSnap.id, ...docSnap.data() };
+          return user;
+        } else {
+          console.log("해당 ID를 가진 userID 없습니다.");
+          return null;
+        }
+      } catch (error) {
+        console.error("userID 가져오기 실패:", error);
+        throw error;
+      }
+    },
+
+
+
+
+
+
+
+
+    async signIn({ commit }, { email, password }) {
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        commit("setUser", userCredential.user);
+      } catch (error) {
+        throw error;
+      }
+    },
+    async register(
+      { commit, dispatch },
+      { email, password, displayName, file }
+    ) {
+      try {
+        // 사용자 이름 중복 확인
+        await dispatch("checkDisplayName", displayName);
+
+        // 사용자 등록
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        // 사용자의 displayName 업데이트
+        await updateProfile(userCredential.user, {
+          displayName: displayName,
+        });
+        commit("setUser", userCredential.user);
+
+        // 사용자의 uid를 문서 ID로 사용하고 Firestore에 저장
+        const userRef = doc(db, "users", userCredential.user.uid);
+        await setDoc(userRef, {
+          email: email,
+          displayName: displayName,
+          state: "user",
+          createdAt: new Date(),
+        });
+
+        // 이미지 업로드 로직
+        if (file) {
+          // 'profileImages/uploadProfileImage'는 모듈 이름과 액션 이름을 포함합니다.
+          // 'userId'와 'file'을 매개변수로 전달합니다.
+          await dispatch(
+            "profileImages/uploadProfileImage",
+            { userId: userCredential.user.uid, file },
+            { root: true }
+          );
+        }
+      } catch (error) {
+        throw error;
+      }
+    },
+   
+
     async fetchAllUsers({ commit }) {
       try {
         const usersRef = collection(db, "users");
@@ -56,7 +193,7 @@ export default {
       }
     },
     async getUserById({ state, commit }, userID) {
-      console.log ('getUserById실행::', userID)
+      console.log("getUserById실행::", userID);
       try {
         if (!userID) {
           throw new Error("현재 선택된 유저 ID가 없습니다.");
@@ -125,10 +262,6 @@ export default {
       }
     },
 
-
-
-
-    
     async checkDisplayName({ commit }, displayName) {
       // Firestore에서 'users' 컬렉션 쿼리를 준비합니다.
       const usersRef = collection(db, "users");
@@ -144,19 +277,6 @@ export default {
       // displayName이 중복되지 않으면 아무 조치도 취하지 않습니다.
     },
 
-    async signIn({ commit }, { email, password }) {
-      try {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        commit("setUser", userCredential.user);
-      } catch (error) {
-        throw error;
-      }
-    },
-
     async signOut({ commit }) {
       try {
         await signOut(auth);
@@ -165,17 +285,7 @@ export default {
         throw error;
       }
     },
-    initAuthState({ commit }) {
-      console.log("initAuthState");
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          console.log("user: ", user);
-          commit("setUser", user);
-        } else {
-          commit("setUser", null);
-        }
-      });
-    },
+
     ensureAuthReady({ state }) {
       return new Promise((resolve) => {
         if (state.user) {
@@ -231,9 +341,7 @@ export default {
     isAuthenticated(state) {
       return !!state.user;
     },
-
-    // 현재 인증된 사용자의 전체 정보를 반환하는 getter
-    getCurrentUser: (state) => {
+    getUser: (state) => {
       return state.user;
     },
     getUsers: (state) => {

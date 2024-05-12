@@ -13,6 +13,8 @@ import vocabularyImages from "../firebase/vocabularyImages";
 import checkedWords from "../firebase/checkedWords";
 import words from "../firebase/words";
 import profileImages from "../firebase/profileImages";
+import countdowns from "../firebase/countdowns";
+import favorites from "../firebase/favorites";
 
 const store = createStore({
   modules: {
@@ -26,6 +28,8 @@ const store = createStore({
     profileImages,
     vocabularyImages,
     checkedWords,
+    countdowns,
+    favorites,
   },
 });
 

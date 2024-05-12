@@ -1,6 +1,9 @@
 @import "./reset.scss";
 @import "./font.scss";
 @import "./root.scss";
+.pa_4 {
+  padding: 0 4px;
+}
 .pa_8 {
   padding: 0 8px;
 }
@@ -40,6 +43,12 @@
 }
 .justify-content_space-between {
   justify-content: space-between;
+}
+.justify-content_flex-end {
+  justify-content: flex-end;
+}
+.sp_2 {
+  height: 2px;
 }
 .sp_4 {
   height: 4px;
@@ -92,6 +101,9 @@
   width: 48px;
   height: 48px;
 }
+.gap_2 {
+  gap: 2px;
+}
 .gap_4 {
   gap: 4px;
 }
@@ -119,8 +131,35 @@
 .sp_12 {
   height: 12px;
 }
+.sp_16 {
+  height: 16px;
+}
+.sp_18 {
+  height: 18px;
+}
+.sp_24 {
+  height: 24px;
+}
+.sp_28 {
+  height: 28px;
+}
+.sp_32 {
+  height: 32px;
+}
+.sp_36 {
+  height: 36px;
+}
 .sp_48 {
   height: 48px;
+}
+.sp_56 {
+  height: 56px;
+}
+.sp_64 {
+  height: 64px;
+}
+.sp_72 {
+  height: 72px;
 }
 .sp_96 {
   height: 96px;
@@ -201,7 +240,7 @@ select {
   position: relative;
   width: 100%;
   min-height: 100%;
-  padding: 56px var(--mio-theme-padding-2);
+  padding: var(--mio-theme-header) var(--mio-theme-padding-2);
 }
 
 

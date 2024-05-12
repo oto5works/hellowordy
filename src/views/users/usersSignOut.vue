@@ -1,5 +1,9 @@
 <template>
-  <buttonText class="height_64 width_100" @click="handleSignOut()">로그아웃</buttonText>
+  <buttonOutline class="height_32 gap_8 pa_12" @click="handleSignOut()">
+    <span class="font-size_13">
+      로그아웃
+    </span>
+    </buttonOutline>
 </template>
 
 <script>

@@ -20,6 +20,7 @@ export default {};
   align-items: center;
   flex-shrink: 0;
   border-radius: 36px;
+  font-size: 14px;
   color: rgb(var(--mio-theme-color-on-background));
   transition: all 0.4s ease-in-out;
   -webkit-user-select: none;

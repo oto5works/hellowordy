@@ -11,10 +11,6 @@
         ><icon class="icon_12"><caretDown /></icon>
       </buttonSelect>
     </div>
-    <div
-      v-else
-      class="font-size_20 font-weight_400 en line-height_100"
-    >Select</div>
   </button>
 </template>
 

@@ -41,7 +41,6 @@ export default {};
 
 /*-- underlay --*/
 .buttonToggle .underlay {
-  background-color: rgba(var(--mio-theme-color-background), 1);
 }
 .buttonToggle.selected .underlay {
   background-color: rgba(var(--mio-theme-color-primary), 1);
