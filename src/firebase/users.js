@@ -54,7 +54,7 @@ export default {
           commit("setUser", user);
           await Promise.all([
             dispatch(
-              "vocabularies/getVocabulariesByUserID",
+              "vocas/getVocasByUserID",
               {},
               { root: true }
             ),
@@ -311,8 +311,8 @@ export default {
           root: true,
         });
 
-        // vocabularies 모듈의 deleteVocabulariesByUserID 액션 호출
-        await dispatch("vocabularies/deleteVocabulariesByUserID", userID, {
+        // vocas 모듈의 deleteVocasByUserID 액션 호출
+        await dispatch("vocas/deleteVocasByUserID", userID, {
           root: true,
         });
 

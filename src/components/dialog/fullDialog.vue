@@ -10,9 +10,18 @@
         />
         <div class="overlay__content" :class="{ active: loaded }">
           <div class="dialog">
-            <button class="close" @click="closeDialog">
-              <icon><x /></icon>
-            </button>
+            <div class="dialog-header">
+              <div class="display_flex align-items_center">
+                <buttonIcon @click="closeDialog">
+                  <icon><caretLeft /></icon>
+                </buttonIcon>
+                <span class="font-size_24">{{ title }}</span>
+              </div>
+
+              <div class="header-button">
+                <slot name="header"></slot>
+              </div>
+            </div>
             <div class="dialog-content">
               <slot></slot>
             </div>
@@ -26,10 +35,10 @@
 <script>
 import "@/components/dialog/overlay.scss";
 import "@/components/dialog/fullDialog.scss";
-import x from "@/components/icon/x.vue";
+import caretLeft from "@/components/icon/caretLeft.vue";
 
 export default {
-  components: { x },
+  components: { caretLeft },
 
   props: {
     dialog: {
@@ -53,7 +62,7 @@ export default {
   },
   methods: {
     closeDialog() {
-      console.log ('closeDialog')
+      console.log("closeDialog");
       this.$emit("update:dialog", false);
     },
   },

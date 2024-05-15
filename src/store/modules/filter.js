@@ -22,21 +22,26 @@ export default {
   actions: {
     fetchFilterWords({ commit, rootGetters, state }) {
       console.log("@ACTIONS: fetchFilterWords");
-      const partSize = state.partSize; // 전체 단어 목록을 가져옵니다.
+      const partSize = state.partSize;
+      // 단어를 가져오고 createdAt으로 오름차순 정렬
+      const words = rootGetters["words/getWords"].sort((a, b) => a.createdAt.seconds - b.createdAt.seconds);
+      let filteredWords = [];
 
-      const words = rootGetters["words/getWords"]; // 전체 단어 목록을 가져옵니다.
-      let filteredWords = []; // 파트별 단어들을 담을 2차원 배열을 초기화합니다.
-
-      // 단어들을 50개씩 나누어 filteredWords에 추가합니다.
       for (let part = 0; part < Math.ceil(words.length / partSize); part++) {
         const startIndex = part * partSize;
         const endIndex = startIndex + partSize;
         const partWords = words.slice(startIndex, endIndex);
-        filteredWords.push(partWords); // 해당 파트의 단어들을 filteredWords에 추가합니다.
+        filteredWords.push(partWords);
       }
 
-      commit("setFilteredWords", filteredWords); // 최종적으로 필터링된 단어들을 상태에 저장합니다.
+      commit("setFilteredWords", filteredWords);
     },
+
+
+
+
+
+
     setShowFilter({ commit }) {
       console.log("@ACTIONS: setShowFilter!");
       commit("setShowFilter");

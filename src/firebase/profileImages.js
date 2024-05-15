@@ -40,6 +40,29 @@ export default {
 
   // Actions
   actions: {
+    // 완
+    async returnProfileImageByPayload({ state, commit }, userID) {
+      try {
+        if (!userID) {
+          throw new Error("현재 선택된 유저 ID가 없습니다.");
+        }
+        const profileImageRef = doc(db, "profileImages", userID);
+        const docSnap = await getDoc(profileImageRef);
+
+        if (docSnap.exists()) {
+          const profileImage = { id: docSnap.id, ...docSnap.data() };
+          // 필요한 경우, 여기서 추가 작업을 수행할 수 있습니다. 예를 들어, 상태를 업데이트하거나 다른 액션을 호출할 수 있습니다.
+          console.log("profileImage 데이터:", profileImage);
+          return profileImage;
+        } else {
+          console.log("해당 ID를 가진 유저이 없습니다.");
+          return null;
+        }
+      } catch (error) {
+        console.error("유저 가져오기 실패:", error);
+        throw error;
+      }
+    },
     // 프로필 이미지 업로드 및 Firebase Authentication의 photoURL 업데이트
     async uploadProfileImage({ commit }, { userId, file }) {
       const storage = getStorage();

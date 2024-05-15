@@ -2,9 +2,9 @@
 export default {
   namespaced: true,
   state: {
-    currentWordID: null,
+    wordID: null,
     currentWord: null,
-    currentIndex: 0,
+    currentIndex: -1,
     lastIndex: 100,
     word: null,
     mean: null,
@@ -15,10 +15,11 @@ export default {
     alwaysRuby: false,
     alwaysMean: false,
     showDict: false,
+    viewChecked: false,
   },
   mutations: {
-    setCurrentWordID(state, payload) {
-      state.currentWordID = payload;
+    setWordID(state, payload) {
+      state.wordID = payload;
     },
     setCurrentWord(state, payload) {
       state.currentWord = payload;
@@ -70,8 +71,9 @@ export default {
         console.log("@ACTIONS: initializeStudy!");
         commit("setReset");
         await dispatch("filter/fetchFilterWords", null, { root: true });
-        commit("setCurrentIndex", 0);
-        dispatch("study/setLastIndex", null, { root: true });
+        await commit("setCurrentIndex", -1);
+        await dispatch("study/setLastIndex", null, { root: true });
+        await dispatch("study/setNext", null, { root: true });
         dispatch("study/configureWord", null, { root: true });
       } catch (error) {
         // Error handling logic
@@ -83,7 +85,6 @@ export default {
       try {
         console.log("@ACTIONS: configureWord!");
         commit("setReset");
-        dispatch("study/setCurrentWordID", null, { root: true });
         dispatch("study/setWord", null, { root: true });
         dispatch("study/setMean", null, { root: true });
         dispatch("study/setExamples", null, { root: true });
@@ -115,19 +116,21 @@ export default {
         // 에러 발생 시, 사용자에게 알리는 등의 추가적인 처리를 할 수 있습니다.
       }
     },
-    async setCurrentWordID({ commit, rootGetters, dispatch, state }) {
+    async setWordID({ commit, rootGetters, dispatch, state }) {
       try {
-        console.log("@ACTIONS: setCurrentWordID!");
         const filteredWords = rootGetters["filter/getFilteredWords"];
-        const currentWordID = filteredWords[state.part][state.currentIndex]?.id;
+        const wordID = filteredWords[state.part][state.currentIndex]?.id;
+
+        console.log("@ACTIONS: setWordID!", wordID);
+
         // 현재 단어가 없는 경우, 추가적인 처리나 경고를 할 수 있습니다.
-        if (!currentWordID) {
+        if (!wordID) {
           console.warn("Current word is undefined.");
           return; // 현재 단어가 없으면 함수 실행을 중단합니다.
         }
-        commit("setCurrentWordID", currentWordID); // 변환된 단어를 상태에 저장합니다.
+        commit("setWordID", wordID); // 변환된 단어를 상태에 저장합니다.
       } catch (error) {
-        console.error("An error occurred in setCurrentWordID:", error);
+        console.error("An error occurred in setWordID:", error);
         // 에러 발생 시, 사용자에게 알리는 등의 추가적인 처리를 할 수 있습니다.
       }
     },
@@ -177,80 +180,129 @@ export default {
       }
     },
 
-    setPart({ commit, dispatch }, value) {
-      console.log("@ACTIONS: setPart", value);
-      commit("setPart", value); // Commit that value using the mutation
-    },
 
     setPart({ commit, dispatch }, value) {
       console.log("@ACTIONS: setPart", value);
       commit("setPart", value); // Commit that value using the mutation
     },
-
-    /*-- Checked --*/
-    async checkedWord({ commit, dispatch, state, rootGetters }) {
-      try {
-        const currentWordID = filteredWords[state.part][state.currentIndex]?.id;
-        const checkedWords = rootGetters["checkedWords/getCheckedWords"];
-       
-      } catch (error) {
-        // 오류 처리 로직
-        console.error(`Error occurred in setNext: ${error}`);
-        // 여기서 사용자에게 오류를 알리는 등의 추가적인 처리를 할 수 있습니다.
-      }
-    },
-    /*-- Checked --*/
 
     async setNext({ commit, dispatch, state, rootGetters }) {
+      console.log('setNext');
       try {
         const filteredWords = rootGetters["filter/getFilteredWords"];
-        const newIndex = state.currentIndex + 1;
-        if (newIndex < filteredWords[state.part].length) {
-          await commit("setCurrentIndex", newIndex);
-          dispatch("study/configureWord", null, { root: true });
-        } else {
-          // 필터링된 단어 목록의 끝에 도달했을 때의 처리 방법 (선택적)
-          console.warn("Reached the end of the word list.");
-        }
+        const proceedToNextWord = async (newIndex) => {
+          if (newIndex < filteredWords[state.part].length) {
+            await commit("setCurrentIndex", newIndex);
+            await dispatch("study/setWordID", null, { root: true });
+            
+            // state.viewChecked가 true일 경우 isChecked를 바로 false로 설정
+            let isChecked = false; 
+            if (!state.viewChecked) {
+              isChecked = await dispatch("checkedWords/verifyChecked", null, { root: true });
+              console.log('isChecked', isChecked);
+            }
+            
+            if (!isChecked) {
+              // isChecked가 false일 경우 바로 실행
+              dispatch("study/configureWord", null, { root: true });
+            } else {
+              // isChecked가 true일 경우 다시 proceedToNextWord 함수를 호출하여 다음 단어로 넘어감
+              await proceedToNextWord(newIndex + 1);
+            }
+          } else {
+            // 필터링된 단어 목록의 끝에 도달했을 때의 처리 방법 (선택적)
+            console.warn("Reached the end of the word list.");
+          }
+        };
+    
+        await proceedToNextWord(state.currentIndex + 1);
       } catch (error) {
         // 오류 처리 로직
         console.error(`Error occurred in setNext: ${error}`);
         // 여기서 사용자에게 오류를 알리는 등의 추가적인 처리를 할 수 있습니다.
       }
     },
-    async setPrevious({ commit, dispatch, state }) {
+    
+    
+    async setPrevious({ commit, dispatch, state, rootGetters }) {
+      console.log('setPrevious');
       try {
-        const newIndex = state.currentIndex - 1;
-        if (newIndex >= 0) {
-          await commit("setCurrentIndex", newIndex);
-          await dispatch("study/configureWord", null, { root: true });
+        const filteredWords = rootGetters["filter/getFilteredWords"];
+        const proceedToPreviousWord = async (newIndex) => {
+          if (newIndex >= 0) { // 인덱스가 0 이상인지 확인
+            await commit("setCurrentIndex", newIndex);
+            await dispatch("study/setWordID", null, { root: true });
+    
+            // state.viewChecked가 true일 경우 isChecked를 바로 false로 설정
+            let isChecked = false;
+            if (!state.viewChecked) {
+              isChecked = await dispatch("checkedWords/verifyChecked", null, { root: true });
+              console.log('isChecked', isChecked);
+            }
+    
+            if (!isChecked) {
+              // isChecked가 false일 경우 바로 실행
+              dispatch("study/configureWord", null, { root: true });
+            } else {
+              // isChecked가 true일 경우 다시 proceedToPreviousWord 함수를 호출하여 이전 단어로 넘어감
+              await proceedToPreviousWord(newIndex - 1);
+            }
+          } else {
+            // 필터링된 단어 목록의 시작에 도달했을 때의 처리 방법 (선택적)
+            console.warn("Reached the start of the word list.");
+          }
+        };
+    
+        await proceedToPreviousWord(state.currentIndex - 1);
+      } catch (error) {
+        // 오류 처리 로직
+        console.error(`Error occurred in setPrevious: ${error}`);
+        // 여기서 사용자에게 오류를 알리는 등의 추가적인 처리를 할 수 있습니다.
+      }
+    },
+    
+    
+
+    
+    
+    async setRandom({ commit, dispatch, state, rootGetters }) {
+      console.log('setRandom');
+      try {
+        const filteredWords = rootGetters["filter/getFilteredWords"][state.part];
+        const maxAttempts = 10; // 최대 재시도 횟수
+        let attempts = 0; // 현재 시도 횟수
+    
+        let randomIndex;
+        let isChecked = true;
+    
+        // isChecked가 true이면서 최대 시도 횟수에 도달하지 않고, 현재 인덱스와 다른 인덱스를 찾는 경우 반복
+        while(isChecked && attempts < maxAttempts) {
+          do {
+            randomIndex = Math.floor(Math.random() * filteredWords.length);
+          } while(randomIndex === state.currentIndex) // 현재 인덱스와 다를 때까지 반복
+    
+          await commit("setCurrentIndex", randomIndex);
+          await dispatch("study/setWordID", null, { root: true });
+    
+          isChecked = await dispatch("checkedWords/verifyChecked", null, { root: true });
+          attempts += 1; // 시도 횟수 증가
+        }
+    
+        if (!isChecked) {
+          // isChecked가 false인 경우, 즉 체크되지 않은 단어를 찾은 경우
+          dispatch("study/configureWord", null, { root: true });
         } else {
-          // 단어 리스트의 처음에 도달했을 때 처리 (선택적)
-          console.warn("Reached the beginning of the word list.");
-          // 사용자에게 단어 리스트의 처음에 도달했음을 알리는 로직 추가 가능
+          // 최대 시도 횟수에 도달했지만 적절한 단어를 찾지 못한 경우
+          console.warn("A new random unchecked word could not be found within the attempt limit.");
         }
       } catch (error) {
-        // 예외 처리 로직
-        console.error(`Error occurred in setPrevious: ${error}`);
-        // 사용자에게 오류 발생을 알리는 로직 추가 가능
+        console.error(`Error occurred in setRandom: ${error}`);
       }
     },
-    async setRandom({ commit, dispatch, state, rootGetters }) {
-      try {
-        console.log("@ACTIONS: setRandom!");
-        const filteredWords = rootGetters["filter/getFilteredWords"];
-        if (filteredWords[state.part].length === 0)
-          throw new Error("필터된 단어가 없습니다.");
-        const newIndex = Math.floor(
-          Math.random() * filteredWords[state.part].length
-        );
-        await commit("setCurrentIndex", newIndex);
-        await dispatch("study/configureWord", null, { root: true });
-      } catch (error) {
-        console.error(`setRandom에서 오류 발생: ${error}`);
-        // 오류 처리 로직 (예: 사용자에게 알림 등)
-      }
-    },
+    
+    
+    
+    
     async setIndex({ commit, state }, index) {
       try {
         console.log("@ACTIONS: setIndex!");
@@ -302,7 +354,7 @@ export default {
     },
   },
   getters: {
-    getCurrentWordID: (state) => state.currentWordID,
+    getWordID: (state) => state.wordID,
     getCurrentWord: (state) => state.currentWord,
 
     getFilteredWords: (state) => state.filteredWords,

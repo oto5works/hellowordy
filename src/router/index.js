@@ -2,27 +2,21 @@
 
 import { createRouter, createWebHashHistory } from "vue-router";
 import home from "@/views/home/home.vue";
-//import viewWords from "@/views/viewWords.vue";
-//import add from "@/views/add.vue";
-//import search from "@/views/searchWords2.vue";
-//import db from "@/views/db.vue";
-// users
-import usersAuth from "@/views/users/usersAuth.vue";
-import usersMy from "@/views/users/usersMy.vue";
+// auth
+import auth from "@/views/auth/auth.vue";
+
+// my 
+import my from "@/views/my/my.vue";
+import myID from "@/views/my/myID.vue";
 
 // voca
-import vocabulariesAllView from "@/views/vocabularies/vocabulariesAllView.vue";
-import vocabulariesDetail from "@/views/vocabularies/vocabulariesDetail.vue";
-import vocabulariesUser from "@/views/vocabularies/vocabulariesUser.vue";
-import wordsView from "@/views/words/wordsView.vue";
+import voca from "@/views/voca/voca.vue";
+import vocaID from "@/views/voca/vocaID.vue";
 
+// anki
+import anki from "@/views/anki/anki.vue";
+import ankiID from "@/views/anki/ankiID.vue";
 
-// study
-import studyView from "@/views/study/studyView.vue";
-
-// admin
-import usersAllView from "@/views/users/usersAllView.vue";
-import test from "@/test/test.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -32,80 +26,45 @@ const router = createRouter({
       name: "home",
       component: home,
     },
-    // users
+    // auth
     {
       path: "/auth",
       name: "auth",
-      component: usersAuth,
+      component: auth,
     },
+    // my
     {
       path: "/my",
       name: "my",
-      component: usersMy,
+      component: my,
     },
     {
-      path: "/user/:id",
-      name: "user",
-      component: vocabulariesUser,
+      path: "/my/:id",
+      name: "myID",
+      component: myID,
     },
     // voca
     {
-      path: "/voca/:id",
-      name: "vocaDetail",
-      component: vocabulariesDetail,
-    },
-    {
       path: "/voca",
       name: "voca",
-      component: vocabulariesAllView,
+      component: voca,
     },
-   
     {
-      path: "/voca/test/:id",
-      name: "test",
-      component: test,
+      path: "/voca/:id",
+      name: "vocaID",
+      component: vocaID,
     },
     // anki
     {
       path: "/anki",
       name: "anki",
-      component: studyView,
+      component: anki,
     },
     {
       path: "/anki:id",
-      name: "ankiDetail",
-      component: studyView,
+      name: "ankiID",
+      component: ankiID,
     },
- 
-
-    // admin
-    {
-      path: "/admin/users",
-      name: "usersAllView",
-      component: usersAllView,
-    },
-    /*--
-    {
-      path: "/viewWords",
-      name: "viewWords",
-      component: viewWords,
-    },
-    {
-      path: "/add",
-      name: "add",
-      component: add,
-    },
-    {
-      path: "/search",
-      name: "search",
-      component: search,
-    },
-    {
-      path: "/db",
-      name: "db",
-      component: db,
-    },
-    --*/
   ],
 });
 

@@ -2,7 +2,7 @@
 <template>
   <div class="app">
     <headerView v-if="!isAuth" />
-    <navbar v-if="!isAnki" />
+    <navbarView v-if="!isAnkiID" />
     <RouterView />
   </div>
 </template>
@@ -10,22 +10,22 @@
 <script>
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
-import headerView from "@/views/common/headerView.vue";
-import navbar from "@/views/common/navbar.vue";
+import headerView from "@/modules/common/headerView.vue";
+import navbarView from "@/modules/common/navbarView.vue";
 
 export default {
-  components: {headerView, navbar},
+  components: { headerView, navbarView },
 
   computed: {
     ...mapGetters({
       isAuthenticated: "users/isAuthenticated",
     }),
-  isAuth() {
-    return this.$route.name === 'auth'
-  },
-  isAnki() {
-    return this.$route.name === 'anki'
-  },
+    isAuth() {
+      return this.$route.name === "auth";
+    },
+    isAnkiID() {
+      return this.$route.name === "ankiID";
+    },
   },
   created() {},
   methods: {
@@ -43,11 +43,15 @@ body {
 
 #app {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   min-height: 100%;
 }
 .app {
   width: 100%;
+  max-width: 480px;
   height: 100%;
   display: block; /* 필요한 경우에만 추가 */
 }

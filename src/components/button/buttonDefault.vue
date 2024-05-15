@@ -21,6 +21,7 @@ export default {};
   flex-shrink: 0;
   border-radius: 36px;
   font-size: 14px;
+  font-weight: 500;
   color: rgb(var(--mio-theme-color-on-background));
   transition: all 0.4s ease-in-out;
   -webkit-user-select: none;
@@ -30,6 +31,7 @@ export default {};
 }
 .buttonDefault.selected {
   color: rgb(var(--mio-theme-color-on-primary));
+  font-weight: 700;
 }
 /*-- overlay --*/
 .buttonDefault .overlay {

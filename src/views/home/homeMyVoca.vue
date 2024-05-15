@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     navigateToMyVoca() {
-      this.$router.push({ name: "vocabulariesUserView" });
+      this.$router.push({ name: "vocasUserView" });
     },
   },
 };

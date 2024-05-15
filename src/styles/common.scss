@@ -93,13 +93,25 @@
   width: 18px;
   height: 18px;
 }
+.icon_20 {
+  width: 20px;
+  height: 20px;
+}
 .icon_24 {
   width: 24px;
   height: 24px;
 }
+.icon_32 {
+  width: 32px;
+  height: 32px;
+}
 .icon_48 {
   width: 48px;
   height: 48px;
+}
+.icon_56 {
+  width: 56px;
+  height: 56px;
 }
 .gap_2 {
   gap: 2px;
@@ -115,6 +127,9 @@
 }
 .gap_12 {
   gap: 12px;
+}
+.gap_16 {
+  gap: 16px;
 }
 .gap_18 {
   gap: 18px;
@@ -197,11 +212,13 @@
 .border-radius_12 {
   border-radius: 12px;
 }
-
+.color_primary {
+  color: rgb(var(--mio-theme-color-primary));
+}
 
 select {
   color: inherit;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 
@@ -214,7 +231,12 @@ select {
   width: 100%;
   height: 3%;
 }
-
+.line {
+  width: 100%;
+  height: 1px;
+  opacity: 0.4;
+  background-color: rgb(var(--mio-theme-color-on-background));
+}
 .width_100 {
   width: 100%;
 }

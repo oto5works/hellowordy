@@ -5,26 +5,26 @@ import {
   collection,
   query,
   where,
+  doc,
   getDocs,
   addDoc,
   deleteDoc,
+  writeBatch,
 } from "firebase/firestore";
 
 export default {
   namespaced: true,
   state: () => ({
-    favoritesUserID: [],
+    favorites: [],
   }),
   mutations: {
-    setFavoritesUserID(state, payload) {
-      console.log("@MUTATIONS: setFavoritesByUserID!", payload);
-      state.favoritesUserID = payload;
+    setFavorites(state, payload) {
+      console.log("@MUTATIONS: setFavorites!", payload);
+      state.favorites = payload;
     },
   },
   actions: {
     // 완료
-    // UserID를 getters로 받아와서 favoritesUserID 저장 한다.
-    // users.js 에서 사용중
     async getFavoritesByUserID({ commit, rootGetters }) {
       try {
         console.log("@FIREBASE: getFavorites!");
@@ -33,13 +33,13 @@ export default {
         const q = query(favoritesRef, where("userID", "==", userID));
         const querySnapshot = await getDocs(q);
         if (querySnapshot.empty) {
-          commit("setFavoritesUserID", []);
+          commit("setFavorites", []);
         } else {
           const favorites = [];
           querySnapshot.forEach((doc) => {
             favorites.push({ id: doc.id, ...doc.data() });
           });
-          commit("setFavoritesUserID", favorites);
+          commit("setFavorites", favorites);
         }
       } catch (error) {
         console.error("Error fetching checked words: ", error);
@@ -47,11 +47,11 @@ export default {
       }
     },
     // 완료
-    async toggleFavoriteByPayload({ dispatch, rootGetters }, vocabularyID) {
+    async toggleFavoriteByPayload({ dispatch, rootGetters }, vocaID) {
       try {
         const userID = rootGetters["users/getUserID"];
-        if (!vocabularyID) {
-          console.log("vocabularyID가 유효하지 않습니다:", vocabularyID);
+        if (!vocaID) {
+          console.log("vocaID가 유효하지 않습니다:", vocaID);
           return;
         }
         console.log("@FIREBASE: toggleFavorite!");
@@ -59,14 +59,14 @@ export default {
         const q = query(
           favoritesRef,
           where("userID", "==", userID),
-          where("vocabularyID", "==", vocabularyID)
+          where("vocaID", "==", vocaID)
         );
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
           const favoriteData = {
             userID: userID,
-            vocabularyID: vocabularyID,
+            vocaID: vocaID,
             createdAt: new Date(),
           };
           await addDoc(favoritesRef, favoriteData);
@@ -80,11 +80,11 @@ export default {
         throw error;
       }
     },
-    // 완료?
-    async deleteFavoritesByPayload({ rootGetters, dispatch }, vocabularyID) {
+    // 완료
+    async deleteFavoritesByPayload({ rootGetters, dispatch }, vocaID) {
       try {
         const favoritesRef = collection(db, "favorites");
-        const q = query(favoritesRef, where("vocabularyID", "==", vocabularyID));
+        const q = query(favoritesRef, where("vocaID", "==", vocaID));
         const querySnapshot = await getDocs(q);
 
         // 각 단어를 삭제합니다.
@@ -96,8 +96,8 @@ export default {
         await batch.commit(); // Batch 작업을 커밋하여 모든 삭제를 한 번에 처리합니다.
 
         console.log(
-          "vocabularyID에 해당하는 모든 단어 삭제 완료:",
-          vocabularyID
+          "vocaID에 해당하는 모든 단어 삭제 완료:",
+          vocaID
         );
         await dispatch("getFavoritesByUserID");
       } catch (error) {
@@ -105,18 +105,13 @@ export default {
         throw error;
       }
     },
-
-
-
-
-
-    async returnFavoritesByPayload({ commit, rootGetters }, vocabularyID) {
+    async returnFavoritesByPayload({ commit, rootGetters }, vocaID) {
       try {
-        console.log("@FIREBASE: returnFavoritesByPayload!", vocabularyID);
+        console.log("@FIREBASE: returnFavoritesByPayload!", vocaID);
         const favoritesRef = collection(db, "favorites");
         const q = query(
           favoritesRef,
-          where("vocabularyID", "==", vocabularyID)
+          where("vocaID", "==", vocaID)
         );
         const querySnapshot = await getDocs(q);
         if (querySnapshot.empty) {
@@ -141,8 +136,8 @@ export default {
     },
   },
   getters: {
-    getFavoritesUserID(state) {
-      return state.favoritesUserID;
+    getFavorites(state) {
+      return state.favorites;
     },
   },
 };

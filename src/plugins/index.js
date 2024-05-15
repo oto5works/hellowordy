@@ -12,6 +12,8 @@ import buttonChip from "@/components/button/buttonChip.vue";
 import buttonOutline from "@/components/button/buttonOutline.vue";
 import buttonNav from "@/components/button/buttonNav.vue";
 import buttonList from "@/components/button/buttonList.vue";
+import buttonCard from "@/components/button/buttonCard.vue";
+import buttonTap from "@/components/button/buttonTap.vue";
 
 
 // dialog
@@ -47,6 +49,8 @@ export function registerPlugins(app) {
     .component("buttonOutline", buttonOutline)
     .component("buttonNav", buttonNav)
     .component("buttonList", buttonList)
+    .component("buttonCard", buttonCard)
+    .component("buttonTap", buttonTap)
 
     
     

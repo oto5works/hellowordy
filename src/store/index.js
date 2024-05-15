@@ -1,15 +1,14 @@
 import { createStore } from "vuex";
 
-import state from "./modules/state";
-import filter from "./modules/filter";
-
 import kuroshiro from "./modules/kuroshiro";
 import study from "./modules/study";
+import temp from "./modules/temp";
+import filter from "./modules/filter";
 
 //firebase
 import users from "../firebase/users";
-import vocabularies from "../firebase/vocabularies";
-import vocabularyImages from "../firebase/vocabularyImages";
+import vocas from "../firebase/vocas";
+import vocaImages from "../firebase/vocaImages";
 import checkedWords from "../firebase/checkedWords";
 import words from "../firebase/words";
 import profileImages from "../firebase/profileImages";
@@ -18,15 +17,15 @@ import favorites from "../firebase/favorites";
 
 const store = createStore({
   modules: {
-    state,
-    words,
     filter,
+    temp,
+    words,
     kuroshiro,
     users,
     study,
-    vocabularies,
+    vocas,
     profileImages,
-    vocabularyImages,
+    vocaImages,
     checkedWords,
     countdowns,
     favorites,

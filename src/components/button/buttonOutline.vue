@@ -19,7 +19,7 @@ export default {
   align-items: center;
   transition: all 0.4s ease-in-out;
   color: rgb(var(--mio-theme-color-on-background));
-  border-radius: 24px;
+  border-radius: 48px;
   font-size: 14px;
   font-weight: 400;
 }

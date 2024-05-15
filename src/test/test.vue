@@ -44,9 +44,9 @@ export default {
   computed: {
     ...mapGetters({
       words: "words/getWords",
-      currentVocabulary: "words/getWords",
+      currentVoca: "words/getWords",
     }),
-    vocabularyID() {
+    vocaID() {
       return this.$route.params.id;
     },
   },
@@ -54,8 +54,8 @@ export default {
     ...mapActions({
       fetchWords: "words/fetchWords",
       resetWords: "words/resetWords",
-      updateCurrentVocabularyID: "vocabularies/updateCurrentVocabularyID",
-      resetCurrentVocabularyID: "vocabularies/resetCurrentVocabularyID",
+      updateCurrentVocaID: "vocas/updateCurrentVocaID",
+      resetCurrentVocaID: "vocas/resetCurrentVocaID",
       deleteCurrentWordID: "words/deleteCurrentWordID",
       updateCurrentWordID: "words/updateCurrentWordID",
     }),
@@ -72,12 +72,12 @@ export default {
     },
   },
   created() {
-    this.updateCurrentVocabularyID(this.vocabularyID);
+    this.updateCurrentVocaID(this.vocaID);
 
     this.fetchWords();
   },
   beforeRouteLeave(to, from, next) {
-    this.resetCurrentVocabularyID(); // 페이지를 떠날 때 선택된 단어장의 ID를 null로 설정
+    this.resetCurrentVocaID(); // 페이지를 떠날 때 선택된 단어장의 ID를 null로 설정
     this.resetWords(); // 페이지를 떠날 때 선택된 단어장의 ID를 null로 설정
     next();
   },
