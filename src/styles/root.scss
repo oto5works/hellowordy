@@ -11,6 +11,7 @@ body {
   --mio-theme-font-family-en: "Roboto Mono", monospace;
   --mio-theme-font-family-kr: 'suit", sans-serif';
   --mio-theme-font-family-jp: 'Noto Sans JP", sans-serif';
+  --mio-theme-padding-3: 8px;
   --mio-theme-padding-2: 24px;
   --mio-theme-padding-1: 16px;
   --mio-theme-header: 64px;
@@ -25,4 +26,15 @@ html[data-design-theme="design1"] {
   --4-4-0: 4.2%;
   // onInv Comment Bubble Writer padding value
   --0-0-12: 0;
+}
+
+
+.--mio-theme-padding-1 {
+  padding: 0 var(--mio-theme-padding-1);
+}
+.--mio-theme-padding-2 {
+  padding: 0 var(--mio-theme-padding-2);
+}
+.--mio-theme-padding-3 {
+  padding: 0 var(--mio-theme-padding-3);
 }

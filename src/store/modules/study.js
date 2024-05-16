@@ -64,13 +64,16 @@ export default {
       state.showRuby = false;
       state.showMean = false;
     },
+    setResetPart(state) {
+      state.part = null;
+    },
   },
   actions: {
     async initializeStudy({ commit, dispatch }) {
       try {
         console.log("@ACTIONS: initializeStudy!");
-        commit("setReset");
-        await dispatch("filter/fetchFilterWords", null, { root: true });
+        //commit("setReset");
+        //await dispatch("filter/fetchFilterWords", null, { root: true });
         await commit("setCurrentIndex", -1);
         await dispatch("study/setLastIndex", null, { root: true });
         await dispatch("study/setNext", null, { root: true });
@@ -352,6 +355,12 @@ export default {
       console.log("@ACTIONS: setShowDict!");
       commit("setShowDict");
     },
+
+    setResetPart({ commit }) {
+      commit("setResetPart");
+    },
+
+    
   },
   getters: {
     getWordID: (state) => state.wordID,

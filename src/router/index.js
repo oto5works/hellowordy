@@ -15,7 +15,7 @@ import vocaID from "@/views/voca/vocaID.vue";
 
 // anki
 import anki from "@/views/anki/anki.vue";
-import ankiID from "@/views/anki/ankiID.vue";
+import ankiID from "@/views/ankiID/ankiID.vue";
 
 
 const router = createRouter({
@@ -61,7 +61,7 @@ const router = createRouter({
       component: anki,
     },
     {
-      path: "/anki:id",
+      path: "/anki/:id",
       name: "ankiID",
       component: ankiID,
     },

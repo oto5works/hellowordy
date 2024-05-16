@@ -14,10 +14,10 @@ export default {
 .card {
   width: 100%;
   background-color: rgb(var(--mio-theme-color-on-background), 0.16);
-  border-radius: 32px;
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px;
+  padding: 24px;
 }
 </style>

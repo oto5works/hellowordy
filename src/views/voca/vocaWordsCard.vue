@@ -7,10 +7,10 @@
       <div class="index">{{ index }}</div>
 
       <div
-        class="word display_flex flex-direction_column align-items_center width_100 gap_8"
+        class="item"
       >
         <div
-          class="font-size_20 text-align_center font-weight_700"
+          class="word"
         >
           {{ word.word }}
         </div>
@@ -130,12 +130,26 @@ export default {
   font-family: var(--mio-theme-font-family-en);
   color: rgb(var(--mio-theme-color-primary));
 }
+.card .item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateY(12%);
+  width: 100%;
+}
 .card .word {
   font-family: var(--mio-theme-font-family-jp);
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 120%;
-    transform: translateY(12%);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+  height: fit-content;
 }
 .card .mean {
   text-align: center;

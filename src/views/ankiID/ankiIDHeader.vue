@@ -1,8 +1,9 @@
 <template>
   <div
-    class="display_flex align-items_center justify-content_space-between width_100 height_32"
+    class="display_flex align-items_center justify-content_space-between width_100 height_32
+    --mio-theme-padding-2"
   >
-    <ankiChecked />
+    <ankiIDChecked />
 
     <div class="display_flex align-items_center gap_18">
       <div class="display_flex align-items_center gap_6">
@@ -34,13 +35,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-import ankiChecked from "@/views/anki/ankiChecked.vue";
+import ankiIDChecked from "@/views/ankiID/ankiIDChecked.vue";
 import settings from "@/components/icon/settings.vue";
 
 
 export default {
   components: {
-    ankiChecked, settings
+    ankiIDChecked, settings
   },
   data() {
     return {

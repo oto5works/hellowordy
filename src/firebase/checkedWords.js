@@ -81,11 +81,10 @@ export default {
       }
     },
     // 완료
-    async toggleCheckedWord({ dispatch, rootGetters }) {
+    async toggleCheckedWordByPayload({ dispatch, rootGetters }, vocaID) {
       try {
         const wordID = rootGetters["study/getWordID"];
         const userID = rootGetters["users/getUserID"];
-        const vocaID = rootGetters["vocas/getVocaID"];
 
         // 모든 ID가 유효한지 검사
         if (!wordID || !userID || !vocaID) {

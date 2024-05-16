@@ -112,6 +112,21 @@ export default {
         throw error;
       }
     },
+    // 완
+    async returnAllVocas({ commit }) {
+      try {
+        const vocasRef = collection(db, "vocas");
+        const q = query(vocasRef, orderBy("createdAt", "desc")); // 모든 단어장을 생성 날짜 기준으로 내림차순 정렬
+        const querySnapshot = await getDocs(q);
+        const vocas = [];
+        querySnapshot.forEach((doc) => {
+          vocas.push({ id: doc.id, ...doc.data() }); // 각 단어장의 데이터를 vocas 배열에 추가
+        });
+        return vocas
+      } catch (error) {
+        console.error("전체 단어장 리스트 불러오기 실패:", error);
+      }
+    },
     // 완료
     async updateVocaByPayload(
       { dispatch, state },

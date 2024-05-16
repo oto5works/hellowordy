@@ -41,7 +41,7 @@ export default {};
 }
 .buttonTap.selected .underlay {
   background-color: rgb(var(--mio-theme-color-primary));
-  opacity: 0.4;
+  opacity: 0.24;
 }
 /*-- overlay --*/
 .buttonTap .overlay {

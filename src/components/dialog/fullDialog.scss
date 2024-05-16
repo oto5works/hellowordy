@@ -33,8 +33,11 @@
   height: var(--mio-theme-header);
   padding: 0 var(--mio-theme-padding-1) 0 0;
 }
-.fullDialog > .overlay__content > .dialog .dialog-header span {
-  font-size: 18px;
+.fullDialog > .overlay__content > .dialog .dialog-header .title {
+  font-size: 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
 }
 .fullDialog > .overlay__content > .dialog .dialog-header .header-button button {
   color: rgb(var(--mio-theme-color-primary));
@@ -51,7 +54,7 @@
 }
 
 .fullDialog .dialog-content .content {
-  padding: 0 var(--mio-theme-padding-1);
+  padding: 0 var(--mio-theme-padding-3);
 }
 /*--- 태블렛 ---*/
 @media all and (max-width: 1023px) {

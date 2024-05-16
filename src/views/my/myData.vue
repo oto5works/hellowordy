@@ -1,6 +1,7 @@
 <template>
   <div class="usersMyInfo">
     <card>
+      <div class="sp_8"/>
       <div class="items">
         <div class="item" @click="vocasDialog = true">
           <buttonIcon>
@@ -29,6 +30,7 @@
           <div class="font-size_13">암기 완료</div>
         </div>
       </div>
+      <div class="sp_8"/>
     </card>
 
 
@@ -88,6 +90,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 320px;
 }
 .item {
   display: flex;

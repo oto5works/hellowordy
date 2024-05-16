@@ -15,7 +15,7 @@
                 <buttonIcon @click="closeDialog">
                   <icon><caretLeft /></icon>
                 </buttonIcon>
-                <span class="font-size_24">{{ title }}</span>
+                <span class="title">{{ title }}</span>
               </div>
 
               <div class="header-button">

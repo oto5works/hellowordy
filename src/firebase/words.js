@@ -174,7 +174,12 @@ export default {
     },
  // 완료
  async returnWordsByPayload({ commit, rootGetters }, vocaID) {
-  console.log("fetchWords!!");
+  console.log("returnWordsByPayload!!", vocaID);
+  // vocaID가 없거나 빈 문자열인 경우 함수 실행을 중지합니다.
+  if (!vocaID) {
+    console.error("vocaID가 제공되지 않았습니다.");
+    return; // 여기서 함수 실행을 중지합니다.
+  }
   try {
     const wordsRef = collection(db, "words");
     const q = query(wordsRef, where("vocaID", "==", vocaID));
@@ -188,6 +193,7 @@ export default {
     console.error("단어 불러오기 실패:", error);
   }
 },
+
     async resetWords({ commit }) {
       console.log("words Null을 설정합니다. ");
 

@@ -9,7 +9,7 @@
         <li v-for="word in matchedWords" :key="word.id">{{ word }}</li>
 -->
 
-    <ankiCheckedDialog
+    <ankiIDCheckedDialog
       v-if="dialog"
       :dialog="dialog"
       @update:dialog="dialog = $event"
@@ -24,8 +24,8 @@ import { defineAsyncComponent } from "vue";
 
 export default {
   components: {
-    ankiCheckedDialog: defineAsyncComponent(() =>
-      import("@/views/anki/ankiCheckedDialog.vue")
+    ankiIDCheckedDialog: defineAsyncComponent(() =>
+      import("@/views/ankiID/ankiIDCheckedDialog.vue")
     ),
   },
   data() {

@@ -1,6 +1,7 @@
 <template>
   <div class="routerView">
-    <anki404 v-if="this.part === null" />
+
+   
 
     <div v-if="this.part !== null">
       <ankiHeader />
@@ -19,7 +20,6 @@
 <script>
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
-import anki404 from "@/views/anki/anki404.vue";
 import ankiHeader from "@/views/anki/ankiHeader.vue";
 import ankiWord from "@/views/anki/ankiWord.vue";
 
@@ -28,7 +28,6 @@ import ankiFooter from "@/views/anki/ankiFooter.vue";
 
 export default {
   components: {
-    anki404,
     ankiHeader,
     ankiWord,
     ankiFuction,
@@ -38,19 +37,24 @@ export default {
     ),
   },
   created() {
-    this.initializeKuroshiro()
+    this.handleFetchWords()
   },
   computed: {
     ...mapGetters({
       part: "study/getPart",
       showFilter: "filter/getShowFilter",
-      initialized: "kuroshiro/getInitialized"
+      fetchFilterWordsByPayload: "filter/fetchFilterWordsByPayload"
     }),
   },
   methods: {
     ...mapActions({
       initializeKuroshiro: "kuroshiro/initializeKuroshiro",
     }),
+    async handleFetchWords(vocaID) {
+      await this.fetchFilterWordsByPayload(vocaID);
+      await this.updateVocaIDByPayload(vocaID);
+      await this.fetchFilterWords();
+    },
   },
 };
 </script>

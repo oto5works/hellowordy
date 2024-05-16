@@ -15,7 +15,7 @@
       >
       <buttonDefault
         class="show"
-        @click="toggleCheckedWord()"
+        @click="toggleCheckedWordByPayload(this.$route.params.id)"
         :class="{ selected: isChecked }"
         ><icon><check /></icon
       ></buttonDefault>
@@ -59,7 +59,7 @@ export default {
       setRandom: "study/setRandom",
       setShowMean: "study/setShowMean",
       setShowRuby: "study/setShowRuby",
-      toggleCheckedWord: "checkedWords/toggleCheckedWord",
+      toggleCheckedWordByPayload: "checkedWords/toggleCheckedWordByPayload",
     }),
   },
 };

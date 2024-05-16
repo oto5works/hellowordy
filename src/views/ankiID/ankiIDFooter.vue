@@ -31,7 +31,7 @@ export default {
     book,
     caretLeft,
     caretRight,
-    dict: defineAsyncComponent(() => import("@/views/dict/dict.vue")),
+    dict: defineAsyncComponent(() => import("@/modules/dict/dict.vue")),
   },
   computed: {
     ...mapGetters({
@@ -51,6 +51,6 @@ export default {
 
 <style scoped>
 .studyFooter {
-  border-top: 1px solid rgba(var(--mio-theme-color-on-background), 0.4);
+  
 }
 </style>

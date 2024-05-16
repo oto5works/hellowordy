@@ -1,10 +1,12 @@
 <template>
   <div class="usersMy">
-    <div v-if="isAuthenticated">
-      <myUser class="usersMy-component" />
+    <div v-if="isAuthenticated" class="--mio-theme-padding-3">
+      <myUser class="--mio-theme-padding-2" />
       <div class="sp_12" />
-      <myData class="usersMy-component" />
+      <myData />
       <div class="sp_48" />
+    </div>
+    <div v-if="isAuthenticated">
       <myVoca />
     </div>
     <div v-else>
