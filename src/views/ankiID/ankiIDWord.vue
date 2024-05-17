@@ -153,10 +153,7 @@ export default {
 }
 
 .word ruby > rt {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -120%);
+ 
   opacity: 0;
   font-weight: 400;
   font-size: 15px;
@@ -167,10 +164,7 @@ export default {
 .word.showRuby rt {
   opacity: 1;
 }
-.word ruby,
-.sentence ruby {
-  position: relative;
-}
+
 .sentence {
   position: relative;
   font-family: var(--mio-theme-font-family-jp);
@@ -180,10 +174,7 @@ export default {
   color: rgb(var(--mio-theme-color-on-background));
 }
 .sentence ruby > rt {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -120%);
+  
   opacity: 0;
   margin-top: 1px;
   font-weight: 400;
