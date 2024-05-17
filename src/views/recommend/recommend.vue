@@ -10,7 +10,7 @@
       :options="{ moveType: 'snap', bound: true }"
       :plugins="plugins"
     >
-      <recommendCard v-for="item in recommends" :key="item" :vocaID="item" />
+      <recommendCard v-for="item in recommends" :key="item.vocaID" :vocaID="item.vocaID" />
       <template #viewport>
         <div class="flicking-pagination"></div>
       </template>
@@ -33,12 +33,8 @@ export default {
     return {
       plugins: [new Pagination({ type: "bullet" })],
       recommends: [
-        "9ISbn44vNNG6KM8JUFdw",
-        "uLkrSD9Jx9p6wkRTR06Q",
-        "9ISbn44vNNG6KM8JUFdw",
-        "uLkrSD9Jx9p6wkRTR06Q",
-        "9ISbn44vNNG6KM8JUFdw",
-        "uLkrSD9Jx9p6wkRTR06Q",
+        {vocaID: "9ISbn44vNNG6KM8JUFdw"},
+        {vocaID: "uLkrSD9Jx9p6wkRTR06Q"},
       ],
     };
   },
