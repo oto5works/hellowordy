@@ -1,16 +1,8 @@
 <template>
   <div class="flicking">
-    <div class="--mio-theme-padding-3">
     <div class="flicking-title">
-      <span class="font-size_16 font-weight_500">추천 암기장</span>
-      <buttonText
-        class="selected height_24 gap_8 pa_8"
-        @click="vocasDialog = true"
-      >
-        <span class="font-size_12">모두 보기</span>
-      </buttonText>
+      <span class="font-size_24 font-weight_500">추천 암기장</span>
     </div>
-  </div>
     <div class="sp_16" />
     <Flicking
       v-if="vocas"
@@ -40,7 +32,14 @@ export default {
   data: function () {
     return {
       plugins: [new Pagination({ type: "bullet" })],
-      recommends: ['9ISbn44vNNG6KM8JUFdw', 'uLkrSD9Jx9p6wkRTR06Q', 'kpoSXTOeq3Sl1gQkCdX8', '4Ekjcs9RgWYc01TF6xC4'],
+      recommends: [
+        "9ISbn44vNNG6KM8JUFdw",
+        "uLkrSD9Jx9p6wkRTR06Q",
+        "9ISbn44vNNG6KM8JUFdw",
+        "uLkrSD9Jx9p6wkRTR06Q",
+        "9ISbn44vNNG6KM8JUFdw",
+        "uLkrSD9Jx9p6wkRTR06Q",
+      ],
     };
   },
   computed: {
@@ -48,16 +47,7 @@ export default {
       vocas: "vocas/getVocas",
     }),
   },
-  methods: {
-   
-  },
+  methods: {},
 };
 </script>
-<style scoped>
-.flicking-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--mio-theme-padding-2);
-}
-</style>
+<style scoped></style>

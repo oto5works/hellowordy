@@ -1,7 +1,13 @@
 <template>
   <div class="routerView">
+    <div class="--mio-theme-padding-2">
+      <textField label="Search"> </textField>
+    </div>
+    <div class="sp_12" />
     <recommend />
-    AllVocas
+    <div class="sp_80" />
+    
+
     <allVocas />
   </div>
 </template>
@@ -15,15 +21,14 @@ import allVocas from "@/views/allVocas/allVocas.vue";
 export default {
   components: {
     recommend,
-    allVocas
+    allVocas,
   },
   data() {
     return {
       tap: "my",
     };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     ...mapActions({
       initializeKuroshiro: "kuroshiro/initializeKuroshiro",
@@ -38,5 +43,8 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
 }
-
+.routerView {
+  padding-left: 0;
+  padding-right: 0;
+}
 </style>

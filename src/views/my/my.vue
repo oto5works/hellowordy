@@ -1,7 +1,7 @@
 <template>
   <div class="usersMy">
-    <div v-if="isAuthenticated" class="--mio-theme-padding-3">
-      <myUser class="--mio-theme-padding-2" />
+    <div v-if="isAuthenticated" class="--mio-theme-padding-2">
+      <myUser  />
       <div class="sp_12" />
       <myData />
       <div class="sp_48" />

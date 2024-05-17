@@ -143,7 +143,7 @@ export default {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 8px;
 }
 .buttonDefault {
   flex-direction: column;

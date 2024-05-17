@@ -1,7 +1,7 @@
 <template>
   <div
     class="display_flex align-items_center justify-content_space-between width_100 height_32
-    --mio-theme-padding-2"
+    "
   >
     <ankiIDChecked />
 

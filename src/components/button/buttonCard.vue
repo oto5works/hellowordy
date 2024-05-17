@@ -40,7 +40,7 @@ export default {};
 }
 /*-- underlay --*/
 .buttonCard .underlay {
-  background-color: rgba(var(--mio-theme-color-on-background), 0.12);
+  background-color: rgba(var(--mio-theme-color-on-background), 0.04);
 }
 .buttonCard.selected .underlay {
   background-color: rgba(var(--mio-theme-color-primary), 1);

@@ -56,8 +56,9 @@
       />
 
       <div class="anki">
-        <buttonDefault class="icon_48">
+        <buttonDefault class="icon_48 " @click="handleAnkiID()">
           <icon><arrowRight /></icon>
+          <span class="font-size_12">암기</span>
         </buttonDefault>
       </div>
     </div>
@@ -106,6 +107,12 @@ export default {
           return this.voca.language; // 기본값으로 voca.language 반환
       }
     },
+    handleAnkiID() {
+      this.$router.push({
+        name: "ankiID",
+        params: { id: this.voca.id },
+      });
+    },
   },
 };
 </script>
@@ -126,6 +133,7 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
+  
 }
 .title,
 .content {

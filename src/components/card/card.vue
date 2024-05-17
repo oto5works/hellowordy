@@ -13,7 +13,7 @@ export default {
 <style scoped>
 .card {
   width: 100%;
-  background-color: rgb(var(--mio-theme-color-on-background), 0.16);
+  background-color: rgb(var(--mio-theme-color-on-background), 0.04);
   border-radius: 24px;
   display: flex;
   flex-direction: column;

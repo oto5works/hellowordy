@@ -131,14 +131,14 @@ export default {
 </script>
 <style scoped>
 .card {
-  width: 140px;
+  width: 128px;
   margin-right: 8px;
 }
 .card-cover {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
-  border-radius: 24px;
+  border-radius: 16px;
   overflow: hidden;
 }
 .language {

@@ -82,7 +82,6 @@ export default {
   width: 100%;
   background-color: rgb(var(--mio-theme-color-background));
   z-index: 1000;
-  padding: 0 var(--mio-theme-padding-3);
 }
 .header {
   position: relative;

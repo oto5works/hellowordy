@@ -1,6 +1,5 @@
 <template>
   <div class="flicking">
-    <div class="--mio-theme-padding-3">
     <div class="flicking-title">
       <span class="font-size_16 font-weight_500">내 암기장</span>
       <buttonText
@@ -9,7 +8,6 @@
       >
         <span class="font-size_12">모두 보기</span>
       </buttonText>
-    </div>
   </div>
     <div class="sp_16" />
     <Flicking

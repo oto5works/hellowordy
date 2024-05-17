@@ -8,7 +8,7 @@
     >
     </buttonCard>
 
-    <div class="content">
+    <div class="list">
       <div class="more"></div>
 
       <div
@@ -28,7 +28,7 @@
       </div>
 
       <div class="sp_4" />
-      <div class="content font-size_13 opacity_60">
+      <div class="list font-size_13 opacity_60">
         {{ voca.content }}
       </div>
 
@@ -115,7 +115,7 @@ export default {
   border-radius: 16px;
   overflow: hidden;
 }
-.content {
+.list {
   position: relative;
   width: 100%;
 }
@@ -125,7 +125,7 @@ export default {
   right: 0;
 }
 .title,
-.content {
+.list {
   overflow: hidden;
   white-space: normal;
   text-overflow: ellipsis;
@@ -140,7 +140,7 @@ export default {
   display: flex;
   gap: 16px;
   width: 100%;
-  padding: var(--mio-theme-padding-1);
+  padding: 12px var(--mio-theme-padding-1);
   border-radius: 24px;
   cursor: pointer;
 }

@@ -37,8 +37,8 @@
     wordID = {{ wordID }}
 -->
     <div class="sp_80" />
-    <div class="--mio-theme-padding-2" v-if="examples.length !== 0">
-      <div class="font-size_36 font-weight_500">Example</div>
+    <div v-if="examples.length !== 0">
+      <div class="font-size_24 font-weight_500">Example</div>
       <div class="sp_8"/>
       <ul>
         <li
@@ -121,7 +121,7 @@ export default {
   position: relative;
   width: 100%;
   border-radius: 24px;
-  padding: var(--mio-theme-padding-3) var(--mio-theme-padding-2);
+  padding: var(--mio-theme-padding-3) 0;
 }
 .card .content {
   position: relative;
@@ -145,23 +145,34 @@ export default {
 </style>
 <style>
 .word {
+  position: relative;
   font-family: var(--mio-theme-font-family-jp);
   font-weight: 700;
   font-size: 36px;
   line-height: 130%;
 }
+
 .word ruby > rt {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
   opacity: 0;
   font-weight: 400;
   font-size: 15px;
-  line-height: 120%;
+  line-height: 100%;
   color: rgb(var(--mio-theme-color-primary));
   transition: all 0.2s ease-in-out;
 }
 .word.showRuby rt {
   opacity: 1;
 }
+.word ruby,
+.sentence ruby {
+  position: relative;
+}
 .sentence {
+  position: relative;
   font-family: var(--mio-theme-font-family-jp);
   font-weight: 500;
   line-height: 130%;
@@ -169,6 +180,10 @@ export default {
   color: rgb(var(--mio-theme-color-on-background));
 }
 .sentence ruby > rt {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
   opacity: 0;
   margin-top: 1px;
   font-weight: 400;

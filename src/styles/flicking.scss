@@ -101,7 +101,12 @@
   .flicking:hover .flicking-next {
     display: flex;
   }
-  
+  .flicking-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--mio-theme-padding-2);
+  }
   @media all and (max-width: 1023px) {
     .flicking:hover .flicking-prev,
     .flicking:hover .flicking-next {
