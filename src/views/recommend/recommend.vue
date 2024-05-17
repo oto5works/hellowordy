@@ -35,6 +35,9 @@ export default {
       recommends: [
         {vocaID: "9ISbn44vNNG6KM8JUFdw"},
         {vocaID: "uLkrSD9Jx9p6wkRTR06Q"},
+        {vocaID: "ZLep3mGXOYMhojtJTH6C"},
+        {vocaID: "mly7rDRRDKgdDnnaOYqA"},
+        {vocaID: "AONW1Lh9jRcVF58fnRNw"},
       ],
     };
   },
