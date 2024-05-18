@@ -25,6 +25,7 @@
           v-if="voca.userID === userID"
           @click="dialog = true"
           class="selected"
+          style="z-index: 10;"
         >
           <icon><plus /></icon>
           <span>단어 추가</span>
