@@ -136,14 +136,15 @@ export default {
     async deleteCheckedWordByPayload({ rootGetters, dispatch }, wordID) {
       try {
         const userID = rootGetters["users/getUserID"]; // userID 가져오기
-        const vocaID = rootGetters["vocas/getVocaID"]; // vocaID 가져오기
+        //const vocaID = rootGetters["vocas/getVocaID"]; // vocaID 가져오기
     
         const checkedWordsRef = collection(db, "checkedWords");
         // 'wordID', 'userID', 'vocaID'에 해당하는 문서를 찾는 쿼리
         const q = query(checkedWordsRef, 
+          //where("vocaID", "==", vocaID),
                         where("wordID", "==", wordID), 
-                        where("userID", "==", userID), 
-                        where("vocaID", "==", vocaID));
+                        where("userID", "==", userID)
+                        );
         const querySnapshot = await getDocs(q);
     
         // 쿼리 결과에서 각 문서를 순회하며 삭제

@@ -108,6 +108,6 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(var(--mio-theme-color-on-background), 0.12);
+  background-color: rgba(var(--mio-theme-color-primary), 0.08);
 }
 </style>

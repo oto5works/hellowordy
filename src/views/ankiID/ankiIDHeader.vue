@@ -5,7 +5,7 @@
   >
     <ankiIDChecked />
 
-    <div class="display_flex align-items_center gap_18">
+    <div class="display_flex align-items_center gap_20">
       <div class="display_flex align-items_center gap_6">
         <div
           class="always font-size_12 font-weight_600 kr"

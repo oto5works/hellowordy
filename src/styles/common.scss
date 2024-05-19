@@ -134,6 +134,9 @@
 .gap_18 {
   gap: 18px;
 }
+.gap_20 {
+  gap: 20px;
+}
 .gap_24 {
   gap: 24px;
 }
@@ -279,7 +282,6 @@ ul li:before {
 ul li:before {
   display: inline-block;
   position: absolute;
-  top: 4px;
   left: -16px;
   width: 8px;
   height: 8px;
@@ -287,6 +289,12 @@ ul li:before {
   line-height: 0;
   text-align: center;
   content: "";
+}
+.japanese li:before {
+  top: 16px;
+}
+.english li:before {
+  top: 4px;
 }
 ul li:nth-child(4n) {
   --rotation: 9;

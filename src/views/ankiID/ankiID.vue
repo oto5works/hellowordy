@@ -1,13 +1,11 @@
 <template>
-  <div class="routerView">
+  <div class="routerView" @dblclick.prevent>
     <!--
     part = {{ this.part }}<br />
     showFilter = {{ this.showFilter }}<br/>
     word = {{this.word}}
         <buttonDefault @click="this.setShowFilter()">filtetrrr</buttonDefault>
-
     -->
-
     <div v-if="filteredWords.length === 0">
       <div class="sp_128" />
       <noData content="암기장에 등록된 단어가 없습니다." image="rabbit3">
@@ -31,7 +29,7 @@
       <div v-else>
         <ankiIDHeader />
         <div class="sp_8"/>
-        <ankiIDWord />
+        <ankiIDView />
         <ankiIDFuction />
       </div>
     </div>
@@ -53,8 +51,8 @@ export default {
     ankiIDFuction: defineAsyncComponent(() =>
       import("@/views/ankiID/ankiIDFuction.vue")
     ),
-    ankiIDWord: defineAsyncComponent(() =>
-      import("@/views/ankiID/ankiIDWord.vue")
+    ankiIDView: defineAsyncComponent(() =>
+      import("@/views/ankiID/ankiIDView.vue")
     ),
     ankiFilter: defineAsyncComponent(() =>
       import("@/modules/ankiFilter/ankiFilter.vue")
@@ -63,6 +61,10 @@ export default {
   created() {
     this.initializeKuroshiro();
     this.handleFetchWords();
+    document.addEventListener('dblclick', this.preventDoubleClickZoom);
+  },
+  beforeDestroy() {
+    document.removeEventListener('dblclick', this.preventDoubleClickZoom);
   },
   computed: {
     ...mapGetters({
@@ -90,11 +92,9 @@ export default {
     navigateToAnki() {
       this.$router.push({ name: "anki" });
     },
+    preventDoubleClickZoom(event) {
+      event.preventDefault();
+    },
   },
 };
 </script>
-<style scoped>
-.header {
-  height: 56px;
-}
-</style>
