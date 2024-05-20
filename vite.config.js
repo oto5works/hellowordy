@@ -13,7 +13,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-
     },
     extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
@@ -56,6 +55,5 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ["vue", "vue-router"],
-    
   },
 });
