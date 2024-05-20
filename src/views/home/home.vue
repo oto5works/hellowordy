@@ -4,7 +4,7 @@
 
     <countdownsView v-if="isAuthenticated" />
 
-    <adComponent />
+    <googleAd />
 
   </div>
 </template>
@@ -13,11 +13,11 @@
 import { mapGetters, mapActions } from "vuex";
 import { defineAsyncComponent } from "vue";
 import home404 from "@/views/home/home404.vue";
-import adComponent from "@/components/adComponent";
+import googleAd from "@/components/googleAd";
 
 export default {
   components: {
-    home404, adComponent,
+    home404, googleAd,
     countdownsView: defineAsyncComponent(() =>
       import("@/views/home/countdown/countdown.vue")
     ),
