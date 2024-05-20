@@ -1,9 +1,14 @@
 <template>
   <div ref="tick">
-    <div class="tick__item" data-repeat="true" data-layout="horizontal">
-      <div data-key="value" data-transform="pad(00)">
+    <div class="tick__item" data-repeat="true" data-layout="horizontal fit"  >
+      <div class="tick-group">
+
+      
+      <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
         <span data-view="flip"></span>
       </div>
+     <!-- <span data-key="label" data-view="text" class="tick-label"></span>-->
+    </div>
     </div>
   </div>
 </template>
