@@ -30,6 +30,7 @@
         <ankiIDHeader />
         <div class="sp_8"/>
         <ankiIDView />
+        <adComponent />
         <ankiIDFuction />
       </div>
     </div>
@@ -41,9 +42,12 @@
 <script>
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
+import adComponent from "@/components/adComponent";
+
 
 export default {
   components: {
+    adComponent,
     noData: defineAsyncComponent(() => import("@/modules/noData/noData.vue")),
     ankiIDHeader: defineAsyncComponent(() =>
       import("@/views/ankiID/ankiIDHeader.vue")
