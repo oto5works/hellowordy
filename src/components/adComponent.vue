@@ -1,8 +1,7 @@
 <template>
-  <div class="ad-container">
-    <!-- AdSense 광고 코드를 여기에 삽입합니다. -->
+  <div>
     <ins class="adsbygoogle"
-    style="display:inline-block;width:320px;height:50px"
+         style="display:block"
          data-ad-client="ca-pub-3365711295624526"
          data-ad-slot="4074778003"
          data-ad-format="auto"
@@ -12,18 +11,25 @@
 
 <script>
 export default {
+  name: 'GoogleAdComponent',
   mounted() {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
+    // 광고 스크립트가 이미 페이지에 추가되었는지 확인합니다.
+    if (window.adsbygoogle && Array.isArray(window.adsbygoogle)) {
+      window.adsbygoogle.push({});
+    } else {
+      // Google AdSense 스크립트를 동적으로 추가합니다.
+      const adScript = document.createElement('script');
+      adScript.async = true;
+      adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+      adScript.setAttribute('data-ad-client', 'ca-pub-3365711295624526');
+      adScript.crossOrigin = 'anonymous';
+      document.head.appendChild(adScript);
+
+      // 광고 스크립트가 로드된 후 광고를 초기화합니다.
+      adScript.onload = () => {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      };
+    }
   }
 }
 </script>
-
-<style scoped>
-.ad-container {
-  position: fixed;
-  bottom: 0;
-  height: 160px;
-  width: 100%;
-  left: 0;
-}
-</style>
