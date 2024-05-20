@@ -33,3 +33,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.adsbygoogle {
+  border: 1px solid black;
+  background-color: rgb(var(--mio-theme-color-primary), 0.3);
+  width: 100%;
+  min-height: 320px;
+}
+</style>

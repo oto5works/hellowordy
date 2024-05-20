@@ -30,7 +30,6 @@
         <ankiIDHeader />
         <div class="sp_8"/>
         <ankiIDView />
-        <adComponent />
         <ankiIDFuction />
       </div>
     </div>
