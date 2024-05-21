@@ -5,16 +5,15 @@
 
 
         <div class="item">
-          <div class="sp_32" />
           <div
           class="word"
           :class="{ showRuby: showRuby || alwaysRuby }"
           v-html="word"
         />
         <div class="sp_8" />
-        <div class="display_flex flex-wrap_wrap gap_12">
+        <div class="display_flex flex-wrap_wrap gap_8">
           <div
-            class="mean display_flex align-items_flex-end"
+            class="mean display_flex align-items_center"
             v-for="(item, index) in mean"
             :key="index"
           >

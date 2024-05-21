@@ -1,6 +1,7 @@
 <template>
   <div>
     <ankiIDWord />
+    <div class="sp_48" />
     <ankiIDFooter />
 
     <div class="sp_80" />

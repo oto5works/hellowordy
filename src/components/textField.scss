@@ -104,12 +104,14 @@ button, input, select, textarea {
   line-height: 100%;
   transform: translateY(0%);
   transition: all 0.2s ease-in-out;
+  opacity: 0.4;
 }
 .form-field.active label,
 .form-field.focus label {
   font-size: 12px;
   transform: translateY(-160%);
   color: var(--form-field-primary-color);
+  opacity: 1;
 }
 // 인풋
 .form-field .textField-space {

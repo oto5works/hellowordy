@@ -28,7 +28,8 @@
       </div>
       <div v-else>
         <ankiIDHeader />
-        <div class="sp_8"/>
+        <div class="sp_48"/>
+        <ankiIDCheckedButton />
         <ankiIDView />
         <ankiIDFuction />
       </div>
@@ -46,6 +47,9 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
     noData: defineAsyncComponent(() => import("@/modules/noData/noData.vue")),
+    ankiIDCheckedButton: defineAsyncComponent(() =>
+      import("@/views/ankiID/ankiIDCheckedButton.vue")
+    ),
     ankiIDHeader: defineAsyncComponent(() =>
       import("@/views/ankiID/ankiIDHeader.vue")
     ),

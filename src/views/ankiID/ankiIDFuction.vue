@@ -13,13 +13,14 @@
         @click="setShowRuby()"
         ><span>あ</span></buttonDefault
       >
+      <!--
       <buttonDefault
         class="show"
         @click="toggleCheckedWordByPayload(this.$route.params.id)"
         :class="{ selected: isChecked }"
         ><icon><check /></icon
       ></buttonDefault>
-     
+     -->
       <buttonDefault class="show dice selected" @click="setRandom()"
         ><icon><dice /></icon
       ></buttonDefault>
@@ -70,17 +71,19 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 64px;
   bottom: 32px;
-  left: 0;
+  right: 32px;
   z-index: 10;
 }
 .studyFuction {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 16px;
   max-width: 380px;
   padding: 0 var(--mio-theme-padding-1);
 }

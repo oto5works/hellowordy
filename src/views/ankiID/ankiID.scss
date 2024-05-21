@@ -4,15 +4,20 @@
 }
 .mean .item,
 .translation {
-  color: rgb(var(--mio-theme-color-primary));
-  background-color: rgb(var(--mio-theme-color-primary));
-  border-radius: 24px;
+  color: rgb(var(--mio-theme-color-on-background));
+  background-color: rgb(var(--mio-theme-color-on-background));
   padding: 0 2px;
+  opacity: 0.4;
 }
 .mean .item.showMean,
 .translation.showMean {
   color: rgb(var(--mio-theme-color-on-background));
   background-color: unset;
+  opacity: 1;
+}
+
+.translation.showMean {
+  opacity: 0.7;
 }
 .translation {
   font-family: var(--mio-theme-font-family-kr);
@@ -20,7 +25,6 @@
   width: fit-content;
   line-height: 130%;
   font-size: 13px;
-  opacity: .7;
 }
 
 
@@ -28,7 +32,7 @@
 .word {
   position: relative;
   font-family: var(--mio-theme-font-family-jp);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 36px;
   line-height: 130%;
 }
@@ -59,7 +63,7 @@
   opacity: 0;
   margin-top: 1px;
   font-weight: 400;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 100%;
   color: rgb(var(--mio-theme-color-primary));
   transition: all 0.2s ease-in-out;
