@@ -138,8 +138,8 @@ export default {
   width: 100%;
 }
 .card .word {
-  font-family: var(--mio-theme-font-family-kr);
-  font-weight: 700;
+  font-family: 'Line Seed JP';
+  font-weight: 100;
   font-size: 20px;
   line-height: 120%;
   overflow: hidden;
