@@ -138,7 +138,7 @@ export default {
   width: 100%;
 }
 .card .word {
-  font-family: var(--mio-theme-font-family-jp);
+  font-family: var(--mio-theme-font-family-kr);
   font-weight: 700;
   font-size: 20px;
   line-height: 120%;

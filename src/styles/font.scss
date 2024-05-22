@@ -4,16 +4,49 @@
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/notoSansJPVariable.ttf) format('truetype');
-  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF; /* Japanese Hiragana, Katakana, and halfwidth/fullwidth characters */
+  src: url(https://ankitoki.web.app/font/NotoSansJPVariable.ttf) format('truetype');
 }
-
 @font-face {
-  font-family: "suit";
+  font-family: "Pretendard JP";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/PretendardJPVariable.ttf) format('truetype');
+}
+@font-face {
+  font-family: "Line Seed JP";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-100.woff2) format('woff2');
+}
+@font-face {
+  font-family: "Line Seed JP";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-400.woff2) format('woff2');
+}
+@font-face {
+  font-family: "Line Seed JP";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-700.woff2) format('woff2');
+}
+@font-face {
+  font-family: "Line Seed JP";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-800.woff2) format('woff2');
+}
+@font-face {
+  font-family: "Suit";
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/suitVariable.woff2) format('woff2');
+  src: url(https://ankitoki.web.app/font/SuitVariable.woff2) format('woff2');
   unicode-range: U+AC00-D7AF; /* Korean */
 }
 
@@ -22,7 +55,7 @@
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/robotoMonoVariable.ttf) format('truetype');
+  src: url(https://ankitoki.web.app/font/RobotoMonoVariable.ttf) format('truetype');
   unicode-range: U+0020-007F; /* Basic Latin for English and numbers, includes italic */
 }
 
