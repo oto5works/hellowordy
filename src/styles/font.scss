@@ -1,3 +1,41 @@
+@font-face {
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/NotoSansJPVariable.ttf) format('truetype');
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
+}
+
+@font-face {  
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/RobotoMonoVariable.ttf) format('truetype');
+  unicode-range: U+0020-007F; /* Basic Latin for English and numbers, includes italic */
+}
+@font-face {
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/SuitVariable.woff2) format('woff2');
+  unicode-range: U+AC00-D7AF; /* Korean */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @font-face {
   font-family: "Noto Sans JP";
@@ -11,7 +49,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/PretendardJPVariable.ttf) format('truetype');
+  src: url(https://ankitoki.web.app/font/PretendardJPVariable.woff2) format('woff2');
 }
 @font-face {
   font-family: "Line Seed JP";

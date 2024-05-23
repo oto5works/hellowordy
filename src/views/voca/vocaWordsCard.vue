@@ -133,14 +133,14 @@ export default {
 .card .item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   transform: translateY(12%);
   width: 100%;
 }
 .card .word {
-  font-family: 'Line Seed JP';
-  font-weight: 100;
-  font-size: 20px;
+  font-family: var(--mio-theme-font-family-jp);
+  font-weight: 500;
+  font-size: 22px;
   line-height: 120%;
   overflow: hidden;
   white-space: normal;
