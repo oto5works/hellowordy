@@ -2,12 +2,14 @@ html,
 body {
   color: rgb(var(--mio-theme-color-on-background));
   background-color: rgb(var(--mio-theme-color-background));
+  font-family: var(--mio-theme-font-family);
 }
 :root {
   --mio-theme-color-on-background: 31, 31, 31;
   --mio-theme-color-background: 255, 255, 255;
   --mio-theme-color-primary: 93, 73, 206;
   --mio-theme-color-on-primary: 255, 255, 255;
+  --mio-theme-font-family: "Custom Font", sans-serif;
   --mio-theme-font-family-en: "Roboto Mono", monospace;
   --mio-theme-font-family-kr: 'Pretendard JP', sans-serif;
   --mio-theme-font-family-jp: 'Noto Sans JP', sans-serif;

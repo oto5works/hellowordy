@@ -127,7 +127,6 @@ export default {
   height: 48px;
   font-size: 12px;
   font-weight: 700;
-  font-family: var(--mio-theme-font-family-en);
   color: rgb(var(--mio-theme-color-primary));
 }
 .card .item {
@@ -138,7 +137,6 @@ export default {
   width: 100%;
 }
 .card .word {
-  font-family: var(--mio-theme-font-family-jp);
   font-weight: 500;
   font-size: 22px;
   line-height: 120%;
@@ -161,6 +159,5 @@ export default {
   font-size: 13px;
   opacity: 0.6;
   font-weight: 400;
-  font-family: var(--mio-theme-font-family-kr);
 }
 </style>

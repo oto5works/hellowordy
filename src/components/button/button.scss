@@ -4,11 +4,11 @@ button {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  font-family: var(--mio-theme-font-family);
 }
 
 button span {
   color: currentColor;
-  font-family: var(--mio-theme-font-family-kr);
   line-height: 100%;
 }
 button:hover svg {

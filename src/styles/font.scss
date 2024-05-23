@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/NotoSansJPVariable.ttf) format('truetype');
+  src: url(https://ankitoki.web.app/font/PretendardJPVariable.woff2) format('woff2');
   unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
 }
 
@@ -12,8 +12,8 @@
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
-  src: url(https://ankitoki.web.app/font/RobotoMonoVariable.ttf) format('truetype');
-  unicode-range: U+0020-007F; /* Basic Latin for English and numbers, includes italic */
+  src: url(https://ankitoki.web.app/font/JetBrainsMonoVariable.ttf) format('truetype');
+  unicode-range: U+0021-007F; /* Basic Latin for English and numbers, includes italic (excluding space) */
 }
 @font-face {
   font-family: "Custom Font";
@@ -21,7 +21,7 @@
   font-weight: 100 700;
   font-display: swap;
   src: url(https://ankitoki.web.app/font/SuitVariable.woff2) format('woff2');
-  unicode-range: U+AC00-D7AF; /* Korean */
+  unicode-range: U+0020, U+AC00-D7AF; /* Space and Korean */
 }
 
 
