@@ -1,5 +1,7 @@
 <template>
-  <button class="buttonDefault">
+  <button class="buttonDefault"
+  :class="{ config: config }"
+  >
     <slot></slot>
 
     <div class="overlay" />
@@ -9,7 +11,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    config: { type: Boolean },
+  },
+};
 </script>
 
 <style scoped>
@@ -59,5 +65,26 @@ export default {};
 .buttonDefault.selected .shadow {
   -webkit-box-shadow: 0 10px 20px -10px rgba(var(--mio-theme-color-primary), 1);
   box-shadow: 0 10px 20px -10px rgba(var(--mio-theme-color-primary), 1);
+}
+</style>
+
+
+<style scoped>
+.buttonDefault.config {
+  color: rgb(var(--mio-theme-color-background));
+}
+/*-- overlay --*/
+.buttonDefault.config .overlay {
+  background-color: rgb(var(--mio-theme-color-on-background));
+  opacity: 0;
+}
+/*-- underlay --*/
+.buttonDefault.config .underlay {
+  background-color: rgba(var(--mio-theme-color-on-background), 1);
+}
+/*-- shadow --*/
+.buttonDefault.config .shadow {
+  -webkit-box-shadow: 0 10px 20px -10px rgba(var(--mio-theme-color-on-background), 1);
+  box-shadow: 0 10px 20px -10px rgba(var(--mio-theme-color-on-background), 1);
 }
 </style>

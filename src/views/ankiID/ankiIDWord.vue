@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ankiIDWord">
     <div class="card">
       <div class="content">
         <div class="item">
@@ -11,15 +11,15 @@
           <div class="sp_8" />
           <div class="display_flex flex-wrap_wrap gap_8 justify-content_center">
             <div
-              class="mean display_flex align-items_center"
+              class="mean display_flex align-items_center gap_2"
               v-for="(item, index) in mean"
               :key="index"
             >
-              <div class="font-size_12 en font-weight_700">
-                {{ index + 1 }}.
+              <div class="index">
+                {{ index + 1 }}
               </div>
               <div class="item" :class="{ showMean: showMean || alwaysMean }">
-                {{ item }}
+                {{ showMean || alwaysMean ? item : '----' }}
               </div>
             </div>
           </div>

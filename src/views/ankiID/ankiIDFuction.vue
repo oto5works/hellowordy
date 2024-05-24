@@ -33,7 +33,7 @@
           :arrow="true"
           />
     </div>
-    <buttonDefault class="gap_8 pa_12 height_32 selected" @click="setRandom()"
+    <buttonDefault :config="true" class="gap_8 pa_12 height_32" @click="setRandom()"
           ><icon class="icon_18"><shuffle /></icon
         ><span class="font-size_12">shuffle</span></buttonDefault>
   </div>
@@ -87,11 +87,14 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   width: 100%;
-  bottom: 32px;
+  bottom: 0;
   left: 0px;
   z-index: 10;
+  padding: 48px 0 24px 0;
+  
+  background:  linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,0) 100%);
 }
 .studyFuction-wrap {
   position: relative;

@@ -2,9 +2,9 @@
   <div
     class="studyFooter display_flex align-items_center justify-content_space-between width_100"
   >
-    <buttonText class="selected gap_4" @click="setShowDict()"
+    <buttonDefault class="gap_4 height_32 pa_12" @click="setShowDict()"
       ><icon><book /></icon
-      ><span class="font-size_14 kr">네이버 사전 보기</span></buttonText
+      ><span class="font-size_13">네이버 사전 보기</span></buttonDefault
     >
     <dict v-if="showDict" :word="currentWord" />
   </div>

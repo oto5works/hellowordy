@@ -1,12 +1,13 @@
 <template>
-  <div v-if="examples.length !== 0">
-    <ul class="japanese">
-      <li
-        class="examples"
-        v-for="item in examples"
-        :key="item.id"
-        :examples="item"
-      >
+  <div class="ankiIDExample" v-if="examples.length !== 0">
+    <div
+      class="examples"
+      v-for="item in examples"
+      :key="item.id"
+      :examples="item"
+    >
+     <div class="star"><icon class="icon_16"><star /></icon></div> 
+      <div class="examples-item">
         <div
           class="sentence"
           :class="{ showRuby: showRuby || alwaysRuby }"
@@ -14,18 +15,19 @@
         ></div>
         <div class="sp_2" />
         <div class="translation" :class="{ showMean: showMean || alwaysMean }">
-          {{ item.translation }}
+          {{ showMean || alwaysMean ? item.translation : "----" }}
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import star from "@/components/icon/star";
 
 export default {
-  components: {},
+  components: { star },
   computed: {
     ...mapGetters({
       examples: "study/getExamples",
@@ -47,7 +49,4 @@ export default {
   align-items: flex-start;
   padding-left: 4px;
 }
-
-
-
 </style>

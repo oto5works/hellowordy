@@ -1,10 +1,58 @@
 .mean .item,
 .translation {
+  position: relative;
   color: rgb(var(--mio-theme-color-on-background));
-  background-color: rgb(var(--mio-theme-color-on-background));
   padding: 0 2px;
-  opacity: 0.4;
+  opacity: 1;
+  
 }
+/*
+.mean .item::before,
+.translation::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 2px;
+  border-radius: 24px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  filter: blur(20px);
+}
+.mean .item.showMean::before,
+.translation.showMean::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: unset;
+  border-radius: 24px;
+  -webkit-backdrop-filter: unset;
+  backdrop-filter: unset;
+  filter: unset;
+}
+
+*/
+
+.ankiIDWord .index {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 24px;
+  font-size: 11px;
+  font-weight: 400;
+  background-color: rgb(var(--mio-theme-color-on-background));
+  color: rgb(var(--mio-theme-color-background));
+}
+
+
 .mean .item.showMean,
 .translation.showMean {
   color: rgb(var(--mio-theme-color-on-background));
@@ -63,54 +111,60 @@
 }
 
 
+.ankiIDExample {
+  position: relative
+  ;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-ul {
-  margin-left: 22px;
-  list-style: none;
-}
-ul li {
+.ankiIDExample .star {
   position: relative;
-  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: rgb(var(--mio-theme-color-on-background));
+  top: 12px;
 }
-ul li:before {
-  color: var(--mio-theme-color-on-background);
-  background-image: url(https://oto5works.github.io/storage/image/list-bullet-dark.svg);
-}
-ul li:before {
-  display: inline-block;
-  position: absolute;
-  left: -16px;
-  width: 8px;
-  height: 8px;
+.ankiIDExample .examples .star svg {
   transform: rotate(calc(var(--rotation)* 36deg));
-  line-height: 0;
-  text-align: center;
-  content: "";
 }
-.japanese li:before {
-  top: 16px;
-}
-.english li:before {
-  top: 4px;
-}
-ul li:nth-child(4n) {
+
+
+
+.ankiIDExample .examples:nth-child(4n) {
   --rotation: 9;
 }
-ul li:nth-child(3n+1) {
+.ankiIDExample .examples:nth-child(3n+1) {
   --rotation: 7;
 }
-ul li:nth-child(4n+1) {
+.ankiIDExample .examples:nth-child(4n+1) {
   --rotation: 6;
 }
-ul li:nth-child(3n) {
+.ankiIDExample .examples:nth-child(3n) {
   --rotation: 5;
 }
-ul li:nth-child(3n+2) {
+.ankiIDExample .examples:nth-child(3n+2) {
   --rotation: 4;
 }
-ul li:nth-child(2) {
+.ankiIDExample .examples:nth-child(2) {
   --rotation: 2;
 }
-ul li:nth-child(4n+3) {
+.ankiIDExample .examples:nth-child(4n+3) {
   --rotation: 3;
+}
+
+
+
+.examples {
+  position: relative;
+  display: flex;
+  gap: 4px;
+}
+.examples-item {
+  position: relative;
+  width: 100%;
 }

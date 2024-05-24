@@ -1,9 +1,8 @@
 <template>
   <div>
     <ankiIDWord />
-    <div class="sp_48" />
 
-    <div class="sp_64" />
+    <div class="sp_80" />
     <ankiIDExample />
     <div class="sp_16" />
     <ankiIDFooter />
