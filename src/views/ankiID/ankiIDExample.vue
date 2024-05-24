@@ -1,5 +1,5 @@
 <template>
-  <card v-if="examples.length !== 0">
+  <div v-if="examples.length !== 0">
     <ul class="japanese">
       <li
         class="examples"
@@ -18,7 +18,7 @@
         </div>
       </li>
     </ul>
-  </card>
+  </div>
 </template>
 
 <script>

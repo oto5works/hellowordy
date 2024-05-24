@@ -3,10 +3,13 @@
     <div class="font-size_14">몇개씩볼래</div>
     <buttonSelect class="height_32 pa_8 gap_4">
     <select v-model="selectedPartSize">
-      <option value="10"><span class="font-size_13">10개씩 보기</span></option>
+      <option value="30"><span class="font-size_13">30개씩 보기</span></option>
       <option value="50"><span class="font-size_13">50개씩 보기</span></option>
       <option value="100">
         <span class="font-size_13">100개씩 보기</span>
+      </option>
+      <option value="300">
+        <span class="font-size_13">전체 보기</span>
       </option>
     </select>
   </buttonSelect>
@@ -20,7 +23,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      selectedPartSize: 10, // 기본 선택값을 설정합니다.
+      selectedPartSize: 30, // 기본 선택값을 설정합니다.
     };
   },
   computed: {

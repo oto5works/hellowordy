@@ -2,10 +2,12 @@
   <div>
     <ankiIDWord />
     <div class="sp_48" />
+
+    <div class="sp_64" />
+    <ankiIDExample />
+    <div class="sp_16" />
     <ankiIDFooter />
 
-    <div class="sp_80" />
-    <ankiIDExample />
     <div class="sp_128" />
     <div class="sp_128" />
   </div>

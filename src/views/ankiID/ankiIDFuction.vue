@@ -1,59 +1,72 @@
 <template>
-  <div class="studyFuctionView">
-    <div class="studyFuction">
-      <buttonDefault
-        class="show --mio-theme-font-family-kr"
-        :class="{ selected: showMean || alwaysMean }"
-        @click="setShowMean()"
-        ><span>가</span></buttonDefault
-      >
-      <buttonDefault
-        class="show --mio-theme-font-family-jp"
-        :class="{ selected: showRuby || alwaysRuby }"
-        @click="setShowRuby()"
-        ><span>あ</span></buttonDefault
-      >
-      <!--
-      <buttonDefault
-        class="show"
-        @click="toggleCheckedWordByPayload(this.$route.params.id)"
-        :class="{ selected: isChecked }"
-        ><icon><check /></icon
-      ></buttonDefault>
-     -->
-      <buttonDefault class="show dice selected" @click="setRandom()"
-        ><icon><dice /></icon
-      ></buttonDefault>
+  <div class="studyFuction">
+    <div class="studyFuction-wrap">
+      <buttonAnki
+          @click="setPrevious()"
+          action="previous"
+          :disabled="currentIndex === 0"
+          :arrow="true"
+          />
+
+      <div class="studyFuction-items">
+        <ankiIDCheckedButton />
+
+        <buttonAnki
+          :class="{ selected: showMean || alwaysMean }"
+          @click="setShowMean()"
+          action="mean"
+          />
+        <buttonAnki
+          :class="{ selected: showRuby || alwaysRuby }"
+          @click="setShowRuby()"
+          action="furi"
+          />
+
+
+        
+      </div>
+
+      <buttonAnki
+          @click="setNext()"
+          action="next"
+          :disabled="currentIndex === lastIndex"
+          :arrow="true"
+          />
     </div>
+    <buttonDefault class="gap_8 pa_12 height_32 selected" @click="setRandom()"
+          ><icon class="icon_18"><shuffle /></icon
+        ><span class="font-size_12">shuffle</span></buttonDefault>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import dice from "@/components/icon/dice";
-import check from "@/components/icon/check";
-
+import shuffle from "@/components/icon/shuffle";
+import ankiIDCheckedButton from "@/views/ankiID/ankiIDCheckedButton.vue";
 export default {
-  components: { dice, check },
+  components: {
+    shuffle,
+    ankiIDCheckedButton,
+  },
   computed: {
     ...mapGetters({
       showRuby: "study/getShowRuby",
       showMean: "study/getShowMean",
-
       alwaysRuby: "study/getAlwaysRuby",
       alwaysMean: "study/getAlwaysMean",
-
       wordID: "study/getWordID",
       checkedWords: "checkedWords/getCheckedWords",
+      currentIndex: "study/getCurrentIndex",
+      lastIndex: "study/getLastIndex",
     }),
     isChecked() {
-    if (!this.checkedWords) {
-      // checkedWords가 undefined 또는 null일 경우, false를 반환
-      return false;
-    }
-    let checkedWordsArray = Object.values(this.checkedWords);
-    return checkedWordsArray.some(word => word.wordID === this.wordID);
-  },
+      if (!this.checkedWords) {
+        // checkedWords가 undefined 또는 null일 경우, false를 반환
+        return false;
+      }
+      let checkedWordsArray = Object.values(this.checkedWords);
+      return checkedWordsArray.some((word) => word.wordID === this.wordID);
+    },
   },
   methods: {
     ...mapActions({
@@ -61,42 +74,39 @@ export default {
       setShowMean: "study/setShowMean",
       setShowRuby: "study/setShowRuby",
       toggleCheckedWordByPayload: "checkedWords/toggleCheckedWordByPayload",
+      setNext: "study/setNext",
+      setPrevious: "study/setPrevious",
     }),
   },
 };
 </script>
 <style scoped>
-.studyFuctionView {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  bottom: 32px;
-  right: 32px;
-  z-index: 10;
-}
 .studyFuction {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 12px;
   width: 100%;
-  gap: 16px;
-  max-width: 380px;
-  padding: 0 var(--mio-theme-padding-1);
+  bottom: 32px;
+  left: 0px;
+  z-index: 10;
 }
-.show {
-  width: 64px;
-  height: 64px;
+.studyFuction-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 480px;
+  width: 100%;
+  padding: 0 var(--mio-theme-padding-2);
 }
-.show span {
-  font-size: 18px;
-  font-weight: 700;
-}
-.dice svg {
-  width: 26px;
-  height: 26px;
+
+.studyFuction-items {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 </style>

@@ -267,56 +267,6 @@ select {
   min-height: 100%;
   padding: var(--mio-theme-header) var(--mio-theme-padding-2);
 }
-ul {
-  margin-left: 22px;
-  list-style: none;
-}
-ul li {
-  position: relative;
-  margin-bottom: 16px;
-}
-ul li:before {
-  color: var(--mio-theme-color-on-background);
-  background-image: url(https://oto5works.github.io/storage/image/list-bullet-dark.svg);
-}
-ul li:before {
-  display: inline-block;
-  position: absolute;
-  left: -16px;
-  width: 8px;
-  height: 8px;
-  transform: rotate(calc(var(--rotation)* 36deg));
-  line-height: 0;
-  text-align: center;
-  content: "";
-}
-.japanese li:before {
-  top: 16px;
-}
-.english li:before {
-  top: 4px;
-}
-ul li:nth-child(4n) {
-  --rotation: 9;
-}
-ul li:nth-child(3n+1) {
-  --rotation: 7;
-}
-ul li:nth-child(4n+1) {
-  --rotation: 6;
-}
-ul li:nth-child(3n) {
-  --rotation: 5;
-}
-ul li:nth-child(3n+2) {
-  --rotation: 4;
-}
-ul li:nth-child(2) {
-  --rotation: 2;
-}
-ul li:nth-child(4n+3) {
-  --rotation: 3;
-}
 /*--- 모바일 ---*/
 @media all and (max-width: 479px) {
 

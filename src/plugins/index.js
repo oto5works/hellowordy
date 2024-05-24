@@ -14,6 +14,7 @@ import buttonNav from "@/components/button/buttonNav.vue";
 import buttonList from "@/components/button/buttonList.vue";
 import buttonCard from "@/components/button/buttonCard.vue";
 import buttonTap from "@/components/button/buttonTap.vue";
+import buttonAnki from "@/components/button/buttonAnki.vue";
 
 
 // dialog
@@ -51,6 +52,7 @@ export function registerPlugins(app) {
     .component("buttonList", buttonList)
     .component("buttonCard", buttonCard)
     .component("buttonTap", buttonTap)
+    .component("buttonAnki", buttonAnki)
 
     
     
