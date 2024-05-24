@@ -4,7 +4,7 @@
 
     <div class="sp_80" />
     <ankiIDExample />
-    <div class="sp_16" />
+    <div class="sp_24" />
     <ankiIDFooter />
 
     <div class="sp_128" />
