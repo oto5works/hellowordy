@@ -98,7 +98,6 @@
 }
 .sentence ruby > rt {
   opacity: 0;
-  margin-top: 1px;
   font-weight: 400;
   font-size: 12px;
   color: rgb(var(--mio-theme-color-primary));
@@ -125,7 +124,7 @@
   width: 20px;
   height: 20px;
   color: rgb(var(--mio-theme-color-on-background));
-  top: 12px;
+  top: 13px;
 }
 .ankiIDExample .examples .star svg {
   transform: rotate(calc(var(--rotation)* 36deg));

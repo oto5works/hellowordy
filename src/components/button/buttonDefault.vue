@@ -72,6 +72,7 @@ export default {
 <style scoped>
 .buttonDefault.config {
   color: rgb(var(--mio-theme-color-background));
+  font-weight: 400;
 }
 /*-- overlay --*/
 .buttonDefault.config .overlay {
