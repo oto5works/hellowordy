@@ -8,7 +8,7 @@
     <ankiIDFooter />
 
     <div class="sp_128" />
-    <div class="sp_128" />
+    <div class="sp_64" />
   </div>
 </template>
 
