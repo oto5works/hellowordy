@@ -7,12 +7,14 @@
     <buttonList @click="setAlwaysMean()" :class="{ selected: alwaysMean }">
       <icon><kr /></icon>
       <span>뜻 항상 보기</span>
-      <buttonSwitch v-model="alwaysMean" @update:modelValue="setAlwaysMean" />
+      <buttonSwitch v-model="alwaysMean" />
     </buttonList>
 
     <buttonList @click="setAlwaysRuby()" :class="{ selected: alwaysRuby }">
       <icon><jp /></icon><span>후리가나 항상 보기</span>
-      <buttonSwitch v-model="alwaysRuby" @update:modelValue="setAlwaysRuby" />
+      <buttonSwitch v-model="alwaysRuby" />
+
+      <!--<buttonSwitch v-model="alwaysRuby" @update:modelValue="setAlwaysRuby" />-->
     </buttonList>
   </bottomDialog>
 </template>
