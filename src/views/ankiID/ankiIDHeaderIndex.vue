@@ -1,9 +1,9 @@
 <template>
-  <div class="index display_flex flex-direction_column align-items_flex-end gap_4 en line-height_100">
-    <div class="font-size_24 font-weight_700">
+  <div class="index">
+    <span class="font-weight_700">
       {{ currentIndex + 1 }}
-    </div>
-    <div class="font-size_13 opacity_40">/{{ lastIndex }}</div>
+    </span>
+    <span class="font-weight_400 opacity_40">/{{ lastIndex }}</span>
   </div>
 </template>
 
@@ -29,10 +29,9 @@ export default {
 };
 </script>
 <style scoped>
-.gg {
-  flex-direction: column;
-}
 .index {
-  min-width: 48px;
+  display: flex;
+  gap: 2px;
+  font-size: 14px;
 }
 </style>

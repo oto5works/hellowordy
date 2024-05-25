@@ -6,13 +6,13 @@
           {{ title }}
         </div>
       </div>
-      <buttonSelect class="height_24 pa_8 gap_4">
-        <span class="font-size_12 en display_flex align-items_center gap_4">
+
+      <buttonSelect class="part">
+        <span>
           <aniLoading v-if="part === null" /><span v-else
             >part {{ part + 1 }}</span
           >
         </span>
-
         <icon class="icon_12"><caretDown /></icon>
       </buttonSelect>
     </div>
@@ -86,7 +86,7 @@ button {
 }
 
 .title-wrap {
-  max-width: 140px;
+  max-width: 76px;
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
@@ -110,11 +110,19 @@ button {
   display: inline-block;
   white-space: nowrap;
   animation: none; /* 10초 동안 무한 반복 */
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 100%;
 }
 .animate {
   animation: marquee 10s linear infinite;
+}
+
+.part {
+  padding: 4px 8px;
+  gap: 2px;
+}
+.part span {
+  font-size: 10px;
 }
 </style>

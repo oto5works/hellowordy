@@ -1,70 +1,63 @@
 <template>
-  <div
-    class="display_flex align-items_center justify-content_space-between width_100 height_32
-    "
-  >
-    <ankiIDChecked />
-
-    <div class="display_flex align-items_center gap_20">
-      <div class="display_flex align-items_center gap_6">
-        <div
-          class="always font-size_12 font-weight_600 kr"
-          :class="{ selected: alwaysMean }"
-        >
-          가
-        </div>
-        <buttonSwitch v-model="alwaysMean" @update:modelValue="setAlwaysMean" />
+  <div class="headerView">
+    <div class="header">
+      <div class="header-left">
+        <buttonIcon class="back" @click="navigateToBack()">
+          <icon><caretLeft /></icon>
+        </buttonIcon>
       </div>
-
-      <div class="display_flex align-items_center gap_6">
-        <div
-          class="always font-size_12 font-weight_600 jp"
-          :class="{ selected: alwaysRuby }"
-        >
-          あ
+      <div class="header-center">
+        <div class="header-center-item">
+          <ankiIDHeaderVoca />
+          <ankiIDHeaderIndex />
         </div>
-        <buttonSwitch v-model="alwaysRuby" @update:modelValue="setAlwaysRuby" />
       </div>
-      <buttonText>
-        <icon class="icon_16"><settings/></icon>
-      </buttonText>
+      <div class="header-right">
+        <ankiIDHeaderChecked />
+        <buttonIcon @click="dialog = true">
+          <icon><settings /></icon>
+        </buttonIcon>
+      </div>
     </div>
+    <ankiIDHeaderSetting
+      v-if="dialog"
+      :dialog="dialog"
+      @update:dialog="dialog = $event"
+    />
   </div>
 </template>
-
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { defineAsyncComponent } from "vue";
 
-import ankiIDChecked from "@/views/ankiID/ankiIDChecked.vue";
-import settings from "@/components/icon/settings.vue";
+import "@/modules/common/header.scss";
+import ankiIDHeaderVoca from "@/views/ankiID/ankiIDHeaderVoca.vue";
+import ankiIDHeaderIndex from "@/views/ankiID/ankiIDHeaderIndex.vue";
+import ankiIDHeaderChecked from "@/views/ankiID/ankiIDHeaderChecked.vue";
 
+import caretLeft from "@/components/icon/caretLeft";
+import settings from "@/components/icon/settings";
 
 export default {
   components: {
-    ankiIDChecked, settings
+    caretLeft,
+    settings,
+    ankiIDHeaderVoca,
+    ankiIDHeaderIndex,
+    ankiIDHeaderChecked,
+    ankiIDHeaderSetting: defineAsyncComponent(() =>
+      import("@/views/ankiID/ankiIDHeaderSetting.vue")
+    ),
   },
   data() {
     return {
-      isSwitchOn: false,
+      dialog: false,
     };
   },
-  computed: {
-    ...mapGetters({
-      alwaysRuby: "study/getAlwaysRuby",
-      alwaysMean: "study/getAlwaysMean",
-    }),
-  },
   methods: {
-    ...mapActions({
-      setAlwaysRuby: "study/setAlwaysRuby",
-      setAlwaysMean: "study/setAlwaysMean",
-    }),
+    navigateToBack() {
+      this.$router.go(-1); // 현재 페이지에서 한 단계 뒤로 가는 기능
+    },
   },
 };
 </script>
-
-<style scoped>
-.always.selected {
-  color: rgb(var(--mio-theme-color-primary));
-}
-</style>

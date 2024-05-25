@@ -31,7 +31,7 @@ export default {};
   padding: 0 var(--mio-theme-padding-2);
 }
 .buttonList.selected {
-  color: rgb(var(--mio-theme-color-on-primary));
+  color: rgb(var(--mio-theme-color-primary));
 }
 /*-- overlay --*/
 .buttonList .overlay {

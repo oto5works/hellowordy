@@ -1,14 +1,17 @@
 <template>
-  <div class="display_flex align-items_center gap_8" @click="dialog = true">
-    <div class="font-size_14 kr font-weight_500">학습한 단어</div>
-    <div class="font-size_15 en font-weight_700 length">
+  <div class="ankiIDHeaderChecked" @click="dialog = true">
+    <buttonIcon>
+      <icon><checkList /></icon>
+    </buttonIcon>
+
+    <div class="length">
       {{ matchedWords.length }}
     </div>
     <checkedWordsDialog
       v-if="dialog"
       :dialog="dialog"
       @update:dialog="dialog = $event"
-      :checkedWords = matchedWords
+      :checkedWords="matchedWords"
     />
   </div>
 </template>
@@ -16,9 +19,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { defineAsyncComponent } from "vue";
+import checkList from "@/components/icon/checkList";
 
 export default {
   components: {
+    checkList,
     checkedWordsDialog: defineAsyncComponent(() =>
       import("@/modules/checkedWords/checkedWordsDialog.vue")
     ),
@@ -72,7 +77,25 @@ export default {
 };
 </script>
 <style scoped>
+.ankiIDHeaderChecked {
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
 .length {
-  color: rgb(var(--mio-theme-color-primary));
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  min-width: 16px;
+  height: 16px;
+  font-size: 9px;
+  padding: 2px 0;
+  border-radius: 24px;
+  color: rgb(var(--mio-theme-color-on-primary));
+  background-color: rgb(var(--mio-theme-color-primary));
+  z-index: 2;
 }
 </style>

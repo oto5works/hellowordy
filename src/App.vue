@@ -2,6 +2,7 @@
 <template>
   <div class="app">
     <headerView v-if="!isAuth" />
+    
     <navbarView v-if="!isAnkiID" />
     <RouterView />
   </div>

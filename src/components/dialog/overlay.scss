@@ -52,10 +52,11 @@
   background-color: rgb(var(--mio-theme-color-background));
   opacity: 0;
   transition: all 0.3s ease;
-  filter: blur(0); /* 블러 효과 추가 */
   &.active {
-    opacity: 0.9;
+    opacity: 0.4;
   }
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .overlay__content {

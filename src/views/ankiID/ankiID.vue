@@ -1,5 +1,6 @@
 <template>
   <div class="routerView" @dblclick.prevent>
+    <ankiIDHeader />
     <!--
     part = {{ this.part }}<br />
     showFilter = {{ this.showFilter }}<br/>
@@ -27,7 +28,6 @@
         </noData>
       </div>
       <div v-else>
-        <ankiIDHeader />
         <div class="sp_56"/>
         <ankiIDView />
         <ankiIDFuction />

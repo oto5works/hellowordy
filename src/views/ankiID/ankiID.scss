@@ -4,7 +4,6 @@
   color: rgb(var(--mio-theme-color-on-background));
   padding: 0 2px;
   opacity: 1;
-  
 }
 /*
 .mean .item::before,
@@ -51,7 +50,6 @@
   background-color: rgb(var(--mio-theme-color-on-background));
   color: rgb(var(--mio-theme-color-background));
 }
-
 
 .mean .item.showMean,
 .translation.showMean {
@@ -107,10 +105,8 @@
   opacity: 1;
 }
 
-
 .ankiIDExample {
-  position: relative
-  ;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -123,43 +119,39 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: rgb(var(--mio-theme-color-on-background));
+  color: rgba(var(--mio-theme-color-on-background), 0.16);
   top: 13px;
 }
 .ankiIDExample .examples .star svg {
-  transform: rotate(calc(var(--rotation)* 36deg));
+  transform: rotate(calc(var(--rotation) * 36deg));
 }
-
-
 
 .ankiIDExample .examples:nth-child(4n) {
   --rotation: 9;
 }
-.ankiIDExample .examples:nth-child(3n+1) {
+.ankiIDExample .examples:nth-child(3n + 1) {
   --rotation: 7;
 }
-.ankiIDExample .examples:nth-child(4n+1) {
+.ankiIDExample .examples:nth-child(4n + 1) {
   --rotation: 6;
 }
 .ankiIDExample .examples:nth-child(3n) {
   --rotation: 5;
 }
-.ankiIDExample .examples:nth-child(3n+2) {
+.ankiIDExample .examples:nth-child(3n + 2) {
   --rotation: 4;
 }
 .ankiIDExample .examples:nth-child(2) {
   --rotation: 2;
 }
-.ankiIDExample .examples:nth-child(4n+3) {
+.ankiIDExample .examples:nth-child(4n + 3) {
   --rotation: 3;
 }
-
-
 
 .examples {
   position: relative;
   display: flex;
-  gap: 4px;
+  gap: 0px;
 }
 .examples-item {
   position: relative;
