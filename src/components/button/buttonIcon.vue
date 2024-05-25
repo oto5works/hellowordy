@@ -23,6 +23,7 @@ export default {};
 .buttonIcon:hover {
   color: rgb(var(--mio-theme-color-primary));
 }
+
 /*-- overlay --*/
 .buttonIcon .overlay {
   background-color: rgb(var(--mio-theme-color-primary), 0);
