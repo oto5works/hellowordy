@@ -1,5 +1,8 @@
 <template>
   <div>
+    <ankiIDIndex />
+    <div class="sp_56"/>
+
     <ankiIDWord />
 
     <div class="sp_80" />
@@ -14,6 +17,8 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import ankiIDIndex from "@/views/ankiID/ankiIDIndex.vue";
+
 import ankiIDWord from "@/views/ankiID/ankiIDWord.vue";
 import ankiIDFooter from "@/views/ankiID/ankiIDFooter.vue";
 import ankiIDExample from "@/views/ankiID/ankiIDExample.vue";
@@ -21,7 +26,7 @@ import ankiIDExample from "@/views/ankiID/ankiIDExample.vue";
 import "@/views/ankiID/ankiID.scss";
 
 export default {
-  components: { ankiIDWord, ankiIDFooter, ankiIDExample },
+  components: { ankiIDIndex, ankiIDWord, ankiIDFooter, ankiIDExample },
   computed: {
     ...mapGetters({
       wordID: "study/getWordID",

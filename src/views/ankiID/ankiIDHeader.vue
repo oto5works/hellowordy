@@ -5,13 +5,15 @@
         <buttonIcon class="back" @click="navigateToBack()">
           <icon><caretLeft /></icon>
         </buttonIcon>
+        <ankiIDHeaderVoca />
       </div>
+      <!--
       <div class="header-center">
         <div class="header-center-item">
-          <ankiIDHeaderVoca />
-          <ankiIDHeaderIndex />
+          
         </div>
       </div>
+      -->
       <div class="header-right">
         <ankiIDHeaderChecked />
         <buttonIcon @click="dialog = true">
@@ -32,7 +34,6 @@ import { defineAsyncComponent } from "vue";
 
 import "@/modules/common/header.scss";
 import ankiIDHeaderVoca from "@/views/ankiID/ankiIDHeaderVoca.vue";
-import ankiIDHeaderIndex from "@/views/ankiID/ankiIDHeaderIndex.vue";
 import ankiIDHeaderChecked from "@/views/ankiID/ankiIDHeaderChecked.vue";
 
 import caretLeft from "@/components/icon/caretLeft";
@@ -43,7 +44,6 @@ export default {
     caretLeft,
     settings,
     ankiIDHeaderVoca,
-    ankiIDHeaderIndex,
     ankiIDHeaderChecked,
     ankiIDHeaderSetting: defineAsyncComponent(() =>
       import("@/views/ankiID/ankiIDHeaderSetting.vue")

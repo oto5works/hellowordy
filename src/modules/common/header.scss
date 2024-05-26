@@ -23,15 +23,17 @@
   .header-left,
   .header-center,
   .header-right {
+    position: relative;
     display: flex;
     align-items: center;
     height: 100%;
   }
   .header-left {
-    flex: 1 1 96px;
+    flex: 1;
+    overflow: hidden;
   }
   .header-right {
-    flex: 1 1 96px;
+    flex: 0 0 96px;
     justify-content: flex-end;
   }
   .header-center {

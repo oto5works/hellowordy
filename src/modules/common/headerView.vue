@@ -3,15 +3,17 @@
     <div class="header">
       <div class="header-left">
         <buttonIcon>
-          <icon><squares /></icon>
+          <icon><list /></icon>
         </buttonIcon>
-      </div>
-      <div class="header-center">
         <div class="logo" @click="navigateToHome()">
           <logo />
         </div>
       </div>
-
+      <!--
+      <div class="header-center">
+        
+      </div>
+-->
       <div class="header-right"></div>
     </div>
   </div>
@@ -20,12 +22,12 @@
 import { mapGetters, mapActions } from "vuex";
 import "@/modules/common/header.scss";
 import logo from "@/components/icon/logo";
-import squares from "@/components/icon/squares";
+import list from "@/components/icon/list";
 
 export default {
   components: {
     logo,
-    squares,
+    list,
   },
   methods: {
     ...mapActions({

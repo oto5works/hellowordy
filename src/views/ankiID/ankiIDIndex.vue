@@ -31,7 +31,9 @@ export default {
 <style scoped>
 .index {
   display: flex;
+  width: 100%;
+  justify-content: flex-end;
   gap: 2px;
-  font-size: 14px;
+  font-size: 12px;
 }
 </style>

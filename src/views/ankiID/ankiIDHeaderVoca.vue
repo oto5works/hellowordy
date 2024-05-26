@@ -1,22 +1,20 @@
 <template>
-  <button @click="setShowFilter()">
-    <div class="display_flex align-items_center gap_8">
-      <div class="title-wrap">
-        <div class="title">
-          {{ title }}
-        </div>
+  <div class="ankiIDHeaderVoca" @click="setShowFilter()">
+    <div class="title-wrap">
+      <div class="title">
+        {{ title }}
       </div>
-
-      <buttonSelect class="part">
-        <span>
-          <aniLoading v-if="part === null" /><span v-else
-            >part {{ part + 1 }}</span
-          >
-        </span>
-        <icon class="icon_12"><caretDown /></icon>
-      </buttonSelect>
     </div>
-  </button>
+
+    <buttonSelect class="part">
+      <span>
+        <aniLoading v-if="part === null" /><span v-else
+          >part {{ part + 1 }}</span
+        >
+      </span>
+      <icon class="icon_10"><caretDown /></icon>
+    </buttonSelect>
+  </div>
 </template>
 
 <script>
@@ -66,31 +64,38 @@ export default {
     },
     applyAnimationBasedOnWidth() {
       this.$nextTick(() => {
-        const titleElement = this.$el.querySelector('.title');
-        const titleWrapElement = this.$el.querySelector('.title-wrap');
+        const titleElement = this.$el.querySelector(".title");
+        const titleWrapElement = this.$el.querySelector(".title-wrap");
         if (titleElement.offsetWidth > titleWrapElement.offsetWidth) {
-          titleElement.classList.add('animate');
+          titleElement.classList.add("animate");
         } else {
-          titleElement.classList.remove('animate');
+          titleElement.classList.remove("animate");
         }
       });
     },
-    
   },
 };
 </script>
 
 <style scoped>
+.ankiIDHeaderVoca {
+  width: 70%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
 button {
   color: rgb(var(--mio-theme-color-on-background));
 }
 
 .title-wrap {
-  max-width: 76px;
+  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
-  
 }
 
 @keyframes marquee {
@@ -110,12 +115,12 @@ button {
   display: inline-block;
   white-space: nowrap;
   animation: none; /* 10초 동안 무한 반복 */
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 100%;
 }
 .animate {
-  animation: marquee 10s linear infinite;
+  animation: marquee 20s linear infinite;
 }
 
 .part {
@@ -123,6 +128,6 @@ button {
   gap: 2px;
 }
 .part span {
-  font-size: 10px;
+  font-size: 11px;
 }
 </style>

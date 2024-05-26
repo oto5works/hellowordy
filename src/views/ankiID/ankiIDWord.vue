@@ -47,3 +47,8 @@ export default {
   methods: {},
 };
 </script>
+<style scoped>
+.ankiIDWord {
+  padding: 0 var(--mio-theme-padding-2);
+}
+</style>

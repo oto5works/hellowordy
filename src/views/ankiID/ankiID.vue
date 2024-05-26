@@ -28,7 +28,6 @@
         </noData>
       </div>
       <div v-else>
-        <div class="sp_56"/>
         <ankiIDView />
         <ankiIDFuction />
       </div>
