@@ -4,25 +4,25 @@
 
   <div class="navbar">
     <buttonNav
-      title="Home"
+      title="홈"
       :class="{ selected: activeTab === 'home' }"
       @click="navigateToHome()"
       ><icon><home /></icon
     ></buttonNav>
     <buttonNav
-      title="Voca"
+      title="암기덱"
       :class="{ selected: activeTab === 'voca' }"
       @click="navigateToVoca()"
-      ><icon><book /></icon
+      ><icon><stack /></icon
     ></buttonNav>
     <buttonNav
-      title="Anki"
+      title="암기하기"
       :class="{ selected: activeTab === 'anki' }"
       @click="navigateToAnki()"
       ><icon><anki /></icon
     ></buttonNav>
     <buttonNav
-      title="My"
+      title="내 정보"
       :class="{ selected: activeTab === 'my' }"
       @click="navigateToMy()"
       ><icon><user /></icon
@@ -35,14 +35,14 @@
 
 <script>
 import home from "@/components/icon/home.vue";
-import book from "@/components/icon/book.vue";
+import stack from "@/components/icon/stack.vue";
 import anki from "@/components/icon/anki.vue";
 import user from "@/components/icon/user.vue";
 
 export default {
   components: {
     home,
-    book,
+    stack,
     anki,
     user,
   },

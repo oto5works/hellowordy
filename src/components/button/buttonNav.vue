@@ -41,11 +41,11 @@ export default {
   justify-content: center;
   align-items: center;
   width: 48px;
-  height: 28px;
+  height: 26px;
   border-radius: 36px;
 }
 .buttonNav span {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
 }
 /*-- overlay --*/
