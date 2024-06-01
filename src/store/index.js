@@ -11,6 +11,8 @@ import vocas from "../firebase/vocas";
 import vocaImages from "../firebase/vocaImages";
 import checkedWords from "../firebase/checkedWords";
 import words from "../firebase/words";
+import kanjis from "../firebase/kanjis";
+
 import profileImages from "../firebase/profileImages";
 import countdowns from "../firebase/countdowns";
 import favorites from "../firebase/favorites";
@@ -20,6 +22,7 @@ const store = createStore({
     filter,
     temp,
     words,
+    kanjis,
     kuroshiro,
     users,
     study,

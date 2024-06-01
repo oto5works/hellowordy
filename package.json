@@ -10,6 +10,11 @@
   "dependencies": {
     "@egjs/flicking-plugins": "^4.7.1",
     "@egjs/vue3-flicking": "^4.11.2",
+    "@tiptap/extension-document": "^2.4.0",
+    "@tiptap/extension-highlight": "^2.4.0",
+    "@tiptap/extension-paragraph": "^2.4.0",
+    "@tiptap/extension-text": "^2.4.0",
+    "@tiptap/vue-3": "^2.4.0",
     "axios": "^0.27.2",
     "chalk": "^4.1.2",
     "core-js": "^3.27.1",

@@ -13,6 +13,9 @@
 .pa_16 {
   padding: 0 16px;
 }
+.pa_20 {
+  padding: 0 20px;
+}
 .pa_24 {
   padding: 0 24px;
 }
@@ -270,6 +273,9 @@ select {
   width: 100%;
   min-height: 100%;
   padding: var(--mio-theme-header) var(--mio-theme-padding-2);
+}
+mark {
+  cursor: pointer;
 }
 /*--- 모바일 ---*/
 @media all and (max-width: 479px) {
