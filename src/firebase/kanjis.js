@@ -61,7 +61,7 @@ export default {
     },
     async createKanji(
       { commit, dispatch, rootGetters },
-      { kanji, jlpt, mean, goon, kun, comment, unicode }
+      { kanji, jlpt, mean, goon, hoon, kun, comment, unicode }
     ) {
       try {
         const kanjisRef = collection(db, "kanjis");
@@ -79,6 +79,7 @@ export default {
           jlpt: jlpt,
           mean: mean,
           goon: goon,
+          hoon: hoon,
           kun: kun,
           comment: comment,
           unicode: unicode,
@@ -124,6 +125,7 @@ export default {
             jlpt: kanjiData.jlpt,
             mean: kanjiData.mean,
             goon: kanjiData.goon,
+            hoon: kanjiData.hoon,
             kun: kanjiData.kun,
             comment: kanjiData.comment,
             createdAt: kanjiData.createdAt.toDate(), // Firestore 타임스탬프 변환

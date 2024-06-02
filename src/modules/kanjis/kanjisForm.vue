@@ -31,7 +31,8 @@
         @input="convertToUnicode"
       />
       <div v-if="isDuplicate">중복되는 값이 있습니다.</div>
-
+      
+      <textField label="훈음" v-model="hoon" type="text" />
       <textField label="의미" v-model="mean" type="text" />
       <textField label="음독" v-model="goon" type="text" />
       <textField label="훈독" v-model="kun" type="text" />
@@ -57,6 +58,7 @@ export default {
       jlpt: "",
       mean: "",
       goon: "",
+      hoon: "",
       kun: "",
       comment: "",
       unicode: "",
@@ -83,6 +85,7 @@ export default {
           jlpt: this.jlpt,
           mean: this.mean,
           goon: this.goon,
+          hoon: this.hoon,
           kun: this.kun,
           comment: this.comment,
         });
@@ -102,6 +105,7 @@ export default {
         jlpt: this.jlpt,
         mean: this.mean,
         goon: this.goon,
+        hoon: this.hoon,
         kun: this.kun,
         comment: this.comment,
         unicode: this.unicode,
@@ -130,6 +134,7 @@ export default {
           this.jlpt = kanjiData.jlpt;
           this.mean = kanjiData.mean;
           this.goon = kanjiData.goon;
+          this.hoon = kanjiData.hoon;
           this.kun = kanjiData.kun;
           this.comment = kanjiData.comment;
           this.unicode = kanjiData.id;
@@ -160,6 +165,7 @@ export default {
       this.jlpt = "";
       this.mean = "";
       this.goon = "";
+      this.hoon = "";
       this.kun = "";
       this.comment = "";
       this.unicode = "";

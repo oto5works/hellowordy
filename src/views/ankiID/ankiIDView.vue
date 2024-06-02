@@ -1,11 +1,11 @@
 <template>
   <div>
     <ankiIDIndex />
-    <div class="sp_56"/>
-
+    <div class="sp_40" />
     <ankiIDWord />
-
     <div class="sp_80" />
+    <div class="line"/>
+    <div class="sp_12" />
     <ankiIDExample />
     <div class="sp_24" />
     <ankiIDFooter />

@@ -30,8 +30,12 @@
   height: 100%;
 }
 .fullDialog > .overlay__content > .dialog .dialog-header {
+  position: sticky;
+  top: 0;
   height: var(--mio-theme-header);
   padding: 0 var(--mio-theme-padding-1) 0 0;
+  background-color: rgb( var(--mio-theme-color-background));
+  z-index: 10;
 }
 .fullDialog > .overlay__content > .dialog .dialog-header .title {
   font-size: 24px;

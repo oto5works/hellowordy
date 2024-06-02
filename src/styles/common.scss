@@ -275,7 +275,11 @@ select {
   padding: var(--mio-theme-header) var(--mio-theme-padding-2);
 }
 mark {
+  border: 1px solid rgb(var(--mio-theme-color-on-background));
   cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 2px;
 }
 /*--- 모바일 ---*/
 @media all and (max-width: 479px) {

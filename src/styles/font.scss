@@ -1,9 +1,64 @@
+
+/*
 @font-face {
   font-family: "Custom Font";
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
   src: url(https://ankitoki.web.app/font/PretendardJPVariable.woff2) format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
+}
+
+*/
+
+/*
+@font-face {
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-100.woff2) format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-400.woff2) format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-400.woff2) format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-700.woff2) format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/LineSeedJP-800.woff2) format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
+}
+*/
+@font-face {  
+  font-family: "Custom Font";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url(https://ankitoki.web.app/font/NotoSansJPVariable.ttf) format('truetype');
   unicode-range: U+3040-309F, U+30A0-30FF, U+FF00-FFEF;
 }
 
@@ -15,6 +70,7 @@
   src: url(https://ankitoki.web.app/font/JetBrainsMonoVariable.ttf) format('truetype');
   unicode-range: U+0021-007F; /* Basic Latin for English and numbers, includes italic (excluding space) */
 }
+
 @font-face {
   font-family: "Custom Font";
   font-style: normal;
@@ -26,7 +82,10 @@
 
 
 
-
+p {
+  font-size: 14px;
+  line-height: 168%;
+}
 
 
 

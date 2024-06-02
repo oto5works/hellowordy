@@ -2,8 +2,6 @@
   <div class="ankiIDWord">
     <div class="card">
       <div class="content">
-        {{ kanji }} ///<br />
-        {{ ruby }}
         <div class="item">
           <div
             class="word"
@@ -36,7 +34,9 @@
       @update:dialog="dialog = $event"
       :kanji="kanji"
       :ruby="ruby"
+      :mean="mean"
     />
+    
   </div>
 </template>
 

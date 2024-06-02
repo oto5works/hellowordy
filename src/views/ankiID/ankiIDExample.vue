@@ -6,7 +6,9 @@
       :key="item.id"
       :examples="item"
     >
+    <!--
      <div class="star"><icon class="icon_16"><star /></icon></div> 
+     -->
       <div class="examples-item">
         <div
           class="sentence"

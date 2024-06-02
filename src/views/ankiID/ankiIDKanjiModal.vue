@@ -1,24 +1,27 @@
 <template>
   <modalDialog title="단어 선택" :dialog="dialog" @update:dialog="updateDialog">
-    <div class="modal-content">
-      <h2>{{ kanji }}</h2>
+    
+
+
+    <div class="content">
       <div v-if="kanjiInfo">
-        <p v-if="kanjiInfo.jlpt">JLPT {{ kanjiInfo.jlpt }}</p>
-        <p v-if="kanjiInfo.mean">뜻: {{ kanjiInfo.mean }}</p>
-        <p v-if="kanjiInfo.goon">음독: {{ kanjiInfo.goon }}</p>
-        <p v-if="kanjiInfo.kun">훈독: {{ kanjiInfo.kun }}</p>
-        <div v-if="kanjiInfo.comment" v-html="kanjiInfo.comment" />
+        <ankiIDKanjiCard :info="kanjiInfo" />
       </div>
       <div v-else>
         <p>한자 정보를 가져올 수 없습니다.</p>
       </div>
     </div>
+
   </modalDialog>
 </template>
 <script>
 import { mapActions } from "vuex";
+import ankiIDKanjiCard from "@/views/ankiID/ankiIDKanjiCard.vue";
 
 export default {
+  components: {
+    ankiIDKanjiCard,
+  },
   props: {
     kanji: { type: String, required: true },
     dialog: { type: Boolean, required: true },
