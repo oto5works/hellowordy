@@ -1,5 +1,5 @@
 <template>
-  <modalDialog title="단어 선택" :dialog="dialog" @update:dialog="updateDialog">
+  <modalDialog :title="kanji" :dialog="dialog" @update:dialog="updateDialog">
     
 
 

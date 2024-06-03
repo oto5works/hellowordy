@@ -1,7 +1,6 @@
 <template>
-  <fullDialog title="상세보기" :dialog="dialog" @update:dialog="updateDialog">
+  <fullDialog :title="kanjiWithRuby" :dialog="dialog" @update:dialog="updateDialog">
     <div class="content" v-if="kanjiInfo.length > 0">
-      <div class="sp_48" />
       <ankiIDKanjiRuby :ruby="ruby" :kanji="kanji" :mean="mean" />
       <div class="sp_48" />
       <div v-for="info in kanjiInfo" :key="info.kanji">

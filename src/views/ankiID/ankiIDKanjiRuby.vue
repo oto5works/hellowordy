@@ -1,13 +1,15 @@
 <template>
   <div>
     <div class="kanji-wrap">
+      <!--
       <div class="ruby">
         {{ ruby }}
       </div>
+      
       <div class="kanji">
         [{{ kanji }}]
       </div>
-      
+      -->
     </div>
     <div class="sp_8"/>
     <div
@@ -47,6 +49,7 @@ export default {
   line-height: 100%;
 }
 .mean {
-  font-size: 14px;
+  font-size: 40px;
+  font-weight: 700;
 }
 </style>
