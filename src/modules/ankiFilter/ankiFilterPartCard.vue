@@ -122,7 +122,7 @@ export default {
 }
 .card .word {
   font-family: var(--mio-theme-font-family-jp);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 20px;
   line-height: 120%;
   overflow: hidden;
