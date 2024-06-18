@@ -127,8 +127,7 @@
   transition: all 0.2s ease-in-out;
 }
 .sentence.showRuby rt {
-  display: ruby-text;
-  opacity: 1;
+  display: unset;
 }
 .translation {
   position: relative;
