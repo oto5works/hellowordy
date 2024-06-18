@@ -30,6 +30,7 @@
         :arrow="true"
       />
     </div>
+    <div class="spacing-1"></div>
     <buttonDefault
       :config="true"
       class="gap_8 pa_12 height_32"
@@ -116,7 +117,6 @@ export default {
   justify-content: center;
   width: 100%;
   bottom: 0;
-  gap: 3.4vh;
   left: 0px;
   z-index: 10;
   padding: 6vh 0;
@@ -143,5 +143,9 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+.spacing-1 {
+  height: 1.6vh;
+  max-height: 12px;
 }
 </style>
