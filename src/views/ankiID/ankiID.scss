@@ -120,14 +120,12 @@
   color: rgb(var(--mio-theme-color-on-background));
 }
 .sentence ruby > rt {
-  display: none;
   font-weight: 400;
   font-size: 11px;
   color: rgb(var(--mio-theme-color-primary));
   transition: all 0.2s ease-in-out;
 }
 .sentence.showRuby rt {
-  display: unset;
 }
 .translation {
   position: relative;

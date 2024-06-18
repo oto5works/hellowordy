@@ -9,6 +9,7 @@ export default {
     word: null,
     mean: null,
     part: null,
+    originExamples: [],
     examples: [],
     showRuby: false,
     showMean: false,
@@ -45,6 +46,12 @@ export default {
     setExamples(state, payload) {
       state.examples = payload;
     },
+    setExamples(state, { originalExamples, convertedExamples }) {
+      console.log ('qkedkTdjddkdk!!!', originalExamples)
+      state.originExamples = originalExamples;
+      state.examples = convertedExamples;
+    },
+
     setShowRuby(state) {
       state.showRuby = !state.showRuby;
     },
@@ -154,14 +161,13 @@ export default {
       try {
         console.log("@ACTIONS: setExamples!");
         const filteredWords = rootGetters["filter/getFilteredWords"];
-        const currentExamples =
-          filteredWords[state.part][state.currentIndex]?.examples;
-
+        const currentExamples = filteredWords[state.part][state.currentIndex]?.examples;
+    
         if (!currentExamples) {
           console.log("No current examples to convert.");
           return;
         }
-
+    
         const convertedExamples = await Promise.all(
           currentExamples.map(async (example) => {
             // 'sentence'를 Ruby 문자로 변환합니다. 'kuroshiro/convertToRuby'는 가정된 함수입니다.
@@ -174,14 +180,18 @@ export default {
             return { ...example, sentence: convertToRuby }; // 변환된 'sentence'와 변환되지 않은 'translation'을 포함하는 새 객체를 반환합니다.
           })
         );
-
-        // 변환된 데이터를 상태에 저장하기 위해 뮤테이션을 커밋합니다.
-        commit("setExamples", convertedExamples);
+    console.log ('currentExamples:',currentExamples)
+        // 변환된 데이터와 원본 데이터를 함께 상태에 저장하기 위해 뮤테이션을 커밋합니다.
+        commit("setExamples", {
+          originalExamples: currentExamples,
+          convertedExamples
+        });
       } catch (error) {
         console.error("Error converting current examples to Ruby:", error);
         // 에러 처리 로직
       }
     },
+    
 
 
     setPart({ commit, dispatch }, value) {
@@ -372,6 +382,8 @@ export default {
     getWord: (state) => state.word,
     getMean: (state) => state.mean,
     getExamples: (state) => state.examples,
+    getOriginExamples: (state) => state.originExamples,
+
     getShowRuby: (state) => state.showRuby,
     getShowMean: (state) => state.showMean,
     getAlwaysRuby: (state) => state.alwaysRuby,
