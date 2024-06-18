@@ -5,7 +5,6 @@
         <buttonIcon class="back" @click="navigateToBack()">
           <icon><caretLeft /></icon>
         </buttonIcon>
-        <ankiIDHeaderVoca />
       </div>
       <!--
       <div class="header-center">
@@ -33,7 +32,6 @@ import { mapGetters, mapActions } from "vuex";
 import { defineAsyncComponent } from "vue";
 
 import "@/modules/common/header.scss";
-import ankiIDHeaderVoca from "@/views/ankiID/ankiIDHeaderVoca.vue";
 import ankiIDHeaderChecked from "@/views/ankiID/ankiIDHeaderChecked.vue";
 
 import caretLeft from "@/components/icon/caretLeft";
@@ -43,7 +41,6 @@ export default {
   components: {
     caretLeft,
     settings,
-    ankiIDHeaderVoca,
     ankiIDHeaderChecked,
     ankiIDHeaderSetting: defineAsyncComponent(() =>
       import("@/views/ankiID/ankiIDHeaderSetting.vue")

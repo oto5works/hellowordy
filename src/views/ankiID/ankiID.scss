@@ -1,147 +1,146 @@
-.mean .item,
-.translation {
+.mean {
+  font-size: 16px;
+  line-height: 168%;
+  text-align: left;
+  width: 100%;
+}
+.mean .item {
   position: relative;
   color: rgb(var(--mio-theme-color-on-background));
   padding: 0 2px;
   opacity: 1;
 }
-/*
-.mean .item::before,
-.translation::before {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0 2px;
-  border-radius: 24px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  filter: blur(20px);
+
+
+.mean .item {
+  opacity: 0;
 }
-.mean .item.showMean::before,
-.translation.showMean::before {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: unset;
-  border-radius: 24px;
-  -webkit-backdrop-filter: unset;
-  backdrop-filter: unset;
-  filter: unset;
-}
-
-*/
-
-
-
-.mean .item.showMean,
-.translation.showMean {
+.mean .item.showMean {
   color: rgb(var(--mio-theme-color-on-background));
   background-color: unset;
-  opacity: 1;
-}
-
-.translation.showMean {
   opacity: 0.7;
 }
-.translation {
-  font-weight: 400;
-  width: fit-content;
-  line-height: 130%;
-  font-size: 13px;
-}
+
 
 .word {
   position: relative;
-  font-weight: 400;
-  font-size: 44px;
+  font-weight: 700;
+  
+  text-align: left;
+}
+
+.word ruby {
+  position: relative;
+}
+.word ruby::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: rgb(var(--mio-theme-color-primary)); 
+  border-radius: 50%;
+}
+.word.normal-text {
+  font-size: 64px;
   line-height: 130%;
-  text-align: center;
+}
+.word.long-text-50 {
+  font-size: 48px;
+  line-height: 168%;
+}
+
+.word.long-text-70 {
+  font-size: 32px;
+  line-height: 168%;
+}
+.word.normal-text ruby::before {
+  width: 8px;
+  height: 8px;
+  top: -4px;
+  right: -6px;
+}
+.word.long-text-50 ruby::before {
+  width: 7px;
+  height: 7px;
+  top: -2px;
+  right: -4px;
+}
+.word.long-text-70 ruby::before {
+  width: 5px;
+  height: 5px;
+  top: -2px;
+  right: -2px;
 }
 
 .word ruby > rt {
   opacity: 0;
   font-weight: 400;
-  font-size: 15px;
   color: rgb(var(--mio-theme-color-primary));
   transition: all 0.2s ease-in-out;
+  transform: translateY(40%);
 }
-.word.showRuby rt {
-  opacity: 1;
+.word.normal-text ruby > rt {
+  font-size: 16px;
+}
+.word.long-text-50 ruby > rt {
+  font-size: 14px;
+}
+.word.long-text-70 ruby > rt {
+  font-size: 13px;
 }
 
-.sentence {
-  position: relative;
-  font-weight: 400;
-  line-height: 130%;
-  font-size: 16px;
-  color: rgb(var(--mio-theme-color-on-background));
-}
-.sentence ruby > rt {
-  opacity: 0;
-  font-weight: 400;
-  font-size: 12px;
-  color: rgb(var(--mio-theme-color-primary));
-  transition: all 0.2s ease-in-out;
-}
-.sentence.showRuby rt {
+
+
+
+
+.word.showRuby rt {
   opacity: 1;
+  transform: translateY(0%);
 }
+
+
+
+
 
 .ankiIDExample {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
+  border-left: 1px solid rgb(var(--mio-theme-color-on-background), 0.4);
+  padding-left: 16px;
 }
-
-.ankiIDExample .star {
+.sentence {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  color: rgba(var(--mio-theme-color-on-background), 0.16);
-  top: 13px;
+  font-weight: 400;
+  line-height: 168%;
+  font-size: 15px;
+  color: rgb(var(--mio-theme-color-on-background));
 }
-.ankiIDExample .examples .star svg {
-  transform: rotate(calc(var(--rotation) * 36deg));
+.sentence ruby > rt {
+  display: none;
+  font-weight: 400;
+  font-size: 11px;
+  color: rgb(var(--mio-theme-color-primary));
+  transition: all 0.2s ease-in-out;
 }
-
-.ankiIDExample .examples:nth-child(4n) {
-  --rotation: 9;
+.sentence.showRuby rt {
+  display: ruby-text;
+  opacity: 1;
 }
-.ankiIDExample .examples:nth-child(3n + 1) {
-  --rotation: 7;
-}
-.ankiIDExample .examples:nth-child(4n + 1) {
-  --rotation: 6;
-}
-.ankiIDExample .examples:nth-child(3n) {
-  --rotation: 5;
-}
-.ankiIDExample .examples:nth-child(3n + 2) {
-  --rotation: 4;
-}
-.ankiIDExample .examples:nth-child(2) {
-  --rotation: 2;
-}
-.ankiIDExample .examples:nth-child(4n + 3) {
-  --rotation: 3;
-}
-
-.examples {
+.translation {
   position: relative;
-  display: flex;
-  gap: 0px;
+  color: rgb(var(--mio-theme-color-on-background));
+  font-weight: 400;
+  width: fit-content;
+  line-height: 130%;
+  font-size: 13px;
+  display: none;
 }
-.examples-item {
-  position: relative;
-  width: 100%;
+.translation.showMean {
+  display: block;
+  color: rgb(var(--mio-theme-color-on-background));
+  opacity: 0.7;
 }

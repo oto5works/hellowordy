@@ -1,17 +1,12 @@
 <template>
   <div>
+    <div class="spacing-1" />
     <ankiIDIndex />
-    <div class="sp_40" />
+    <div class="spacing-2" />
     <ankiIDWord />
-    <div class="sp_80" />
-    <div class="line"/>
-    <div class="sp_12" />
+    <div class="spacing-3" />
     <ankiIDExample />
-    <div class="sp_24" />
-    <ankiIDFooter />
-
-    <div class="sp_128" />
-    <div class="sp_64" />
+    <div class="spacing-4" />
   </div>
 </template>
 
@@ -20,13 +15,12 @@ import { mapActions, mapGetters } from "vuex";
 import ankiIDIndex from "@/views/ankiID/ankiIDIndex.vue";
 
 import ankiIDWord from "@/views/ankiID/ankiIDWord.vue";
-import ankiIDFooter from "@/views/ankiID/ankiIDFooter.vue";
 import ankiIDExample from "@/views/ankiID/ankiIDExample.vue";
 
 import "@/views/ankiID/ankiID.scss";
 
 export default {
-  components: { ankiIDIndex, ankiIDWord, ankiIDFooter, ankiIDExample },
+  components: { ankiIDIndex, ankiIDWord, ankiIDExample },
   computed: {
     ...mapGetters({
       wordID: "study/getWordID",
@@ -46,3 +40,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.spacing-1 {
+  height: 3vh;
+}
+.spacing-2 {
+  height: 12.4vh;
+}
+.spacing-3 {
+  height: 8.8vh;
+}
+.spacing-4 {
+  height: 32vh;
+}
+</style>

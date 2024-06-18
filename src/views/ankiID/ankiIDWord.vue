@@ -5,18 +5,17 @@
         <div class="item">
           <div
             class="word"
-            :class="{ showRuby: showRuby || alwaysRuby }"
+            :class="[wordClass, { showRuby: showRuby || alwaysRuby }]"
             v-html="word"
             @click="extractWord"
           />
-          <div class="sp_8" />
           <div class="display_flex flex-wrap_wrap gap_8 justify-content_center">
             <div
               class="mean display_flex align-items_center gap_2"
             >
          
               <div class="item" :class="{ showMean: showMean || alwaysMean }">
-                {{ showMean || alwaysMean ? mean : "----" }}
+                {{ mean }}
               </div>
             </div>
           </div>
@@ -63,6 +62,16 @@ export default {
       alwaysRuby: "study/getAlwaysRuby",
       alwaysMean: "study/getAlwaysMean",
     }),
+    wordClass() {
+      const length = this.word ? this.word.length : 0;
+      if (length > 70) {
+        return 'long-text-70';
+      } else if (length > 50) {
+        return 'long-text-50';
+      } else {
+        return 'normal-text';
+      }
+    },
   },
   methods: {
     extractWord(event) {
@@ -83,9 +92,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.ankiIDWord {
-  padding: 0 var(--mio-theme-padding-2);
-}
-</style>

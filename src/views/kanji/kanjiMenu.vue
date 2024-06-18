@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      deleteKanjiByPayload: "kanjis/deleteKanjiByPayload",
     }),
     async handleDeleteKanji() {
       try {

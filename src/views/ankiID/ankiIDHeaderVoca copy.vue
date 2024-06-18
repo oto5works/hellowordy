@@ -1,14 +1,30 @@
 <template>
   <div class="ankiIDHeaderVoca" @click="setShowFilter()">
-    {{ title }} #{{ part + 1 }}   
+    <div class="title-wrap">
+      <div class="title">
+        {{ title }}
+      </div>
+    </div>
+
+    <buttonSelect class="part">
+      <span>
+        <aniLoading v-if="part === null" /><span v-else
+          >part {{ part + 1 }}</span
+        >
+      </span>
+      <icon class="icon_10"><caretDown /></icon>
+    </buttonSelect>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 
+import caretDown from "@/components/icon/caretDown.vue";
+import aniLoading from "@/components/icon/aniLoading.vue";
+
 export default {
-  components: { },
+  components: { caretDown, aniLoading },
   data() {
     return {
       title: "unSelected",
@@ -25,6 +41,9 @@ export default {
   created() {
     this.loadVoca();
   },
+  mounted() {
+    this.applyAnimationBasedOnWidth();
+  },
   methods: {
     ...mapActions({
       setShowFilter: "filter/setShowFilter",
@@ -37,10 +56,22 @@ export default {
         const vocaData = await this.returnVocaByPayload(this.vocaID);
         if (vocaData) {
           this.title = vocaData.title;
+          this.applyAnimationBasedOnWidth();
         } else {
           alert("단어장을 불러오는데 실패했습니다.");
         }
       }
+    },
+    applyAnimationBasedOnWidth() {
+      this.$nextTick(() => {
+        const titleElement = this.$el.querySelector(".title");
+        const titleWrapElement = this.$el.querySelector(".title-wrap");
+        if (titleElement.offsetWidth > titleWrapElement.offsetWidth) {
+          titleElement.classList.add("animate");
+        } else {
+          titleElement.classList.remove("animate");
+        }
+      });
     },
   },
 };

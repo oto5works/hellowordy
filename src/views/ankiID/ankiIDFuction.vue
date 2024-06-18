@@ -116,9 +116,10 @@ export default {
   justify-content: center;
   width: 100%;
   bottom: 0;
+  gap: 3.4vh;
   left: 0px;
   z-index: 10;
-  padding: 48px 0 24px 0;
+  padding: 6vh 0;
 
   background: linear-gradient(
     0deg,
