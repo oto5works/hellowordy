@@ -27,6 +27,8 @@
   font-weight: 700;
   
   text-align: left;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .word ruby {
@@ -134,10 +136,6 @@
   width: fit-content;
   line-height: 130%;
   font-size: 13px;
-  display: none;
-}
-.translation.showMean {
-  display: block;
-  color: rgb(var(--mio-theme-color-on-background));
   opacity: 0.7;
+
 }

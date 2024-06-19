@@ -1,8 +1,6 @@
 <template>
-  <fullDialog :title="kanjiWithRuby" :dialog="dialog" @update:dialog="updateDialog">
+  <modalDialog :dialog="dialog" @update:dialog="updateDialog">
     <div class="content" v-if="kanjiInfo.length > 0">
-      <ankiIDKanjiRuby :ruby="ruby" :kanji="kanji" :mean="mean" />
-      <div class="sp_48" />
       <div v-for="info in kanjiInfo" :key="info.kanji">
         <div v-if="info.found">
           <ankiIDKanjiCard :info="info" />
@@ -17,24 +15,20 @@
     <div v-else>
       <p>선택된 단어가 없습니다.</p>
     </div>
-  </fullDialog>
+  </modalDialog>
 </template>
 
 <script>
 import { mapActions } from "vuex";
 import { defineAsyncComponent } from "vue";
 import ankiIDKanjiCard from "@/views/ankiID/ankiIDKanjiCard.vue";
-import ankiIDKanjiRuby from "@/views/ankiID/ankiIDKanjiRuby.vue";
 
 export default {
   components: {
     ankiIDKanjiCard,
-    ankiIDKanjiRuby,
   },
   props: {
     kanji: { type: String },
-    ruby: { type: String },
-    mean: { type: Array },
     dialog: { type: Boolean },
   },
   data() {
@@ -82,12 +76,5 @@ export default {
       }
     },
   },
-  computed: {
-    kanjiWithRuby() {
-      return `${this.ruby} [${this.kanji}]`;
-    },
-  },
 };
 </script>
-
-<style scoped></style>

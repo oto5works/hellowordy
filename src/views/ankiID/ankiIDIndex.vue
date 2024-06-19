@@ -69,7 +69,7 @@ export default {
 }
 .ankiIDTitle .title {
   text-align: right;
-  width: 40%;
+  width: 60%;
   font-weight: 700;
 }
 .ankiIDTitle .index {

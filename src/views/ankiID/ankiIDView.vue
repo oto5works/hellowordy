@@ -52,6 +52,6 @@ export default {
   height: 8.8vh;
 }
 .spacing-4 {
-  height: 32vh;
+  height: 16vh;
 }
 </style>

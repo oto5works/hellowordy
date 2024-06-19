@@ -28,8 +28,6 @@
       :dialog="dialog"
       @update:dialog="dialog = $event"
       :kanji="kanji"
-      :ruby="ruby"
-      :mean="mean"
     />
     
   </div>

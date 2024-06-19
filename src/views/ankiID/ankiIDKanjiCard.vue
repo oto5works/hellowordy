@@ -1,6 +1,5 @@
 <template>
-  <div class="kanji-card">
-    <div class="line" />
+  <div class="kanji-card pa_16">
     <div class="display_flex align-items_flex-end gap_12">
       <div class="font-size_24 font-weight_400 line-height_100">
         {{ info.kanji }}
@@ -28,8 +27,6 @@
     </table>
 
     <div class="comment">
-      <div class="font-size_16 font-weight_700">Mnemonic</div>
-      <div class="sp_8" />
       <div v-html="info.comment" @click="handleCommentClick" />
     </div>
     <ankiIDKanjiModal
@@ -38,8 +35,6 @@
       @update:dialog="dialog = $event"
       :kanji="selectedKanji"
     />
-
-    
   </div>
 </template>
 

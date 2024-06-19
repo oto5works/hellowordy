@@ -9,7 +9,6 @@ export default {
     word: null,
     mean: null,
     part: null,
-    originExamples: [],
     examples: [],
     showRuby: false,
     showMean: false,
@@ -46,10 +45,8 @@ export default {
     setExamples(state, payload) {
       state.examples = payload;
     },
-    setExamples(state, { originalExamples, convertedExamples }) {
-      console.log ('qkedkTdjddkdk!!!', originalExamples)
-      state.originExamples = originalExamples;
-      state.examples = convertedExamples;
+    setExamples(state, payload) {
+      state.examples = payload;
     },
 
     setShowRuby(state) {
@@ -176,21 +173,23 @@ export default {
               example.sentence,
               { root: true }
             );
-            // 'translation'은 변환되지 않고 그대로 유지합니다.
-            return { ...example, sentence: convertToRuby }; // 변환된 'sentence'와 변환되지 않은 'translation'을 포함하는 새 객체를 반환합니다.
+            // 변환된 'sentence'와 원본 'sentence'를 모두 포함하는 새 객체를 반환합니다.
+            return { 
+              ...example, 
+              sentence: convertToRuby,
+              originalSentence: example.sentence // 원본 문장을 'originalSentence'로 포함합니다.
+            };
           })
         );
-    console.log ('currentExamples:',currentExamples)
+    
         // 변환된 데이터와 원본 데이터를 함께 상태에 저장하기 위해 뮤테이션을 커밋합니다.
-        commit("setExamples", {
-          originalExamples: currentExamples,
-          convertedExamples
-        });
+        commit("setExamples", convertedExamples);
       } catch (error) {
         console.error("Error converting current examples to Ruby:", error);
         // 에러 처리 로직
       }
     },
+    
     
 
 
@@ -382,7 +381,6 @@ export default {
     getWord: (state) => state.word,
     getMean: (state) => state.mean,
     getExamples: (state) => state.examples,
-    getOriginExamples: (state) => state.originExamples,
 
     getShowRuby: (state) => state.showRuby,
     getShowMean: (state) => state.showMean,
