@@ -1,60 +1,79 @@
 <template>
-    <div>
-      <div class="sp_64"/>
+  <div>
+    <div class="sp_64"/>
 
-<kanjiAdd />
+    <div class="search">
+    <div class="display_flex">
+      <input v-model="searchTerm" placeholder="검색어를 입력하세요" />
+    <button @click="executeSearch()">검색</button>
 
-     
-      <div class="sp_24" />
+    </div>
 
-      <div class="kanjis-list">
-        <kanjiCard
-          v-for="(item) in kanjis"
+    <button @click="dialog = true">추가</button>
+
+  </div>
+    <div v-if="searchResults.length">
+      <kanjiCard
+          v-for="(item) in searchResults"
           :key="item.id"
           :kanji="item"
         />
-      </div>
     </div>
-
-    
+    <div v-else>
+      <p>검색 결과가 없습니다.</p>
+    </div>
+    <div class="sp_64"/>
+    <editForm
+      v-if="dialog"
+      :dialog="dialog"
+      @update:dialog="dialog = $event"
+    />
+  </div>
 </template>
+
 <script>
 import { defineAsyncComponent } from "vue";
+
 import { mapActions, mapGetters } from "vuex";
 import kanjiCard from "@/views/kanji/kanjiCard.vue";
-import kanjiAdd from "@/views/kanji/kanjiAdd.vue";
 
 export default {
   components: {
-    kanjiAdd,
     kanjiCard,
+    editForm: defineAsyncComponent(() =>
+      import("@/views/kanji/edit/editForm.vue")
+    ),
+  },
+  data() {
+    return {
+      dialog: false,
+      searchTerm: '',
+    };
   },
   computed: {
     ...mapGetters({
-      kanjis: "kanjis/getKanjis",
-      userID: "users/getUserID",
+      searchResults: "kanjis/getSearchResults",
     }),
   },
   methods: {
     ...mapActions({
-      getKanjis: "kanjis/getKanjis",
+      searchKanjis: "kanjis/searchKanjis",
+      deleteKanjiByPayload: "kanjis/deleteKanjiByPayload",
     }),
-  },
-  created() {
-    this.getKanjis();
-  },
+    async executeSearch() {
+      try {
+        await this.searchKanjis(this.searchTerm);
+      } catch (error) {
+        console.error("검색 실패:", error);
+      }
+    }
+  }
 };
 </script>
 <style scoped>
-.kanjis-list {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.buttonDefault {
-  flex-direction: column;
-  gap: 16px;
-  border-radius: 24px !important;
+.search {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
 }
 </style>

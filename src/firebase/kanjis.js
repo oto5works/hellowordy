@@ -1,6 +1,5 @@
 /*-- kanjis.js --*/
 import { db } from "@/firebase/init";
-
 import {
   collection,
   query,
@@ -23,11 +22,15 @@ export default {
   // State
   state: {
     kanjis: [],
+    searchResults: [], // 검색 결과를 저장할 배열 추가
   },
   // Mutations
   mutations: {
     setKanjis(state, kanjis) {
       state.kanjis = kanjis;
+    },
+    setSearchResults(state, results) {
+      state.searchResults = results;
     },
     removeKanji(state, kanjiID) {
       state.kanjis = state.kanjis.filter((kanji) => kanji.id !== kanjiID);
@@ -46,7 +49,7 @@ export default {
 
   actions: {
     async getKanjis({ commit }) {
-      console.log ('getget')
+      console.log('getget')
       try {
         const kanjisRef = collection(db, "kanjis");
         const querySnapshot = await getDocs(kanjisRef);
@@ -61,18 +64,18 @@ export default {
     },
     async createKanji(
       { commit, dispatch, rootGetters },
-      { kanji, jlpt, mean, goon, hoon, kun, comment, unicode }
+      { kanji, jlpt, mean, goon, hoon, kun, comment, goonDetail, kunDetail, unicode }
     ) {
       try {
         const kanjisRef = collection(db, "kanjis");
         const docRef = doc(kanjisRef, unicode);
         const docSnapshot = await getDoc(docRef);
-    
+
         if (docSnapshot.exists()) {
           // 이미 같은 unicode 값을 가진 문서가 존재하는 경우
           throw new Error(`${unicode} 값을 가진 단어가 이미 존재합니다.`);
         }
-    
+
         const kanjiData = {
           createdAt: new Date(),
           kanji: kanji,
@@ -82,18 +85,20 @@ export default {
           hoon: hoon,
           kun: kun,
           comment: comment,
+          goonDetail: goonDetail,
+          kunDetail: kunDetail,
+
           unicode: unicode,
         };
-    
+
         await setDoc(docRef, kanjiData);
-    
+
         // Vuex 상태에도 단어 추가
         commit("addKanji", { ...kanjiData, id: unicode });
       } catch (error) {
         throw error;
       }
     },
-    // 완료
     async deleteKanjiByPayload({ commit, state }, kanjiID) {
       try {
         const kanjiRef = doc(db, "kanjis", kanjiID);
@@ -104,7 +109,6 @@ export default {
       }
     },
 
-    // 완료
     async returnKanjiByPayload({ commit }, kanjiID) {
       console.log("currentKanjiID: ", kanjiID);
       try {
@@ -113,21 +117,21 @@ export default {
         }
         const kanjiRef = doc(db, "kanjis", kanjiID);
         const docSnap = await getDoc(kanjiRef);
-  
+
         if (docSnap.exists()) {
           const kanjiData = docSnap.data();
           const kanji = {
             id: docSnap.id,
-
-            
             kanji: kanjiData.kanji,
-
             jlpt: kanjiData.jlpt,
             mean: kanjiData.mean,
             goon: kanjiData.goon,
             hoon: kanjiData.hoon,
             kun: kanjiData.kun,
             comment: kanjiData.comment,
+            goonDetail: kanjiData.goonDetail,
+            kunDetail: kanjiData.kunDetail,
+
             createdAt: kanjiData.createdAt.toDate(), // Firestore 타임스탬프 변환
           };
           console.log("단어장 데이터:", kanji);
@@ -141,9 +145,7 @@ export default {
         throw error;
       }
     },
-  
-    
-    // 완료
+
     async updateKanjiByPayload({ commit, state }, { kanjiID, payload }) {
       try {
         const kanjiRef = doc(db, "kanjis", kanjiID);
@@ -181,11 +183,39 @@ export default {
         throw error;
       }
     },
-    // 완료
+    async searchKanjis({ commit }, searchTerm) {
+      try {
+        const kanjisRef = collection(db, "kanjis");
+        const fields = ['kanji', 'jlpt', 'mean', 'goon', 'hoon', 'kun', 'comment'];
+        const queries = fields.map(field => query(kanjisRef, where(field, '==', searchTerm)));
+  
+        const kanjis = [];
+        const seenIds = new Set(); // 중복 결과 방지를 위한 Set
+  
+        for (const q of queries) {
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach((doc) => {
+            if (!seenIds.has(doc.id)) {
+              seenIds.add(doc.id);
+              kanjis.push({ id: doc.id, ...doc.data() });
+            }
+          });
+        }
+  
+        // 검색 결과를 Vuex 상태에 저장하기 위해 mutation 호출
+        commit("setSearchResults", kanjis);
+  
+        return kanjis;
+      } catch (error) {
+        console.error("검색 실패:", error);
+        throw error;
+      }
+    },
   },
 
   // Getters
   getters: {
     getKanjis: (state) => state.kanjis,
+    getSearchResults: (state) => state.searchResults,
   },
 };

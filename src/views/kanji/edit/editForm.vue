@@ -9,11 +9,30 @@
       <buttonIcon v-else @click="handleUpdateKanji()">수정</buttonIcon>
     </template>
 
-    <div class="content">
-      
-      unicode = {{ unicode }}
-      <!--<textField label="유니코드" v-model="unicode" type="text" readonly />-->
-      <buttonSelect
+    <div>
+<button @click="handleCreateKanji()">추가</button>
+unicode = {{ unicode }}
+<div v-if="isDuplicate">중복되는 값이 있습니다.</div>
+<div class="display_flex">
+
+<div class="kanji-wrap">
+
+<div class="kanji">
+  <input
+        v-model="kanji"
+        type="text"
+        @input="convertToUnicode"
+      />
+</div>
+  
+      <textField label="훈음" v-model="hoon" type="text" />
+    </div>
+
+<div class="info">
+  <!-- jlpt -->
+  <div class="display_flex">
+<div>jlpt: </div>
+<buttonSelect
         class="width_100 height_40 pa_20 gap_4 justify-content_space-between"
       >
         <select class="width_100" v-model="jlpt">
@@ -24,20 +43,59 @@
           <option value=5><span>JLPT N5</span></option>
         </select>
       </buttonSelect>
-      <textField
-        label="한자"
-        v-model="kanji"
-        type="text"
-        @input="convertToUnicode"
-      />
-      <div v-if="isDuplicate">중복되는 값이 있습니다.</div>
-      
-      <textField label="훈음" v-model="hoon" type="text" />
-      <textField label="의미" v-model="mean" type="text" />
-      <textField label="음독" v-model="goon" type="text" />
-      <textField label="훈독" v-model="kun" type="text" />
-      <tiptap v-model="comment" />
+  </div>
+  <!-- jlpt -->
+  <div class="display_flex">
     </div>
+
+<!-- mean -->
+<div class="display_flex">
+  <div>의미</div>
+  <textField label="의미" v-model="mean" type="text" />
+    </div>
+
+    <!-- goon -->
+  <div class="display_flex">
+    <div>음독</div>
+    <textField label="음독" v-model="goon" type="text" />
+    </div>
+
+<!-- kun -->
+<div class="display_flex">
+    <div>훈독</div>
+    <textField label="훈독" v-model="kun" type="text" />
+        </div>
+
+</div>
+
+
+</div>
+ 
+<div class="line"/>
+
+    <div class="content">
+      <p>한자 설명</p>
+
+      <tiptap v-model="comment" />
+      <div class="line"/>
+
+    </div>
+
+    <div class="content">
+      <p>음독 상세</p>
+
+      <tiptap v-model="goonDetail" />
+      <div class="line"/>
+
+    </div>
+    <div class="content">
+      <p>훈독 상세</p>
+
+      <tiptap v-model="kunDetail" />
+    </div>
+
+
+  </div>
   </fullDialog>
 </template>
 
@@ -61,6 +119,8 @@ export default {
       hoon: "",
       kun: "",
       comment: "",
+      goonDetail: "",
+      kunDetail: "",
       unicode: "",
       isEditMode: false,
       isDuplicate: false,
@@ -88,6 +148,10 @@ export default {
           hoon: this.hoon,
           kun: this.kun,
           comment: this.comment,
+          goonDetail: this.goonDetail,
+          kunDetail: this.kunDetail,
+
+
         });
         this.resetForm();
         this.updateDialog(false);
@@ -108,6 +172,9 @@ export default {
         hoon: this.hoon,
         kun: this.kun,
         comment: this.comment,
+        goonDetail: this.goonDetail,
+        kunDetail: this.kunDetail,
+
         unicode: this.unicode,
       };
       const updateData = Object.entries(fieldsToUpdate).reduce((acc, [key, value]) => {
@@ -137,6 +204,10 @@ export default {
           this.hoon = kanjiData.hoon;
           this.kun = kanjiData.kun;
           this.comment = kanjiData.comment;
+          this.goonDetail = kanjiData.goonDetail;
+
+          this.kunDetail = kanjiData.kunDetail;
+
           this.unicode = kanjiData.id;
         } else {
           alert("단어 불러오는데 실패했습니다.");
@@ -168,8 +239,50 @@ export default {
       this.hoon = "";
       this.kun = "";
       this.comment = "";
+      this.goonDetail = "";
+      this.kunDetail = "";
+
       this.unicode = "";
     },
   },
 };
 </script>
+
+<style scoped>
+.kanji {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgb(var(--mio-theme-color-on-background));
+}
+.kanji input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+}
+.kanji::after,
+.kanji::before {
+  position: absolute;
+  content: '';
+}
+.kanji::after {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed rgba(var(--mio-theme-color-on-background), 0.4);
+}
+.kanji::before {
+  width: 1px;
+  height: 100%;
+  border-left: 1px dashed rgba(var(--mio-theme-color-on-background), 0.4);
+}
+
+</style>

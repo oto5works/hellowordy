@@ -6,7 +6,7 @@
     <buttonList @click="handleDeleteKanji()"
       ><icon><trash /></icon><span>삭제</span></buttonList
     >
-    <kanjisForm
+    <editForm
       v-if="appDialog"
       :dialog="appDialog"
       @update:dialog="appDialog = $event"
@@ -26,8 +26,8 @@ export default {
   components: {
     trash,
     pencil,
-    kanjisForm: defineAsyncComponent(() =>
-      import("@/modules/kanjis/kanjisForm.vue")
+    editForm: defineAsyncComponent(() =>
+      import("@/views/kanji/edit/editForm.vue")
     ),
   },
   props: {

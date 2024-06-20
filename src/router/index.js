@@ -19,6 +19,7 @@ import ankiID from "@/views/ankiID/ankiID.vue";
 
 // kanji
 import kanji from "@/views/kanji/kanji.vue";
+import kanjiEdit from "@/views/kanji/edit/edit.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -73,6 +74,12 @@ const router = createRouter({
       name: "kanji",
       component: kanji,
     },
+    {
+      path: "/kanji/edit",
+      name: "kanjiEdit",
+      component: kanjiEdit,
+    },
+    
   ],
 });
 

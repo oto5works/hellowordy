@@ -61,10 +61,30 @@ unicode = {{ unicode }}
 
 </div>
  
+<div class="line"/>
 
     <div class="content">
+      <p>한자 설명</p>
+
       <tiptap v-model="comment" />
+      <div class="line"/>
+
     </div>
+
+    <div class="content">
+      <p>음독 상세</p>
+
+      <tiptap v-model="goonDetail" />
+      <div class="line"/>
+
+    </div>
+    <div class="content">
+      <p>훈독 상세</p>
+
+      <tiptap v-model="kunDetail" />
+    </div>
+
+
   </div>
 </template>
 
@@ -88,6 +108,9 @@ export default {
       hoon: "",
       kun: "",
       comment: "",
+      goonDetail: "",
+      kunDetail: "",
+
       unicode: "",
       isEditMode: false,
       isDuplicate: false,
@@ -109,6 +132,9 @@ export default {
           hoon: this.hoon,
           kun: this.kun,
           comment: this.comment,
+          goonDetail: this.goonDetail,
+          kunDetail: this.kunDetail,
+
         });
         this.resetForm();
       } catch (error) {
@@ -138,6 +164,8 @@ export default {
       this.hoon = "";
       this.kun = "";
       this.comment = "";
+      this.goonDetail= "";
+      this.kunDetail= "";
       this.unicode = "";
     },
   },
