@@ -6,9 +6,13 @@
         <div class="kanji">
           {{ kanji.kanji }}
         </div>
+        <div class="error" v-if="!kanji.goonDetail && !kanji.kunDetail">@</div>
+
         <div class="mean">
-          
+          음독 설명: <span v-if="kanji.goonDetail">o</span><span v-else>x</span>
+          / 훈독 설명: <span v-if="kanji.kunDetail">o</span><span v-else>x</span>
         </div>
+
       </div>
 
       <buttonIcon @click="dialog = true">
@@ -114,5 +118,13 @@ export default {
   font-size: 13px;
   opacity: 0.6;
   font-weight: 400;
+}
+
+.error {
+  position: relative;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: red;
 }
 </style>
