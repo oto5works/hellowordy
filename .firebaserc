@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "ankitoki",
-    "dev": "ankitoki"
+    "default": "ankitoki2",
+    "dev": "ankitoki2"
   },
   "targets": {},
   "etags": {}

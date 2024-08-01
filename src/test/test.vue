@@ -1,121 +1,58 @@
 <template>
-  <div class="display_flex width_100">
-    <div class="flex1">
-      <table>
-        <thead>
-          <tr>
-            <th>Word</th>
-            <th>Meaning</th>
-            <th>Examples</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in words" :key="item.id">
-            <td>{{ item.word }}</td>
-            <td>{{ item.mean }}</td>
-            <td>{{ item.examples }}</td>
-            <td><button @click="handleDeleteWord(item.id)">삭제</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="apap">
+    <div>
+      <label for="input-prompt">프롬프트 입력:</label>
+      <input type="text" id="input-prompt" v-model="prompt">
+      <button @click="generateText">생성</button>
     </div>
-    <div class="flex2">
-      <wordsForm />
-    </div>
-    <div class="flex3">
-      <iframe
-        :src="`https://ja.dict.naver.com/#/mini/search?query=${searchWord}`"
-        width="100%"
-        height="100%"
-      ></iframe>
+    <div v-if="response">
+      <h2>결과:</h2>
+      <div v-if="wordData">
+        <p>단어: {{ wordData.word }}</p>
+        <p>발음: {{ wordData.read }}</p>
+        <p>의미: {{ wordData.meaning }}</p>
+      </div>
+      <p>{{ response }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import wordsForm from "@/views/words/wordsForm.vue";
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export default {
-  components: {
-    wordsForm,
-  },
-  computed: {
-    ...mapGetters({
-      words: "words/getWords",
-      currentVoca: "words/getWords",
-    }),
-    vocaID() {
-      return this.$route.params.id;
-    },
+  // toefl 2급 에 해당하는 단어 하나를 한국어 뜻과 함께 answer: {       word: '',       read: '',       meaning: ''     } 형태로 보여줘.
+  data() {
+    return {
+      prompt: '',
+      response: null,
+      API_KEY: 'AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM',
+      wordData: null,
+    };
   },
   methods: {
-    ...mapActions({
-      fetchWords: "words/fetchWords",
-      resetWords: "words/resetWords",
-      updateCurrentVocaID: "vocas/updateCurrentVocaID",
-      resetCurrentVocaID: "vocas/resetCurrentVocaID",
-      deleteCurrentWordID: "words/deleteCurrentWordID",
-      updateCurrentWordID: "words/updateCurrentWordID",
-    }),
-    async handleDeleteWord(wordID) {
+    async generateText() {
+      const genAI = new GoogleGenerativeAI(this.API_KEY);
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
       try {
-        // Vuex 액션을 통해 단어장을 삭제합니다.
-        this.updateCurrentWordID(wordID);
-        await this.deleteCurrentWordID(); // 'wordId'로 수정
-        // 단어장 목록을 최신 상태로 갱신합니다.
-        alert("단어장이 삭제.");
-      } catch (error) {
-        console.error("단어장 삭제 중 오류 발생:", error);
-      }
-    },
-  },
-  created() {
-    this.updateCurrentVocaID(this.vocaID);
+        const result = await model.generateContent(this.prompt);
+        this.response = await result.response.text();
 
-    this.fetchWords();
-  },
-  beforeRouteLeave(to, from, next) {
-    this.resetCurrentVocaID(); // 페이지를 떠날 때 선택된 단어장의 ID를 null로 설정
-    this.resetWords(); // 페이지를 떠날 때 선택된 단어장의 ID를 null로 설정
-    next();
-  },
+        // 응답에서 '```json' 및 '```' 제거하고 JSON 파싱
+        const cleanResponse = this.response.replace('```json', '').replace('```', '');
+        this.wordData = JSON.parse(cleanResponse);
+
+      } catch (error) {
+        console.error('오류 발생:', error);
+        this.response = '오류 발생. 다시 시도해주세요.';
+      }
+    }
+  }
 };
 </script>
+
 <style scoped>
-.display_flex {
-  height: 100%;
-}
-.flex1,
-.flex2,
-.flex3 {
-  flex: 1 1 30%;
-  height: 100%;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead {
-  background-color: #f2f2f2;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f9f9f9;}
-
-tr:hover {background-color: #ddd;}
-
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
+.apap {
+  margin-top: 80px;
 }
 </style>
