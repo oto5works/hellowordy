@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "public",
+    "site": "hellowordy",
     "ignore": [
       "firebase.json",
       "**/.*",

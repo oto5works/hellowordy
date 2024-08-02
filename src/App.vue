@@ -2,9 +2,10 @@
 <template>
   <div class="app">
     <headerView v-if="!isAuth" />
-    
+    <background />
     <navbarView v-if="!isAnkiID" />
     <RouterView />
+
   </div>
 </template>
 
@@ -13,9 +14,10 @@ import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import headerView from "@/modules/common/headerView.vue";
 import navbarView from "@/modules/common/navbarView.vue";
+import background from "@/modules/bg";
 
 export default {
-  components: { headerView, navbarView },
+  components: { headerView, navbarView, background },
 
   computed: {
     ...mapGetters({

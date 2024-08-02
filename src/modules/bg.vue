@@ -1,5 +1,7 @@
 <template>
   <div>
+<img src="https://hellowordy.web.app/image/bg.gif" />
+
   </div>
 </template>
 
