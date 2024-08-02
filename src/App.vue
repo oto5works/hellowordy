@@ -1,9 +1,7 @@
 <!-- App.vue -->
 <template>
   <div class="app">
-    <headerView v-if="!isAuth" />
     <background />
-    <navbarView v-if="!isAnkiID" />
     <RouterView />
 
   </div>
@@ -53,6 +51,7 @@ body {
   min-height: 100%;
 }
 .app {
+  position: relative;
   width: 100%;
   max-width: 480px;
   height: 100%;
