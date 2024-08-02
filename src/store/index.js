@@ -1,9 +1,16 @@
 import { createStore } from "vuex";
+import wordData from "./modules/wordData";
+import status from "./modules/status";
+
 
 import kuroshiro from "./modules/kuroshiro";
 import study from "./modules/study";
 import temp from "./modules/temp";
 import filter from "./modules/filter";
+
+
+
+
 
 //firebase
 import users from "../firebase/users";
@@ -20,6 +27,10 @@ import favorites from "../firebase/favorites";
 
 const store = createStore({
   modules: {
+    wordData,
+    status,
+
+
     filter,
     temp,
     words,
