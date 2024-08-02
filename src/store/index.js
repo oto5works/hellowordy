@@ -3,12 +3,6 @@ import wordData from "./modules/wordData";
 import status from "./modules/status";
 
 
-import kuroshiro from "./modules/kuroshiro";
-import study from "./modules/study";
-import temp from "./modules/temp";
-import filter from "./modules/filter";
-
-
 
 
 
@@ -31,15 +25,11 @@ const store = createStore({
     status,
 
 
-    filter,
-    temp,
     words,
     kanjis,
     kanjis2,
 
-    kuroshiro,
     users,
-    study,
     vocas,
     profileImages,
     vocaImages,

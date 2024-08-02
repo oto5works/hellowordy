@@ -1,3 +1,3 @@
 <template>
-   <polyline points="160 208 80 128 160 48" />
+<path d="M48,128h160 M163.17,172.83L208,128l-44.83-44.83"/>
 </template>

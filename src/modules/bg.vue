@@ -1,9 +1,12 @@
 <template>
   <div class="loading-container">
     <img
-      :src="imageSrc"
-      :class="{ 'loading-image': isLoading, 'loaded-image': !isLoading }"
+      :src="currentSrc"
+      class="loading-image"
+      :class="{ 'loading': isLoading, 'loaded': !isLoading }"
     />
+    <div class="gradient"/>
+
   </div>
 </template>
 
@@ -13,15 +16,17 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      dialog: false,
-      searchTerm: "",
-      imageSrc: "https://hellowordy.web.app/image/bg.gif",
+      loadedSrc: "https://hellowordy.web.app/image/bg.png",
+      loadingSrc: "https://hellowordy.web.app/image/bg.gif",
     };
   },
   computed: {
     ...mapGetters({
       isLoading: "status/isLoading",
     }),
+    currentSrc() {
+      return this.isLoading ? this.loadingSrc : this.loadedSrc;
+    },
   },
   methods: {
     ...mapActions({
@@ -36,24 +41,41 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-    max-width: 480px;
-  background-color: aqua;
+  max-width: 480px;
+  background-color: #000;
   overflow: hidden;
-}
-
-.loaded-image {
-  position: absolute;
-  bottom: -80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 160%;
-  transition: all 0.3s ease;
 }
 
 .loading-image {
   position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transition: all 0.3s ease;
-  width: 80%;
-  bottom: 0;
+  filter: blur(0px);
+}
+/*
+.loaded {
+  bottom: 24%;
+  width: 90%;
+}
+*/
+
+.loaded {
+  bottom: -66%;
+  width: 140%;
+  filter: blur(2px);
+}
+.loading {
+  bottom: 24%;
+  width: 90%;
+}
+  
+.gradient {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 30%;
+  background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
 </style>

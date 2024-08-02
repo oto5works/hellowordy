@@ -10,12 +10,10 @@
 <script>
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
-import headerView from "@/modules/common/headerView.vue";
-import navbarView from "@/modules/common/navbarView.vue";
 import background from "@/modules/bg";
 
 export default {
-  components: { headerView, navbarView, background },
+  components: {  background },
 
   computed: {
     ...mapGetters({

@@ -1,14 +1,20 @@
 <template>
-  <button class="buttonOutline">
+  <button
+    :class="['buttonOutline', { 'icon-top': icon === 'top', 'icon-left': icon === 'left' }]"
+    :style="{ height: height + 'px' }"
+  >
     <slot></slot>
     <div class="outline" />
-    <div class="overlay" />
+    <div class="underlay" />
   </button>
 </template>
 
 <script>
 export default {
-
+  props: {
+    icon: { type: String, default: 'none' }, // top, left, none
+    height: { type: Number, default: 40 }, // Default height is 40px
+  },
 };
 </script>
 
@@ -16,33 +22,32 @@ export default {
 .buttonOutline {
   position: relative;
   display: flex;
-  align-items: center;
-  transition: all 0.4s ease-in-out;
+  flex-direction: row;
+  gap: 16px;
+  padding: 0 24px;
   color: rgb(var(--mio-theme-color-on-background));
-  border-radius: 48px;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 24px;
 }
-.buttonOutline.selected {
-  color: rgb(var(--mio-theme-color-primary));
+.buttonOutline.icon-top {
+  flex-direction: column;
 }
-/*-- overlay --*/
-.buttonOutline .overlay {
-  background-color: currentColor;
-  opacity: 0;
+.buttonOutline.icon-left {
+  flex-direction: row;
 }
-.buttonOutline.selected .overlay {
-  background-color: currentColor;
+.buttonOutline .underlay {
+  background-color: rgba(var(--mio-theme-color-on-background-40), 0.32);
+  backdrop-filter: blur(8px);
 }
-.buttonOutline:hover .overlay {
-  opacity: 0.16;
+.buttonOutline:hover .underlay {
+  background-color: rgba(var(--mio-theme-color-on-background-40), 0.4);
 }
 
-/*-- outline --*/
 .buttonOutline .outline {
-  border-style: solid;
-  border-width: 1px;
-  border-color: inherit;
+  border: 1px solid rgba(var(--mio-theme-color-on-background-70), 0.4);
 }
-
+.buttonOutline:hover .outline {
+  border: 1px solid rgba(var(--mio-theme-color-on-background-70), 0.7);
+}
 </style>

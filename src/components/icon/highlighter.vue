@@ -1,3 +1,0 @@
-<template>
-    <circle cx="128" cy="128" r="96" /><polyline points="104 144 104 96 152 72 152 144" /><path d="M168,215.3V152a8,8,0,0,0-8-8H96a8,8,0,0,0-8,8v63.3" />
-</template>

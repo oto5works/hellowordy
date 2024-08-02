@@ -4,6 +4,7 @@ button {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  text-transform: uppercase;
 }
 
 button span {
@@ -11,7 +12,7 @@ button span {
   line-height: 100%;
 }
 button:hover svg {
-  stroke-width: 26;
+  stroke-width: 22;
 }
 button .overlay,
 button .outline,

@@ -10,9 +10,14 @@ button, input, select, textarea {
 
 
 :root {
-  --mio-theme-color-on-background: 31, 31, 31;
-  --mio-theme-color-background: 255, 255, 255;
-  --mio-theme-color-primary: 58, 106, 225;
+  --mio-theme-color-background: 0, 0, 0;
+  --mio-theme-color-on-background: 255, 255, 255;
+  --mio-theme-color-on-background-70: 178, 178, 178;
+  --mio-theme-color-on-background-40: 102, 102, 102;
+  --mio-theme-color-on-background-20: 60, 60, 60;
+  --mio-theme-color-primary: 248, 244, 216;
+
+
   --mio-theme-color-on-primary: 255, 255, 255;
   --mio-theme-font-family: "Custom Font", sans-serif;
   --mio-theme-font-family-en: "Roboto Mono", monospace;
@@ -24,24 +29,9 @@ button, input, select, textarea {
   --mio-theme-header: 64px;
 }
 
-html[data-design-theme="design1"] {
-  // onInv Preview section padding value
-  --0-4-0: 0;
-  // onInv Preview intro host gap value
-  --8px-8px-24px: 8px;
-  // onInv Preview countdown padding value
-  --4-4-0: 4.2%;
-  // onInv Comment Bubble Writer padding value
-  --0-0-12: 0;
+.color_on-background {
+  color: rgb(var(--mio-theme-color-on-background));
 }
-
-
-.--mio-theme-padding-1 {
-  padding: 0 var(--mio-theme-padding-1);
-}
-.--mio-theme-padding-2 {
-  padding: 0 var(--mio-theme-padding-2);
-}
-.--mio-theme-padding-3 {
-  padding: 0 var(--mio-theme-padding-3);
+.color_on-background-70 {
+  color: rgb(var(--mio-theme-color-on-background-70));
 }

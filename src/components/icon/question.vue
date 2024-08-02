@@ -1,5 +1,3 @@
 <template>
-  <circle cx="128" cy="180" r="12" fill="currentColor" stroke="none" /><path
-    d="M128,144v-8c17.67,0,32-12.54,32-28s-14.33-28-32-28S96,92.54,96,108v4"
-  /><circle cx="128" cy="128" r="96" />
+<path d="M48,128h160 M163.17,172.83L208,128l-44.83-44.83"/>
 </template>

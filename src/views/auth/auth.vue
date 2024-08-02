@@ -3,9 +3,7 @@
     <div class="width_100">
       <div class="display_flex  flex-direction_column align-items_center width_100 pa_16">
         
-        <div class="logo">
-          <rabbit1 />
-        </div>
+       
         <div class="font-size_14 kr font-weight_500 line-height_130">
           읽고, 암기하고, 연결되는
         </div>
@@ -23,12 +21,10 @@
 
 <script>
 import { mapActions } from "vuex";
-import rabbit1 from "@/components/icon/rabbit1.vue";
 import google from "@/components/icon/google.vue";
 
 export default {
   components: {
-    rabbit1,
     google,
   },
   methods: {

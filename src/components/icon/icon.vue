@@ -24,7 +24,7 @@ svg {
   stroke-linecap:round;
   stroke-linejoin:round;
   stroke-miterlimit:10;
-  stroke-width: 20;
+  stroke-width: 18;
   stroke: currentColor;
   }
 </style>

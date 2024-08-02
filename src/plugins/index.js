@@ -2,19 +2,7 @@
 import store from "../store/index";
 import router from "../router";
 // button
-import buttonDefault from "@/components/button/buttonDefault.vue";
-import buttonText from "@/components/button/buttonText.vue";
-import buttonSwitch from "@/components/button/buttonSwitch.vue";
-import buttonSelect from "@/components/button/buttonSelect.vue";
-import buttonIcon from "@/components/button/buttonIcon.vue";
-import buttonToggle from "@/components/button/buttonToggle.vue";
-import buttonChip from "@/components/button/buttonChip.vue";
 import buttonOutline from "@/components/button/buttonOutline.vue";
-import buttonNav from "@/components/button/buttonNav.vue";
-import buttonList from "@/components/button/buttonList.vue";
-import buttonCard from "@/components/button/buttonCard.vue";
-import buttonTap from "@/components/button/buttonTap.vue";
-import buttonAnki from "@/components/button/buttonAnki.vue";
 
 
 // dialog
@@ -40,20 +28,9 @@ export function registerPlugins(app) {
   app
     .use(store)
     .use(router)
-    .component("buttonDefault", buttonDefault)
-    .component("buttonText", buttonText)
-    .component("buttonSwitch", buttonSwitch)
-    .component("buttonSelect", buttonSelect)
-    .component("buttonIcon", buttonIcon)
-    .component("buttonToggle", buttonToggle)
-    .component("buttonChip", buttonChip)
     .component("buttonOutline", buttonOutline)
-    .component("buttonNav", buttonNav)
-    .component("buttonList", buttonList)
-    .component("buttonCard", buttonCard)
-    .component("buttonTap", buttonTap)
-    .component("buttonAnki", buttonAnki)
 
+    
     
     
     .component("textField", textField)
