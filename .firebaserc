@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "ankitoki2",
-    "dev": "ankitoki2"
+    "default": "hello-wordy",
+    "dev": "hello-wordy"
   },
   "targets": {},
   "etags": {}
