@@ -16,8 +16,8 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      loadedSrc: "https://hellowordy.web.app/image/bg.png",
-      loadingSrc: "https://hellowordy.web.app/image/bg.gif",
+      loadedSrc: "https://hello-wordy.web.app/image/bg.png",
+      loadingSrc: "https://hello-wordy.web.app/image/bg.gif",
     };
   },
   computed: {
