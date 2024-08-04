@@ -4,6 +4,9 @@ import router from "../router";
 // button
 import buttonOutline from "@/components/button/buttonOutline.vue"; //new
 import buttonIcon from "@/components/button/buttonIcon.vue"; //new
+import buttonTab from "@/components/button/buttonTab.vue"; //new
+import buttonOption from "@/components/button/buttonOption.vue"; //new
+
 import card from "@/components/card/card.vue"; //new
 
 
@@ -29,8 +32,11 @@ export function registerPlugins(app) {
   app
     .use(store)
     .use(router)
+    .component("buttonTab", buttonTab) //new
     .component("buttonOutline", buttonOutline) //new
     .component("buttonIcon", buttonIcon) //new
+    .component("buttonOption", buttonOption) //new
+
     .component("card", card) //new
 
     
