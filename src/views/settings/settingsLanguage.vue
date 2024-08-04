@@ -15,7 +15,8 @@
             :class="{ selected: language === option.value }"
             @click="updateLanguage(option.value)"
           >
-            {{ option.label }}
+            <img class="icon_24" :src="`https://hello-wordy.web.app/image/${option.value}.png`" />
+            <span>{{ option.label }}</span>
           </buttonOption>
         </div>
       </div>
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -42,13 +43,11 @@ export default {
       languageOptions: "options/language",
     }),
     filteredLanguages() {
-      return this.languageOptions.filter((option) => {
-        const search = this.languageSearch.toLowerCase();
-        return (
-          option.label.toLowerCase().includes(search) ||
-          option.value.toLowerCase().includes(search)
-        );
-      });
+      const search = this.languageSearch.toLowerCase();
+      return this.languageOptions.filter((option) =>
+        option.label.toLowerCase().includes(search) ||
+        option.value.toLowerCase().includes(search)
+      );
     },
   },
   methods: {
@@ -58,3 +57,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.selected {
+  /* Add your selected button styling here */
+}
+</style>

@@ -1,29 +1,48 @@
 <template>
     <button class="buttonOption">
-    <slot></slot>
+      <div class="display_flex align-items_center gap_12">
+        <slot></slot>
+      </div>
+    
+
+    <icon class="check icon_16"><check/></icon>
     <div class="underlay" />
-    <div class="outline" />
   </button>
 </template>
 
+
+
+
 <script>
+import check from "@/components/icon/check.vue";
+
 export default {
+  components: {
+    check,
+  },
   props: {
   },
 };
 </script>
+
+<style>
+
+
+</style>
 
 <style scoped>
 .buttonOption {
   position: relative;
   display: flex;
   flex-direction: row;
-  flex: 1 1 100%;
+  justify-content: space-between;
+  gap: 12px;
   color: rgb(var(--mio-theme-color-on-background-70));
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: 12px;
   min-height: 48px;
+  width: 100%;
   padding: 0 24px;
 }
 .buttonOption .underlay {
@@ -33,15 +52,17 @@ export default {
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.24);
 }
 
-.buttonOption .outline {
-  border-radius: 0px;
-  border-bottom: 2px solid rgba(var(--mio-theme-color-primary), 0);
-}
-.buttonOption.selected {
-  color: rgb(var(--mio-theme-color-primary));
-}
-.buttonOption.selected .outline {
-  border-bottom: 2px solid rgba(var(--mio-theme-color-primary), 1);
-}
 
+.buttonOption.selected {
+  color: rgb(var(--mio-theme-color-on-background));
+}
+.buttonOption.selected .underlay {
+  background-color: rgba(var(--mio-theme-color-on-background-40), 0.8);
+}
+.check {
+  display: none;
+}
+.buttonOption.selected .check {
+  display: block;
+}
 </style>
