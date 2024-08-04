@@ -26,9 +26,9 @@ export default {
     settings: {
       nativeLanguage: "", // 모국어
       targetLanguage: "random language", // 학습하고 싶은 언어
+      goalType: "general", // general, topic, exam
+      goal: "at the time of welcoming", // 예: travel, shopping 등
       difficulty: "beginner", // beginner, intermediate, advanced
-      learningGoalType: "topic", // general, topic, exam
-      learningGoal: "at the time of welcoming", // 예: travel, shopping 등
     },
   },
 
@@ -94,6 +94,7 @@ export default {
 
 
     updateNativeLanguage({ commit }, language) {
+      console.log ('000', language)
       commit("SET_NATIVE_LANGUAGE", language);
     },
   },

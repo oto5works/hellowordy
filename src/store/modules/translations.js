@@ -59,6 +59,7 @@ export default {
           general: "General",
           topic: "Topic",
           exam: "Exam",
+          word: "Word",
           vocabulary: "Vocabulary",
           conversation: "Conversation",
           grammar: "Grammar",

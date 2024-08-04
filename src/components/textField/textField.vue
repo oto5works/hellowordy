@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import "@/components/textField.scss";
+import "@/components/textField/textField.scss";
 
 import question from "@/components/icon/question";
 import warning from "@/components/icon/warning";

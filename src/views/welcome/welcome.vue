@@ -115,6 +115,8 @@ export default {
       signInWithGoogle: "users/signInWithGoogle",
       updateNativeLanguage: "settings/updateNativeLanguage",
       updateWelcomeText: "status/updateWelcomeText",
+      generateTranslations: "translations/generateTranslations",
+
     }),
     async handleSignInWithGoogle() {
       try {
@@ -129,6 +131,7 @@ export default {
   created() {
     this.updateNativeLanguage(this.userLanguageName);
     this.updateWelcomeText(true);
+    this.generateTranslations()
   },
   beforeRouteLeave(to, from, next) {
     this.updateWelcomeText(false);

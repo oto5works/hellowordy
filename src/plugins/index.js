@@ -6,8 +6,10 @@ import buttonOutline from "@/components/button/buttonOutline.vue"; //new
 import buttonIcon from "@/components/button/buttonIcon.vue"; //new
 import buttonTab from "@/components/button/buttonTab.vue"; //new
 import buttonOption from "@/components/button/buttonOption.vue"; //new
+import buttonChip from "@/components/button/buttonChip.vue"; //new
 
 import card from "@/components/card/card.vue"; //new
+import textField from "@/components/textField/textField.vue"; //new
 
 
 // dialog
@@ -17,7 +19,6 @@ import bottomDialog from "@/components/dialog/bottomDialog.vue";
 
 // icon
 
-import textField from "@/components/textField.vue";
 import icon from "@/components/icon/icon.vue";
 import x from "@/components/icon/x";
 
@@ -36,13 +37,15 @@ export function registerPlugins(app) {
     .component("buttonOutline", buttonOutline) //new
     .component("buttonIcon", buttonIcon) //new
     .component("buttonOption", buttonOption) //new
+    .component("buttonChip", buttonChip) //new
 
+    
     .component("card", card) //new
+    .component("textField", textField) //new
 
     
     
     
-    .component("textField", textField)
     .component("icon", icon)
     .component("x", x)
 

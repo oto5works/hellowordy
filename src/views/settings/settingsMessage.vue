@@ -1,5 +1,5 @@
 <template>
-  <div class="settingsMessage">
+  <div class="currentMessage font-size_32 font-weight_700 pa_24">
     {{ currentMessage }}
   </div>
 </template>
@@ -29,4 +29,7 @@ export default {
 </script>
 
 <style scoped>
+.currentMessage {
+  
+}
 </style>

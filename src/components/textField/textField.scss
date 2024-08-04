@@ -13,7 +13,7 @@ button, input, select, textarea {
   --form-field-border-width: 1px;
   --form-field-primary-color: rgb(var(--mio-theme-color-primary)) ;
   --form-field-font-color: rgb(var(--mio-theme-color-on-background)) ;
-  --form-field-border-radius: 24px;
+  --form-field-border-radius: 12px;
 }
 .form-field.focus {
   --form-field-border-width: 1.5px;
@@ -42,6 +42,7 @@ button, input, select, textarea {
 .textField-flex {
   position: relative;
   display: flex;
+  align-items: center;
   height: 100%;
   width: 100%;
 }

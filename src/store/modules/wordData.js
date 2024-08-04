@@ -49,8 +49,8 @@ export default {
         reading = "Pinyin";
       }
 
-      let purpose = `Generate words related to ${settings.learningGoal} in ${settings.targetLanguage}.`;
-      if (settings.learningGoalType === "general") {
+      let purpose = `Generate words related to ${settings.goal} in ${settings.targetLanguage}.`;
+      if (settings.goalType === "general") {
         // 품사 목록 (확률 포함)
         const partsOfSpeech = [
           { part: "noun", probability: 0.3 }, // 명사 30%
@@ -84,8 +84,8 @@ export default {
   Selected difficulty: ${settings.difficulty}.
   Generate a word in ${settings.targetLanguage} that is a ${selectedPartOfSpeech}.
   `;
-      } else if (settings.learningGoalType === "topic") {
-        purpose = `Give me one ${settings.targetLanguage} phrase that is useful for ${settings.learningGoal}.`;
+      } else if (settings.goalType === "topic") {
+        purpose = `Give me one ${settings.targetLanguage} phrase that is useful for ${settings.goal}.`;
       }
 
       // 프롬프트 수정

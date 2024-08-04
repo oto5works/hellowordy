@@ -5,12 +5,12 @@ export default {
     options: {
       language: [
         { label: "English", value: "english" },
+        { label: "한국어", value: "korean" },
         { label: "Español", value: "spanish" },
         { label: "中文", value: "chinese" },
         { label: "Français", value: "french" },
         { label: "Deutsch", value: "german" },
         { label: "日本語", value: "japanese" },
-        { label: "한국어", value: "korean" },
         { label: "Italiano", value: "italian" },
         { label: "Português", value: "portuguese" },
         { label: "Русский", value: "russian" },
@@ -54,13 +54,20 @@ export default {
         { label: "HSK", value: "hsk" },
         { label: "TOPIK", value: "topik" },
         { label: "KLAT", value: "klat" },
-        { label: "DELF DALF", value: "delf, dalf" },
-        { label: "TestDaf", value: "testdaf" },
+        { label: "DELF / DALF", value: "delf dalf" },
+        { label: "Test Daf", value: "test daf" },
+        { label: "Goethe-Zertifikat", value: "goethe-zertifikat" },
+        { label: "DELE", value: "dele" },
+        { label: "CILS", value: "cils" },
+        { label: "CELI", value: "celi" },
+        { label: "CELPE-Bras", value: "celpe-bras" },
+        { label: "ALPT", value: "alpt" },
       ],
     },
   },
   getters: {
     language: (state) => state.options.language,
+    exam: (state) => state.options.exam,
 
   },
 };

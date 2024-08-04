@@ -1,6 +1,11 @@
 <template>
-  <div class="learning-data">
+  <div class="routerView">
+    <div class="font-size_14 pa_24">
+      STEP {{ currentStep }}
+    </div>
+    <div class="sp_8"/>
     <settingsMessage :currentStep="currentStep" />
+    <div class="spacing-1"/>
     <!-- Step Navigation -->
     <settingsLanguage
       v-if="currentStep === 1"
@@ -10,7 +15,7 @@
     <settingsLanguage
       v-if="currentStep === 2"
       :language="form.targetLanguage"
-      @update:language="form.nativeLanguage = $event"
+      @update:language="form.targetLanguage = $event"
     />
     <settingsGoal
       v-if="currentStep === 3"
@@ -19,6 +24,23 @@
       :goal="form.goal"
       @update:goal="form.goal = $event"
     />
+
+
+    <div class="button-wrap">
+      <buttonOutline
+        class="prevStep"
+        @click="prevStep"
+      >
+        <span>{{settingsText.button.previous}}</span>
+      </buttonOutline>
+
+    <buttonOutline
+        class="nextStep"
+        @click="nextStep"
+      >
+        <span>{{settingsText.button.next}}</span>
+      </buttonOutline>
+    </div>
   </div>
 </template>
 
@@ -40,7 +62,7 @@ export default {
       form: {
         nativeLanguage: "",
         targetLanguage: "",
-        goalType: "22",
+        goalType: "",
         goal: "",
         difficulty: "",
       },
@@ -48,7 +70,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      settings: "translations/settings",
+      settingsText: "translations/settings",
+      settings: "settings/settings",
     }),
   },
   methods: {
@@ -65,6 +88,10 @@ export default {
         this.currentStep--;
       }
     },
+    updateFormWithSettings() {
+      // Assuming `savedSettings` matches the structure of `form`
+      this.form = { ...this.settings };
+    },
     async saveSettings() {
       try {
         // Save the settings via Vuex action
@@ -77,8 +104,34 @@ export default {
     },
   },
   async created() {
+    await this.updateFormWithSettings();
     // Load settings if necessary
     // await this.getSettings();
   },
 };
 </script>
+
+<style scoped>
+.spacing-1 {
+  height: 2vh;
+}
+
+.button-wrap {
+  position: absolute;
+  display: grid;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+.prevStep {
+  grid-column: span 2;
+}
+.nextStep {
+  grid-column: span 4;
+}
+
+</style>

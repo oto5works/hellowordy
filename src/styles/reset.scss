@@ -9,6 +9,11 @@ body {
   height: 100%;
   word-break: keep-all;
 }
+body{
+  -ms-overflow-style: none;
+  }
+  
+
 html,
 body,
 div,
