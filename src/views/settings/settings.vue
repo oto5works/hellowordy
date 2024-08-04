@@ -84,11 +84,16 @@ export default {
     ...mapGetters({
       settingsText: "translations/settings",
       settings: "settings/settings",
+      isAuthenticated: "users/isAuthenticated",
     }),
   },
   methods: {
     ...mapActions({
       updateSettings: "settings/updateSettings",
+      updateSettingsWithoutAuth: "settings/updateSettingsWithoutAuth",
+      generateTranslations: "translations/generateTranslations",
+      startLoading: "status/startLoading",
+
     }),
     nextStep() {
       if (this.currentStep < 4) {
@@ -106,13 +111,21 @@ export default {
     },
     async saveSettings() {
       try {
-        // Save the settings via Vuex action
-        await this.updateSettings(this.form);
-
+        if (this.isAuthenticated) {
+          // Save the settings via Vuex action with authentication
+          this.startLoading()
+          await this.updateSettings(this.form);
+          await this.generateTranslations();
+        } else {
+          // Save the settings via Vuex action without authentication
+          this.startLoading()
+          await this.updateSettingsWithoutAuth(this.form);
+          await this.generateTranslations();
+        }
         this.$router.push({ name: "learning" });
       } catch (error) {
-        console.error();
-        alert();
+        console.error("Settings save failed:", error);
+        alert("Failed to save settings");
       }
     },
   },

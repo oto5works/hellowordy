@@ -96,8 +96,20 @@ export default {
         console.error("학습 데이터 저장/업데이트 실패:", error);
       }
     },
-    
+    async updateSettingsWithoutAuth({ commit }, payload) {
+      try {
+        const data = {
+          settings: payload
+        };
 
+
+        // 상태 업데이트
+        await commit('SET_LEARNING_DATA', data);
+      } catch (error) {
+        console.error("학습 데이터 저장/업데이트 실패:", error);
+      }
+    },
+   
 
     updateNativeLanguage({ commit }, language) {
       console.log ('000', language)

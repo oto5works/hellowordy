@@ -44,7 +44,7 @@ export default {
           retry: "Retry",
         },
         message: {
-          welcome: "Master multiple languages with AI !",
+          welcome: "Achieve mastery in 20 languages with Gemini AI's personalized learning!",
           error: "An error occurred. Please try again.",
           empty: "No content available",
         },
@@ -98,7 +98,8 @@ export default {
     },
   },
   actions: {
-    async generateTranslations({ commit, rootGetters, state }) {
+    async generateTranslations({ commit, rootGetters, state, dispatch }) {
+
       const settings = rootGetters["settings/settings"];
       const translations = state;
 
@@ -108,7 +109,7 @@ console.log ('languageCode: ', languageCode)
 
       // Google Generative AI 초기화
       const genAI = new GoogleGenerativeAI("AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM"); // API 키
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", generationConfig: { responseMimeType: "application/json" }  });
 
       // 번역할 translations 데이터 생성
       const textToTranslate = JSON.stringify(translations);

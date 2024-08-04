@@ -14,7 +14,7 @@
           icon="top"
           class="generate"
           :class="{ disabled: isLoading }"
-          @click="generateWord"
+          @click="goToSettings"
         >
           <svg
             class="loading"
@@ -125,6 +125,10 @@ export default {
       } catch (error) {
         //this.error = error.message; // 로그인 실패시 에러 메시지 저장
       }
+    },
+
+    goToSettings() {
+      this.$router.push({ name: "settings" });
     },
   },
   created() {

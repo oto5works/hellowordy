@@ -41,7 +41,7 @@ export default {
       const genAI = new GoogleGenerativeAI(
         "AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM"
       ); // API 키
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", generationConfig: { responseMimeType: "application/json" }  });
 
       const prompt = `
         Please provide an AI prompt that can be used for language learning with the word '${word.word}'. 

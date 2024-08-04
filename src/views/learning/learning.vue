@@ -94,7 +94,7 @@ export default {
     },
   },
   mounted() {
-    this.generateWord();
+   this.generateWord();
   },
 };
 </script>
