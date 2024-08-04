@@ -1,6 +1,5 @@
 <template>
   <div class="routerView">
-{{ translations }}
   </div>
 </template>
 
@@ -14,8 +13,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      translations: "translations/translations",
-      i18n: "i18n/i18n",
+  
 
     }),
   },

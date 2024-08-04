@@ -66,8 +66,8 @@ export default {
   filter: blur(2px);
 }
 .loading {
-  bottom: 24%;
-  width: 90%;
+  bottom: 24vh;
+  height: 44vh;
 }
   
 .gradient {

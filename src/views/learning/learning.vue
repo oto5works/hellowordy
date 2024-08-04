@@ -2,10 +2,10 @@
   <div class="routerView">
     <wordData />
 
-   <promptFlicking />
-   
-<div class="button-wrap">
-    <buttonOutline
+    <promptFlicking />
+
+    <div class="button-wrap">
+      <buttonOutline
         icon="left"
         class="generate"
         :class="{ disabled: isLoading }" 
@@ -45,7 +45,7 @@
         </svg>
         <icon v-else class="icon_24"><generate /></icon>
         <span v-if="isLoading">{{common.button.generating}}</span>
-          <span v-else>{{common.button.generate}}</span>
+        <span v-else>{{common.button.generate}}</span>
       </buttonOutline>
     </div>
   </div>
@@ -57,7 +57,6 @@ import wordData from "@/modules/wordData.vue";
 import google from "@/components/icon/google.vue";
 import generate from "@/components/icon/generate.vue";
 import promptFlicking from "@/views/prompt/promptFlicking.vue";
-
 
 export default {
   components: {
@@ -76,7 +75,6 @@ export default {
       isLoading: "status/isLoading",
       settings: "settings/settings",
       common: "translations/common",
-
     }),
   },
   methods: {
@@ -88,17 +86,18 @@ export default {
     }),
     async handleSignInWithGoogle() {
       try {
-        await this.signInWithGoogle(); // 수정된 부분: 함수 인자가 객체로 전달되도록 괄호 사용
-        //this.$router.push({ name: "my" }); // 로그인 성공 후 홈으로 리다이렉트
+        await this.signInWithGoogle();
         alert("로그인 성공!");
       } catch (error) {
-        //this.error = error.message; // 로그인 실패시 에러 메시지 저장
+        // Handle error if necessary
       }
     },
   },
+  mounted() {
+    this.generateWord();
+  },
 };
 </script>
-
 
 <style scoped>
 .button-wrap {

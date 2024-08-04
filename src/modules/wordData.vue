@@ -32,9 +32,9 @@ export default {
     speaker,
   },
   created() {
-    if (this.$route.name !== 'welcome') {
-      this.generateWord();
-    }
+    //if (this.$route.name !== 'welcome') {
+      //this.generateWord();
+    //}
   },
   data() {
     return {

@@ -1,6 +1,6 @@
 <template>
-  <div class="learning-data">
-    <div class="display_flex pa_16">
+  <div class="settingsGoal">
+    <div class="display_flex">
       <buttonTab
         :class="{ selected: goalType === 'general' }"
         @click="updateGoalType('general')"
@@ -98,7 +98,7 @@
         @click="updateGoal(option.value)"
       >
         <img
-          class="icon_24"
+          class="icon_32"
           :src="`https://hello-wordy.web.app/image/${option.value}.png`"
         />
         <span>{{ option.label }}</span>
@@ -138,3 +138,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.settingsGoal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 24px;
+
+}
+.button-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+</style>

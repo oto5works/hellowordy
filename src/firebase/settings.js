@@ -73,24 +73,30 @@ export default {
     },
 
 
-    async updateSettings({ commit, rootGetters, dispatch }) {
+    async updateSettings({ commit, rootGetters, dispatch }, payload) {
       try {
         await dispatch("users/ensureAuthReady", {}, { root: true });
         const userID = rootGetters["users/getUserID"];
         if (!userID) {
           throw new Error("사용자 인증 정보가 누락되었습니다.");
         }
-        const data = this.state.settings;
+        // Nesting the payload under 'settings' key
+        const data = {
+          settings: payload
+        };
+    
         // Firestore에 학습 데이터 저장 또는 업데이트
         const docRef = doc(db, "settings", userID);
         await setDoc(docRef, data, { merge: true });
-
+    
         // 상태 업데이트
-        commit('SET_LEARNING_DATA', data);
+        await commit('SET_LEARNING_DATA', data.settings);
+        //router.push({ name: 'learning' });
       } catch (error) {
         console.error("학습 데이터 저장/업데이트 실패:", error);
       }
     },
+    
 
 
     updateNativeLanguage({ commit }, language) {

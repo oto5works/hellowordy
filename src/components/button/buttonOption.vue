@@ -54,6 +54,7 @@ export default {
 
 
 .buttonOption.selected {
+  font-weight: 500;
   color: rgb(var(--mio-theme-color-on-background));
 }
 .buttonOption.selected .underlay {

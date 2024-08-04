@@ -1,11 +1,9 @@
 <template>
   <div class="routerView">
-    <div class="font-size_14 pa_24">
-      STEP {{ currentStep }}
-    </div>
-    <div class="sp_8"/>
+    <div class="font-size_14 pa_24">STEP {{ currentStep }}</div>
+    <div class="sp_8" />
     <settingsMessage :currentStep="currentStep" />
-    <div class="spacing-1"/>
+    <div class="spacing-1" />
     <!-- Step Navigation -->
     <settingsLanguage
       v-if="currentStep === 1"
@@ -25,22 +23,36 @@
       @update:goal="form.goal = $event"
     />
 
-
-    <div class="button-wrap">
+    <div class="button-wrap" v-if="currentStep === 1">
       <buttonOutline
-        class="prevStep"
-        @click="prevStep"
-      >
-        <span>{{settingsText.button.previous}}</span>
-      </buttonOutline>
-
-    <buttonOutline
-        class="nextStep"
+        class="nextStep1"
         @click="nextStep"
+        :class="{ disabled: form.nativeLanguage === '' }"
       >
-        <span>{{settingsText.button.next}}</span>
+        <span>{{ settingsText.button.next }}</span>
       </buttonOutline>
     </div>
+
+    <div class="button-wrap" v-if="currentStep === 2">
+      <buttonOutline class="prevStep" @click="prevStep">
+        <span>{{ settingsText.button.previous }}</span>
+      </buttonOutline>
+
+      <buttonOutline class="nextStep" @click="nextStep" :class="{ disabled: form.targetLanguage === '' }">
+        <span>{{ settingsText.button.next }}</span>
+      </buttonOutline>
+    </div>
+
+    <div class="button-wrap" v-if="currentStep === 3">
+      <buttonOutline class="prevStep" @click="prevStep">
+        <span>{{ settingsText.button.previous }}</span>
+      </buttonOutline>
+
+      <buttonOutline class="nextStep" @click="saveSettings" :class="{ disabled: form.goal === '' }">
+        <span>{{ settingsText.button.save }}</span>
+      </buttonOutline>
+    </div>
+
   </div>
 </template>
 
@@ -95,11 +107,12 @@ export default {
     async saveSettings() {
       try {
         // Save the settings via Vuex action
-        await this.updateSettings(this.settings);
-        alert(this.translations.settings.message.saved);
+        await this.updateSettings(this.form);
+
+        this.$router.push({ name: "learning" });
       } catch (error) {
-        console.error(this.translations.settings.message.saveError, error);
-        alert(this.translations.settings.message.error);
+        console.error();
+        alert();
       }
     },
   },
@@ -133,5 +146,7 @@ export default {
 .nextStep {
   grid-column: span 4;
 }
-
+.nextStep1 {
+  grid-column: span 6;
+}
 </style>

@@ -1,11 +1,12 @@
 <template>
     <button class="buttonChip">
-      <div class="display_flex align-items_center gap_12">
+      <icon class="check icon_14"><check/></icon>
+
+      <div class="display_flex align-items_center gap_4">
         <slot></slot>
       </div>
     
 
-    <icon class="check icon_16"><check/></icon>
     <div class="underlay" />
   </button>
 </template>
@@ -34,19 +35,18 @@ export default {
 .buttonChip {
   position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 4px;
   color: rgb(var(--mio-theme-color-on-background-70));
   font-size: 13px;
   font-weight: 400;
   border-radius: 12px;
-  min-height: 48px;
-  width: 100%;
-  padding: 0 24px;
+  padding: 0 12px;
+  height: 32px;
+  text-transform: unset;
+
 }
 .buttonChip .underlay {
-  background-color: rgba(var(--mio-theme-color-on-background-20), 0);
+  background-color: rgba(var(--mio-theme-color-on-background-20), 0.24);
 }
 .buttonChip:hover .underlay {
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.24);
@@ -54,6 +54,7 @@ export default {
 
 
 .buttonChip.selected {
+  font-weight: 500;
   color: rgb(var(--mio-theme-color-on-background));
 }
 .buttonChip.selected .underlay {

@@ -59,6 +59,7 @@ export default {
             //dispatch("favorites/getFavoritesByUserID", {}, { root: true }),
             //dispatch("checkedWords/getCheckedWordsByUserID", {}, { root: true }),
           ]);
+          router.push({ name: 'learning' });
         } else {
           commit("setUser", null);
           console.log("회원 아님");
