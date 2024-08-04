@@ -1,4 +1,3 @@
-/*-- users.js --*/
 import { auth, db } from "@/firebase/init";
 import {
   createUserWithEmailAndPassword,
@@ -6,10 +5,9 @@ import {
   signOut,
   deleteUser as firebaseDeleteUser,
   updateProfile,
-  GoogleAuthProvider, // 이 부분을 추가하세요.
+  GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-
 import {
   collection,
   query,
@@ -20,7 +18,8 @@ import {
   doc,
   getDoc,
   setDoc,
-} from "firebase/firestore"; // 이 부분이 추가되었습니다.
+} from "firebase/firestore";
+import router from "@/router"; // Vue Router 인스턴스 임포트
 
 // firebase.js Vuex module
 export default {
@@ -46,22 +45,26 @@ export default {
   actions: {
     // 완료
     // 초기 로딩시 작동됨.
-    async initAuthState({ dispatch, commit }) {
+    async initAuthState({ dispatch, commit, rootState }) {
       console.log("initAuthState");
       auth.onAuthStateChanged(async (user) => {
         if (user) {
+          console.log("회원");
+
           console.log("user: ", user);
           commit("setUser", user);
 
-
           await Promise.all([
-            dispatch("settings/getSettings",{},{ root: true }),
+            dispatch("settings/getSettings", {}, { root: true }),
             //dispatch("favorites/getFavoritesByUserID", {}, { root: true }),
-            //dispatch("checkedWords/getCheckedWordsByUserID",{},{ root: true }),
+            //dispatch("checkedWords/getCheckedWordsByUserID", {}, { root: true }),
           ]);
-
         } else {
           commit("setUser", null);
+          console.log("회원 아님");
+          router.push({ name: 'welcome' });
+          // Redirect to 'welcome' route
+         
         }
       });
     },
@@ -89,8 +92,6 @@ export default {
       }
     },
 
-
-
     async signOut({ commit }) {
       try {
         await signOut(auth);
@@ -112,11 +113,6 @@ export default {
         }
       });
     },
-
-
-
-
-
   },
 
   // Getters
