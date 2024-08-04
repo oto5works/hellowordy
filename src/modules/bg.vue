@@ -1,15 +1,15 @@
 <template>
+    <teleport to="#app">
   <div class="loading-container">
     <img
       :src="currentSrc"
       class="loading-image"
-      :class="{ 'loading': isLoading, 'loaded': !isLoading }"
+      :class="{ 'loading': isLoading || welcomeText, 'loaded': !isLoading && !welcomeText }"
     />
     <div class="gradient"/>
-
   </div>
+  </teleport>
 </template>
-
 <script>
 import { mapActions, mapGetters } from "vuex";
 
@@ -23,9 +23,10 @@ export default {
   computed: {
     ...mapGetters({
       isLoading: "status/isLoading",
+      welcomeText: "status/welcomeText",
     }),
     currentSrc() {
-      return this.isLoading ? this.loadingSrc : this.loadedSrc;
+      return (this.isLoading || this.welcomeText) ? this.loadingSrc : this.loadedSrc;
     },
   },
   methods: {
@@ -42,7 +43,6 @@ export default {
   width: 100%;
   height: 100%;
   max-width: 480px;
-  background-color: #000;
   overflow: hidden;
 }
 
@@ -61,8 +61,8 @@ export default {
 */
 
 .loaded {
-  bottom: -66%;
-  width: 140%;
+  bottom: -72vh;
+  height: 76vh;
   filter: blur(2px);
 }
 .loading {

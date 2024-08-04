@@ -7,7 +7,7 @@
   .flicking-viewport {
     position: relative;
     overflow: hidden;
-    padding: 0 var(--mio-theme-padding-3);
+    padding: 0 16px;
   }
   
   .flicking-viewport.vertical {
@@ -43,6 +43,8 @@
     flex-direction: row;
     z-index: 1;
     will-change: transform;
+    gap: 8px;
+
   }
   
   .flicking-camera > * {
@@ -50,9 +52,7 @@
     flex-shrink: 0;
   }
   
-  .flicking-item .flicking-camera {
-    padding: 8px 16px;
-  }
+ 
   
   /*-- PAGINATION --*/
   .flicking-item .flicking-viewport.main.full .flicking-pagination {

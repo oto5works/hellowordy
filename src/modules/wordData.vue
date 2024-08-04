@@ -5,16 +5,16 @@
     :class="{ 'fade-in': !isLoading, 'fade-out': isLoading }"
   >
     <div class="font-size_14 color_on-background">{{ word.partOfSpeech }}</div>
-    <div class="sp_24" />
+    <div class="spacing-1" />
     <div class="font-size_52 font-weight_700 color_on-background">
       {{ word.word }}
     </div>
-    <div class="sp_8" />
+    <div class="spacing-2" />
     <div class="display_flex gap_4 align-items_center font-size_14 color_on-background-70">
       {{ word.reading }}
       <icon class="icon_16"><speaker /></icon>
     </div>
-    <div class="sp_56" />
+    <div class="spacing-3" />
     <div class="font-size_18 font-weight_500 color_on-background">
       {{ word.meaning }}
     </div>
@@ -57,13 +57,13 @@ export default {
 </script>
 <style scoped>
 .wordData {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 64px 16px;
-  height: 54%;
+  padding: 0 16px;
+  width: 100%;
+  height: 50vh;
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.5s ease;
@@ -101,5 +101,16 @@ export default {
     opacity: 0;
     transform: translateY(0);
   }
+}
+
+
+.spacing-1 {
+  height: 5.2%;
+}
+.spacing-2 {
+  height: 1.7%;
+}
+.spacing-3 {
+  height: 10%;
 }
 </style>

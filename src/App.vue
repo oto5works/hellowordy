@@ -1,9 +1,9 @@
 <!-- App.vue -->
 <template>
   <div class="app">
-    <background />
+    <headerView />
     <RouterView />
-
+    <background />
   </div>
 </template>
 
@@ -11,9 +11,10 @@
 import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import background from "@/modules/bg";
+import headerView from "@/views/headerView.vue";
 
 export default {
-  components: {  background },
+  components: {  background, headerView },
 
   computed: {
     ...mapGetters({
@@ -54,5 +55,11 @@ body {
   max-width: 480px;
   height: 100%;
   display: block; /* 필요한 경우에만 추가 */
+}
+.routerView {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding-top: 64px;
 }
 </style>

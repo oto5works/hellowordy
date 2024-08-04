@@ -4,11 +4,16 @@ export default {
     // State
     state: {
         isLoading: false,
+        welcomeText: false,
     },
     // Mutations
     mutations: {
       setLoading(state, isLoading) {
         state.isLoading = isLoading;
+        state.welcomeText = false;
+      },
+      setWelcomeText(state, welcomeText) {
+        state.welcomeText = welcomeText;
       },
     },
     // Actions
@@ -21,11 +26,17 @@ export default {
       stopLoading({ commit }) {
         commit('setLoading', false);
       },
+      updateWelcomeText({ commit }, welcomeText) {
+        commit('setWelcomeText', welcomeText);
+      },
     },
     // Getters
     getters: {
       isLoading(state) {
         return state.isLoading;
+      },
+      welcomeText(state) {
+        return state.welcomeText;
       },
     },
   };

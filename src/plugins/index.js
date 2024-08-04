@@ -2,7 +2,9 @@
 import store from "../store/index";
 import router from "../router";
 // button
-import buttonOutline from "@/components/button/buttonOutline.vue";
+import buttonOutline from "@/components/button/buttonOutline.vue"; //new
+import buttonIcon from "@/components/button/buttonIcon.vue"; //new
+import card from "@/components/card/card.vue"; //new
 
 
 // dialog
@@ -16,7 +18,6 @@ import textField from "@/components/textField.vue";
 import icon from "@/components/icon/icon.vue";
 import x from "@/components/icon/x";
 
-import card from "@/components/card/card";
 
 import "@/styles/common.scss";
 import "@/components/button/button.scss";
@@ -28,7 +29,9 @@ export function registerPlugins(app) {
   app
     .use(store)
     .use(router)
-    .component("buttonOutline", buttonOutline)
+    .component("buttonOutline", buttonOutline) //new
+    .component("buttonIcon", buttonIcon) //new
+    .component("card", card) //new
 
     
     
@@ -36,7 +39,6 @@ export function registerPlugins(app) {
     .component("textField", textField)
     .component("icon", icon)
     .component("x", x)
-    .component("card", card)
 
     
     .component("modalDialog", modalDialog)

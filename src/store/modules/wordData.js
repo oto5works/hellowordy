@@ -10,17 +10,6 @@ export default {
     reading: null,
     meaning: null,
     generatedWords: [], // 생성된 단어 목록
-    nativeLanguage: "chinese", // 학습하고 싶은 언어
-    targetLanguage: "korean", // 사용자의 모국어
-
-    difficulty: "beginner", // beginner, intermediate, advanced
-
-    learningGoalType: "topic", // general, topic, exam
-    // general
-    // Learning , Conversation
-    // topic
-    // travel, shopping, food, culture, business, IT, medical, law, environment, history
-    learningGoal: "travel", //
   },
   // Mutations
   mutations: {
@@ -34,35 +23,34 @@ export default {
     ADD_GENERATED_WORD(state, word) {
       state.generatedWords.push(word);
     },
-    SET_SOURCE_LANGUAGE(state, language) {
-      state.nativeLanguage = language;
-    },
-    SET_TARGET_LANGUAGE(state, language) {
-      state.targetLanguage = language;
-    },
   },
   // Actions
   actions: {
-    async generateWord({ commit, state, dispatch }) {
+    async generateWord({ commit, state, dispatch, rootGetters }) {
+      dispatch("prompts/clearPrompts", {}, { root: true });
+
+      const settings = rootGetters["settings/settings"];
       dispatch("status/startLoading", {}, { root: true });
 
       console.log("generate START!");
+      console.log("settings:", settings.nativeLanguage);
+
       const genAI = new GoogleGenerativeAI(
         "AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM"
       ); // API 키
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       let reading = "English phonetic symbols"; // 기본값: 영어 발음 기호
-      if (state.nativeLanguage === "japanese") {
+      if (settings.targetLanguage === "japanese") {
         reading = "hiragana";
-      } else if (state.nativeLanguage === "korean") {
+      } else if (settings.targetLanguage === "korean") {
         reading = "Revised Romanization of Korean";
-      } else if (state.nativeLanguage === "chinese") {
+      } else if (settings.targetLanguage === "chinese") {
         reading = "Pinyin";
       }
 
-      let purpose = `Generate words related to ${state.learningGoal} in ${state.nativeLanguage}.`;
-      if (state.learningGoalType === "general") {
+      let purpose = `Generate words related to ${settings.learningGoal} in ${settings.targetLanguage}.`;
+      if (settings.learningGoalType === "general") {
         // 품사 목록 (확률 포함)
         const partsOfSpeech = [
           { part: "noun", probability: 0.3 }, // 명사 30%
@@ -93,11 +81,11 @@ export default {
         }
         purpose = `
   Difficulty levels are defined as: beginner, intermediate, advanced.
-  Selected difficulty: ${state.difficulty}.
-  Generate a word in ${state.nativeLanguage} that is a ${selectedPartOfSpeech}.
+  Selected difficulty: ${settings.difficulty}.
+  Generate a word in ${settings.targetLanguage} that is a ${selectedPartOfSpeech}.
   `;
-      } else if (state.learningGoalType === "topic") {
-        purpose = `Give me one ${state.nativeLanguage} phrase that is useful for ${state.learningGoal}.`;
+      } else if (settings.learningGoalType === "topic") {
+        purpose = `Give me one ${settings.targetLanguage} phrase that is useful for ${settings.learningGoal}.`;
       }
 
       // 프롬프트 수정
@@ -105,9 +93,10 @@ export default {
       const prompt = `
 
 ${purpose}
-The 'meaning' should be in ${state.targetLanguage}.
+The 'word' should be in ${settings.targetLanguage}.
+The 'meaning' should be in ${settings.nativeLanguage}.
 The 'reading' should be in ${reading} phonetic symbols.
-The 'part of speech' should be written in ${state.targetLanguage}.
+The 'part of speech' should be written in ${settings.nativeLanguage}.
 
 Do not include words that have already been generated.
 Previously generated words: ${state.generatedWords.join(", ")}. 
@@ -116,6 +105,8 @@ Only output the 'object', no other words.`;
 
       let retryCount = 0;
       const maxRetries = 3; // 최대 재시도 횟수
+
+      console.log ('명령어: ', prompt)
       while (retryCount < maxRetries) {
         try {
           const result = await model.generateContent(prompt);
@@ -141,6 +132,7 @@ Only output the 'object', no other words.`;
               commit("SET_WORD_DATA", wordData);
               commit("ADD_GENERATED_WORD", wordData.word); // 생성된 단어 목록에 추가
               dispatch("status/stopLoading", {}, { root: true });
+              dispatch("prompts/generatePrompts", {}, { root: true });
 
               return; // 성공 시 반복 종료
             } else {
@@ -166,14 +158,6 @@ Only output the 'object', no other words.`;
 
       // 최대 재시도 횟수 초과 시 에러 처리
       console.error("최대 재시도 횟수 초과");
-    },
-    // 출처 언어 변경 액션
-    changenativeLanguage({ commit }, language) {
-      commit("SET_SOURCE_LANGUAGE", language);
-    },
-    // 목표 언어 변경 액션
-    changeTargetLanguage({ commit }, language) {
-      commit("SET_TARGET_LANGUAGE", language);
     },
   },
   // Getters

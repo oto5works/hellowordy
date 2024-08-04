@@ -8,13 +8,13 @@ import { getStorage } from "firebase/storage"; // Storage를 사용하기 위해
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyC0961QpZqkQlchSbeAZ0dvywQh1my2hbE",
-    authDomain: "ankitoki.firebaseapp.com",
-    projectId: "ankitoki",
-    storageBucket: "ankitoki.appspot.com",
-    messagingSenderId: "873952892092",
-    appId: "1:873952892092:web:e7c46b6b2846b05e126cb9",
-    measurementId: "G-E19JLRGDNQ"
+    apiKey: "AIzaSyBL2ocTE6GkRA104qZBICH4WpPrlRzOP8c",
+    authDomain: "hello-wordy.firebaseapp.com",
+    projectId: "hello-wordy",
+    storageBucket: "hello-wordy.appspot.com",
+    messagingSenderId: "192483386403",
+    appId: "1:192483386403:web:349d76e2719009ca71bd96",
+    measurementId: "G-V0CKTG6HCM"
 };
 
 // Initialize Firebase
