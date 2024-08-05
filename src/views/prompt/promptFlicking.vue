@@ -133,25 +133,4 @@ export default {
   animation-delay: 0.9s;
 }
 
-/* 로딩 상태 스타일 */
-.loading .title,
-.loading .prompt {
-  background: linear-gradient(90deg, #3c3c3c 25%, #646464 50%, #3c3c3c 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-  border-radius: 12px;
-  color: transparent;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 100% 0%;
-  }
-}
-
-/* 선택된 카드 스타일 */
-
 </style>

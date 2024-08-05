@@ -1,13 +1,14 @@
 <template>
   <div class="routerView">
 
-    <promptFlicking />
+    <div class="response-wrap">
+      <promptInput />
+      <promptResponse />
+    </div>
 
-   
-<promptResponse />
 
 <div class="bottom-wrap">
-
+  <promptFlicking />
 </div>
   </div>
 </template>
@@ -19,6 +20,7 @@ import google from "@/components/icon/google.vue";
 import generate from "@/components/icon/generate.vue";
 import promptFlicking from "@/views/prompt/promptFlicking.vue";
 import promptResponse from "@/views/prompt/promptResponse.vue";
+import promptInput from "@/views/prompt/promptInput.vue";
 
 
 export default {
@@ -27,7 +29,8 @@ export default {
     google,
     generate,
     promptFlicking,
-    promptResponse
+    promptResponse,
+    promptInput
   },
   data() {
     return {
@@ -62,16 +65,8 @@ export default {
 
 
 <style scoped>
-.button-wrap {
-  position: absolute;
-  display: grid;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 10%;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-  padding: 16px;
+.routerView {
+  padding-top: 0;
 }
 .loading {
   color: rgb(var(--mio-theme-color-on-background));
@@ -79,15 +74,35 @@ export default {
 .generate {
   grid-column: span 6;
 }
-.bottom-wrap {
-  position: absolute;
+.response-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10%;
+  gap: 16px;
+  padding: 24px;
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* Scrollbar styles */
+.response-wrap::-webkit-scrollbar {
+  width: 8px;
+}
+
+.response-wrap::-webkit-scrollbar-thumb {
+  background: rgba(var(--mio-theme-color-on-background-40), 1);
+  border-radius: 8px;
+}
+
+.response-wrap::-webkit-scrollbar-track {
+  background: rgba(var(--mio-theme-color-on-background-20), .24);
+}
+
+.bottom-wrap {
+  position: absolute;
   width: 100%;
-  height: 46%;
   bottom: 0;
+  padding: 16px 0;
+  overflow: hidden;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <button :class="['card', { loading }]">
+  <button class="card">
 
     <div class="display_flex gap_4 align-items_center">
       <icon class="icon_16 selected-icon"><check/></icon>
@@ -77,6 +77,17 @@ export default {
 .card.disabled .outline {
   border: 1px solid rgba(var(--mio-theme-color-on-background-70), 0.32);
 }
+.card.textLoading .underlay {
+  background-color: rgba(var(--mio-theme-color-on-background-40), 0.08);
+}
+
+.card.textLoading .outline {
+  border: 1px solid rgba(var(--mio-theme-color-on-background-70), 0.12);
+}
+.card.textLoading {
+  pointer-events: none;
+  cursor: wait;
+}
 
 /* Skeleton loading styles */
 .card.textLoading .title,
@@ -85,6 +96,7 @@ export default {
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
   border-radius: 12px;
+  opacity: .4;
 }
 
 .card.textLoading .title {
@@ -130,4 +142,6 @@ export default {
 .card.selected .outline {
   border: 1px solid rgba(var(--mio-theme-color-primary), 0.32);
 }
+
+
 </style>
