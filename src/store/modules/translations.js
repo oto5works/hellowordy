@@ -98,6 +98,8 @@ export default {
           language: "Choose Language",
           purpose: "Purpose",
           level: "Language Level",
+          isSaving: "Saving settings. Please wait a moment.",
+          isError: "An error occurred while saving. Please try again.",
         },
       },
     },
@@ -198,6 +200,8 @@ translations using this JSON schema:
         "language": { "type": "string" },
         "purpose": { "type": "string" },
         "level": { "type": "string" }
+        "isSaving": { "type": "string" }
+        "isError": { "type": "string" }
       }
     }
   }

@@ -25,9 +25,9 @@ export default {
   state: {
     settings: {
       nativeLanguage: "", // 모국어
-      targetLanguage: "random language", // 학습하고 싶은 언어
+      targetLanguage: "english", // 학습하고 싶은 언어
       goalType: "general", // general, topic, exam
-      goal: "at the time of welcoming", // 예: travel, shopping 등
+      goal: "", // 예: travel, shopping 등
       difficulty: "beginner", // beginner, intermediate, advanced
     },
   },

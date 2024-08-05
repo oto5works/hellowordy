@@ -59,6 +59,7 @@ body {
 .routerView {
   position: relative;
   width: 100%;
+  height: 100%;
   min-height: 100%;
   padding-top: 64px;
 }

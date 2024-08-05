@@ -1,10 +1,18 @@
 <template>
   <div class="routerView">
+    <settingsSaving
+      v-if="isSaving"
+:saveError="saveError"
+@retry-save="saveSettings"
+    />
+
+<div v-else class="settings">
     <div class="font-size_14 pa_24">STEP {{ currentStep }}</div>
     <div class="sp_8" />
     <settingsMessage :currentStep="currentStep" />
     <div class="spacing-1" />
     <!-- Step Navigation -->
+    
     <settingsLanguage
       v-if="currentStep === 1"
       :language="form.nativeLanguage"
@@ -52,7 +60,7 @@
         <span>{{ settingsText.button.save }}</span>
       </buttonOutline>
     </div>
-
+  </div>
   </div>
 </template>
 
@@ -61,12 +69,14 @@ import { mapGetters, mapActions } from "vuex";
 import settingsMessage from "@/views/settings/settingsMessage.vue";
 import settingsLanguage from "@/views/settings/settingsLanguage.vue";
 import settingsGoal from "@/views/settings/settingsGoal.vue";
+import settingsSaving from "@/views/settings/settingsSaving.vue";
 
 export default {
   components: {
     settingsMessage,
     settingsLanguage,
     settingsGoal,
+    settingsSaving
   },
   data() {
     return {
@@ -78,6 +88,8 @@ export default {
         goal: "",
         difficulty: "",
       },
+      isSaving: false,
+      saveError: false,
     };
   },
   computed: {
@@ -110,22 +122,24 @@ export default {
       this.form = { ...this.settings };
     },
     async saveSettings() {
+      this.startLoading()
+      this.isSaving = true;
+      this.saveError = false;
       try {
         if (this.isAuthenticated) {
           // Save the settings via Vuex action with authentication
-          this.startLoading()
           await this.updateSettings(this.form);
           await this.generateTranslations();
         } else {
           // Save the settings via Vuex action without authentication
-          this.startLoading()
           await this.updateSettingsWithoutAuth(this.form);
-          await this.generateTranslations();
+          await this.generateTranslations(); 
         }
+        this.isSaving = false;
         this.$router.push({ name: "learning" });
       } catch (error) {
+        this.saveError = true;
         console.error("Settings save failed:", error);
-        alert("Failed to save settings");
       }
     },
   },
@@ -138,6 +152,13 @@ export default {
 </script>
 
 <style scoped>
+.settings {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
 .spacing-1 {
   height: 2vh;
 }

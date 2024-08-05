@@ -25,11 +25,11 @@
       </div>
     </div>
     <div v-else-if="error" class="errorContainer">
-      <div class="errorMessage font-size_18 color_error text-align_center width_70">
+      <div class="errorMessage font-size_24 font-weight_700 color_error text-align_center width_70">
         {{ common.message.error }}
       </div>
-      <div class="spacing-2" />
-      <div class="font-size_10 text-align_center width_70">{{ error }}</div>
+      <div class="spacing-1" />
+      <div class="font-size_12 text-align_center width_70">{{ error }}</div>
       <div class="spacing-3" />
       <div class="height_40">
         <buttonOutline @click="generateWord">{{

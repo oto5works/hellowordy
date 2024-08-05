@@ -74,7 +74,7 @@ export default {
 .buttonOption-wrap {
   position: relative;
   width: 100%;
-  height: 32vh;
+  height: 40vh;
   overflow-x: hidden;
   overflow-y: scroll;
 
