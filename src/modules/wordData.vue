@@ -160,7 +160,7 @@ export default {
   justify-content: center;
   height: 50vh;
   width: 100%;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(16px);
 }
 
 .fade-in {

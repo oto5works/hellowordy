@@ -47,7 +47,7 @@ export default {
   padding: 0 16px;
   width: 100%;
   height: 50vh;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(16px);
 }
 .fade-in {
   opacity: 1;
