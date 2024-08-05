@@ -42,8 +42,6 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  max-width: 480px;
-  overflow: hidden;
 }
 
 .loading-image {

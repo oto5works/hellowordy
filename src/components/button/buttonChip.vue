@@ -1,10 +1,7 @@
 <template>
     <button class="buttonChip">
-      <icon class="check icon_14"><check/></icon>
 
-      <div class="display_flex align-items_center gap_4">
         <slot></slot>
-      </div>
     
 
     <div class="underlay" />
@@ -35,18 +32,18 @@ export default {
 .buttonChip {
   position: relative;
   display: flex;
-  gap: 4px;
+  gap: 8px;
   color: rgb(var(--mio-theme-color-on-background-70));
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   border-radius: 12px;
   padding: 0 12px;
-  height: 32px;
+  height: 36px;
   text-transform: unset;
 
 }
 .buttonChip .underlay {
-  background-color: rgba(var(--mio-theme-color-on-background-20), 0.24);
+  background-color: rgba(var(--mio-theme-color-on-background-20), 0.5);
 }
 .buttonChip:hover .underlay {
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.24);

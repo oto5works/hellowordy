@@ -65,11 +65,11 @@ export default {
   justify-content: flex-end;
   align-items: flex-start;
   gap: 16px;
-  padding: 24px;
+  padding: 16px;
   color: rgb(var(--mio-theme-color-on-background));
   font-size: 15px;
-  border-radius: 24px;
-  width: 80%;
+  border-radius: 16px;
+  width: 70%;
   text-align: left;
 }
 .promptInput .underlay {

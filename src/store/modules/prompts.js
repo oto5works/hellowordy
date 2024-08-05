@@ -37,54 +37,55 @@ export default {
     async generatePrompts({ commit, rootGetters }) {
       const word = rootGetters["wordData/getWord"];
       const settings = rootGetters["settings/settings"];
-
-      const genAI = new GoogleGenerativeAI(
-        "AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM"
-      ); // API 키
+  
+      const genAI = new GoogleGenerativeAI("AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM"); // API 키
       const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash",
         generationConfig: { responseMimeType: "application/json" },
       });
-
+  
       const prompt = `
-        Please provide an AI prompt that can be used for language learning with the word '${word.word}'. example : {"title": "Sentence Examples", "prompt": "Please use '${word.word}' to generate various example sentences."}. The "prompts" should be written in '${settings.nativeLanguage}' and there should be no more than 4 prompts. The output using this JSON schema: { "type": "object", "prompts": { "title": { "type": "string" }, "prompt": { "type": "string" }, } } 
-        `;
-
+        '${word.word}'라는 단어를 사용하여 '${settings.targetLanguage}' 학습에 사용할 수 있는 4개의 AI 프롬프트를 JSON 형식으로 제공해주세요.
+        각 프롬프트는 "title"과 "prompt" 필드를 가져야 합니다.
+        응답은 "prompts" 필드가 포함된 JSON 객체여야 합니다.
+        예: {"prompts": [{"title": "예제 제목", "prompt": "예제 프롬프트."}]}
+        프롬프트는 '${settings.nativeLanguage}'로 작성해주세요.
+      `;
+  
       let retryCount = 0;
       const maxRetries = 3; // 최대 재시도 횟수
-
+  
       console.log("명령어: ", prompt);
       while (retryCount < maxRetries) {
         try {
           const result = await model.generateContent(prompt);
           const response = await result.response.text();
           console.log("response:", response);
-
-          const regex =
-            /{"prompts":\s*\[({\s*"title":\s*"(.*?)",\s*"prompt":\s*"(.*?)"})\s*(,\s*{\s*"title":\s*"(.*?)",\s*"prompt":\s*"(.*?)"})*\]}/g;
-          const match = regex.exec(response);
-
-          if (match) {
-            const jsonString = match[0];
-
-            try {
-              const promptsData = JSON.parse(jsonString);
-              console.log("추출된 JSON 데이터:", promptsData);
-
+  
+          // JSON 객체를 추출하는 더 정확한 방법 사용
+          const jsonStart = response.indexOf('{');
+          const jsonEnd = response.lastIndexOf('}') + 1;
+          const jsonString = response.slice(jsonStart, jsonEnd);
+  
+          try {
+            const promptsData = JSON.parse(jsonString);
+            console.log("추출된 JSON 데이터:", promptsData);
+  
+            // promptsData가 기대하는 구조인지 확인
+            if (promptsData && Array.isArray(promptsData.prompts)) {
               commit("SET_PROMPTS", promptsData);
               return;
-            } catch (error) {
-              console.error("JSON 파싱 오류:", error);
-              throw error;
+            } else {
+              throw new Error("잘못된 JSON 구조");
             }
-          } else {
-            console.error("JSON 데이터를 찾을 수 없습니다.");
-            throw new Error("JSON 데이터를 찾을 수 없습니다.");
+          } catch (error) {
+            console.error("JSON 파싱 오류:", error);
+            throw error;
           }
         } catch (error) {
           console.error("오류 발생:", error);
           retryCount++;
-
+  
           if (error.message.includes("503")) {
             console.log(`재시도 ${retryCount}회`);
             await new Promise((resolve) => setTimeout(resolve, 2000)); // 2초 대기
