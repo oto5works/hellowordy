@@ -79,7 +79,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px;
+  padding: 48px 24px;
   height: 80vh;
   overflow-x: hidden;
   overflow-y: auto;

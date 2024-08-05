@@ -1,28 +1,57 @@
 <template>
   <div class="promptInput-wrap">
-    <button class="promptInput">
-      <div class="font-size_15 font-weight_700">{{ currentPrompt.title }}</div>
-      <div class="font-size_14 font-weight_400">{{ currentPrompt.prompt }}</div>
-
-      
-      <div class="underlay"/>
-    </button>
+    <transition name="slide">
+      <button class="promptInput" v-if="showPrompt" :key="promptKey">
+        <div class="font-size_15 font-weight_700">{{ currentPrompt.title }}</div>
+        <div class="font-size_14 font-weight_400">{{ currentPrompt.prompt }}</div>
+        <div class="underlay"/>
+      </button>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      promptKey: 0,
+      showPrompt: true
+    };
+  },
   computed: {
     ...mapGetters({
       currentPrompt: "prompts/currentPrompt",
     }),
   },
+  watch: {
+    currentPrompt: {
+      handler() {
+        this.showPrompt = false; // 기존 컴포넌트를 숨깁니다.
+        setTimeout(() => {
+          this.promptKey += 1; // 컴포넌트 키를 변경하여 새로운 인스턴스를 생성합니다.
+          this.showPrompt = true; // 새로운 컴포넌트를 표시합니다.
+        }, 0); // 다음 틱에서 새로운 컴포넌트를 표시합니다.
+      },
+      immediate: true,
+    },
+  },
 };
 </script>
 
 <style scoped>
+@keyframes slideIn {
+  from {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .promptInput-wrap {
   position: relative;
   width: 100%;
@@ -46,5 +75,8 @@ export default {
 .promptInput .underlay {
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.24);
   backdrop-filter: blur(8px);
+}
+.slide-enter-active {
+  animation: slideIn 0.5s ease-out forwards;
 }
 </style>
