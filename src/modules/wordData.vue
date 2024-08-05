@@ -14,10 +14,11 @@
       </div>
       <div class="spacing-2" />
       <div
-        class="display_flex gap_4 align-items_center font-size_14 color_on-background-70"
+        class="cursor_pointer display_flex gap_4 align-items_center font-size_14 color_on-background-70"
+        @click="pronounceWord"
       >
         {{ word.reading }}
-        <icon class="icon_16"><speaker /></icon>
+        <icon class="icon_16" ><speaker /></icon>
       </div>
       <div class="spacing-3" />
       <div class="font-size_18 font-weight_500 color_on-background">
@@ -60,15 +61,75 @@ export default {
       isLoading: "status/isLoading",
       error: "wordData/error",
       common: "translations/common",
+      settings: "settings/settings",
     }),
   },
   methods: {
-    ...mapActions({
-      generateWord: "wordData/generateWord",
-    }),
+  ...mapActions({
+    generateWord: "wordData/generateWord",
+  }),
+  pronounceWord() {
+    const { word, meaning } = this.word;
+    const { targetLanguage, nativeLanguage } = this.settings;
+
+    if (!window.speechSynthesis) {
+      console.error("SpeechSynthesis is not supported in this browser.");
+      return;
+    }
+
+    // Define language-to-voice mappings
+    const languageToVoice = {
+      english: 'Google US English',
+      korean: 'Google 한국의',
+      spanish: 'Google español',
+      chinese: 'Google 普通话',
+      french: 'Google français',
+      german: 'Google Deutsch',
+      japanese: 'Google 日本語',
+      italian: 'Google italiano',
+      portuguese: 'Google português',
+      russian: 'Google русский',
+      arabic: 'Google العربية',
+      hindi: 'Google हिंदी',
+      vietnamese: 'Google tiếng Việt',
+      thai: 'Google ภาษาไทย',
+      turkish: 'Google Türkçe',
+      swedish: 'Google svenska',
+      dutch: 'Google nederlands',
+      polish: 'Google polski',
+      greek: 'Google ελληνικά',
+      hebrew: 'Google עברית',
+    };
+
+    const getVoiceByLanguage = (language) => {
+      const voices = window.speechSynthesis.getVoices();
+      const voiceName = languageToVoice[language] || '';
+      return voices.find(voice => voice.name.includes(voiceName));
+    };
+
+    const utteranceWord = new SpeechSynthesisUtterance(word);
+    const utteranceMeaning = new SpeechSynthesisUtterance(meaning);
+
+    const wordVoice = getVoiceByLanguage(targetLanguage);
+    const meaningVoice = getVoiceByLanguage(nativeLanguage);
+
+    if (wordVoice) {
+      utteranceWord.voice = wordVoice;
+    }
+    if (meaningVoice) {
+      utteranceMeaning.voice = meaningVoice;
+    }
+
+    // Speak the word and then the meaning
+    window.speechSynthesis.speak(utteranceWord);
+    utteranceWord.onend = () => {
+      window.speechSynthesis.speak(utteranceMeaning);
+    };
   },
+},
 };
 </script>
+
 
 <style scoped>
 .wordDataContainer {
