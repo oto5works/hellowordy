@@ -55,6 +55,7 @@ export default {
           previous: "Previous",
           search: "Search",
           save: "Save",
+          saving: "Saving...",
         },
         option: {
           general: "General",
@@ -120,7 +121,72 @@ console.log ('languageCode: ', languageCode)
       console.log("텍스트:", textToTranslate);
       while (retryCount < maxRetries) {
         try {
-          const prompt = `Translate the following text into '${languageCode}': ${textToTranslate}`;
+          const prompt = `
+          Translate the following text into '${languageCode}': ${textToTranslate}
+          
+translations using this JSON schema:
+{
+"type": "object",
+  "translations": {
+    "common": {
+      "button": {
+        "signin": { "type": "string" },
+        "signup": { "type": "string" },
+        "signout": { "type": "string" },
+        "generate": { "type": "string" },
+        "generating": { "type": "string" },
+        "retry": { "type": "string" }
+      },
+      "message": {
+        "welcome": { "type": "string" },
+        "error": { "type": "string" },
+        "empty": { "type": "string" }
+      }
+    },
+    "settings": {
+      "button": {
+        "next": { "type": "string" },
+        "previous": { "type": "string" },
+        "search": { "type": "string" },
+        "save": { "type": "string" }
+      },
+      "option": {
+        "general": { "type": "string" },
+        "topic": { "type": "string" },
+        "exam": { "type": "string" },
+        "word": { "type": "string" },
+        "vocabulary": { "type": "string" },
+        "conversation": { "type": "string" },
+        "grammar": { "type": "string" },
+        "travel": { "type": "string" },
+        "dining": { "type": "string" },
+        "shopping": { "type": "string" },
+        "work": { "type": "string" },
+        "social": { "type": "string" },
+        "culture": { "type": "string" },
+        "it": { "type": "string" },
+        "medical": { "type": "string" },
+        "family": { "type": "string" },
+        "easy": { "type": "string" },
+        "hard": { "type": "string" },
+        "beginner": { "type": "string" },
+        "intermediate": { "type": "string" },
+        "advanced": { "type": "string" }
+      },
+      "message": {
+        "step1": { "type": "string" },
+        "step2": { "type": "string" },
+        "step3": { "type": "string" },
+        "step4": { "type": "string" },
+        "native": { "type": "string" },
+        "language": { "type": "string" },
+        "purpose": { "type": "string" },
+        "level": { "type": "string" }
+      }
+    }
+  }
+}
+          `;
           const result = await model.generateContent(prompt);
           const responseText = await result.response.text();
           console.log("응답 전체:", responseText);

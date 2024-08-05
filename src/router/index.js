@@ -10,7 +10,6 @@ import home from "@/views/home/home.vue";
 
 
 // auth
-import auth from "@/views/auth/auth.vue";
 
 
 
@@ -28,11 +27,7 @@ const router = createRouter({
       component: welcome,
     },
     // auth
-    {
-      path: "/auth",
-      name: "auth",
-      component: auth,
-    },
+ 
     {
       path: "/settings",
       name: "settings",

@@ -41,15 +41,14 @@ export default {
       const genAI = new GoogleGenerativeAI(
         "AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM"
       ); // API 키
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", generationConfig: { responseMimeType: "application/json" }  });
+      const model = genAI.getGenerativeModel({
+        model: "gemini-1.5-flash",
+        generationConfig: { responseMimeType: "application/json" },
+      });
 
       const prompt = `
-        Please provide an AI prompt that can be used for language learning with the word '${word.word}'. 
-        example : {"title": "Sentence Examples", "prompt": "Please use '${word.word}' to generate various example sentences."}.
-        The output should be a JSON object in the following format: {"prompts": [{"title": "<Prompt Title>", "prompt": "<Prompt Content>"}...]}. 
-        The "prompts" should be written in '${settings.nativeLanguage}'. 
-        Ensure that the output contains only the JSON object and no additional text.
-      `;
+        Please provide an AI prompt that can be used for language learning with the word '${word.word}'. example : {"title": "Sentence Examples", "prompt": "Please use '${word.word}' to generate various example sentences."}. The "prompts" should be written in '${settings.nativeLanguage}' and there should be no more than 4 prompts. The output using this JSON schema: { "type": "object", "prompts": { "title": { "type": "string" }, "prompt": { "type": "string" }, } } 
+        `;
 
       let retryCount = 0;
       const maxRetries = 3; // 최대 재시도 횟수
@@ -100,23 +99,23 @@ export default {
       commit("SET_RESPONSE", ""); // 이전 응답 초기화
       const { currentPrompt } = state;
       dispatch("status/startLoading", {}, { root: true });
-    
+
       if (!currentPrompt.prompt) {
         console.error("currentPrompt.prompt가 설정되지 않았습니다.");
         return;
       }
-    
+
       commit("SET_PROMPT_LOADING", {
         title: currentPrompt.title,
         isLoading: true,
       });
-    
+
       try {
         const genAI = new GoogleGenerativeAI(
           "AIzaSyBrdNobChTsFJ-ai5e3LlaTm1NZDogpWzM"
         );
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    
+
         const prompt = `
           ${currentPrompt.prompt}
           Please respond in JSON format. The response should be a JSON object with the following structure:
@@ -127,25 +126,28 @@ export default {
         `;
         const result = await model.generateContent(prompt);
         let responseText = await result.response.text();
-    
+
         // 응답 JSON 포맷을 정리합니다
         // 예를 들어, 응답이 '```json ...```'과 같은 형식을 포함할 수 있으므로 이를 처리합니다.
         const jsonMatch = responseText.match(/^\s*```json\s*([\s\S]+?)\s*```/);
         if (jsonMatch) {
           responseText = jsonMatch[1];
         }
-    
+
         let parsedResponse;
         try {
           parsedResponse = JSON.parse(responseText);
-          console.log('Parsed JSON response:', parsedResponse); // 로그 추가
-    
+          console.log("Parsed JSON response:", parsedResponse); // 로그 추가
+
           // 'response' 필드가 포함된 경우 상태에 저장
           if (parsedResponse.response) {
             commit("SET_RESPONSE", parsedResponse.response);
           } else {
             console.error("응답 JSON의 'response' 필드가 누락되었습니다.");
-            commit("SET_RESPONSE", "응답 JSON의 'response' 필드가 누락되었습니다.");
+            commit(
+              "SET_RESPONSE",
+              "응답 JSON의 'response' 필드가 누락되었습니다."
+            );
           }
         } catch (error) {
           console.error("응답 JSON 파싱 오류:", error);
@@ -161,8 +163,7 @@ export default {
         dispatch("status/stopLoading", {}, { root: true });
       }
     },
-    
-    
+
     setCurrentPrompt({ commit }, prompt) {
       commit("SET_CURRENT_PROMPT", prompt);
     },

@@ -10,6 +10,7 @@ export default {
     reading: null,
     meaning: null,
     generatedWords: [], // 생성된 단어 목록
+    error: null, // 에러 상태
   },
   // Mutations
   mutations: {
@@ -23,11 +24,18 @@ export default {
     ADD_GENERATED_WORD(state, word) {
       state.generatedWords.push(word);
     },
+    SET_ERROR(state, error) {
+      state.error = error;
+    },
+    CLEAR_ERROR(state) {
+      state.error = null;
+    },
   },
   // Actions
   actions: {
     async generateWord({ commit, state, dispatch, rootGetters }) {
       dispatch("prompts/clearPrompts", {}, { root: true });
+      commit("CLEAR_ERROR"); // Clear any existing errors
 
       const settings = rootGetters["settings/settings"];
       dispatch("status/startLoading", {}, { root: true });
@@ -100,8 +108,16 @@ The 'part of speech' should be written in ${settings.nativeLanguage}.
 
 Do not include words that have already been generated.
 Previously generated words: ${state.generatedWords.join(", ")}. 
-Output the word information as an 'object' in the following format: {"wordData": {"partOfSpeech": "", "word": "", "reading": "", "meaning": ""}}. 
-Only output the 'object', no other words.`;
+
+Output the word information using this JSON schema:
+{ "type": "object",
+  "wordData": {
+    "partOfSpeech": { "type": "string" },
+    "word": { "type": "string" },
+    "reading": { "type": "string" },
+    "meaning": { "type": "string" },
+  }
+}`;
 
       let retryCount = 0;
       const maxRetries = 3; // 최대 재시도 횟수
@@ -111,7 +127,7 @@ Only output the 'object', no other words.`;
         try {
           const result = await model.generateContent(prompt);
           const response = await result.response.text();
-          console.log("response:", response);
+          console.log(response);
 
           // 정규 표현식으로 JSON 객체 추출
           const regex =
@@ -144,6 +160,7 @@ Only output the 'object', no other words.`;
           }
         } catch (error) {
           console.error("오류 발생:", error);
+          commit("SET_ERROR", error.message); // 에러 상태 업데이트
           retryCount++;
 
           // 503 에러일 경우만 재시도
@@ -158,10 +175,13 @@ Only output the 'object', no other words.`;
 
       // 최대 재시도 횟수 초과 시 에러 처리
       console.error("최대 재시도 횟수 초과");
+      commit("SET_ERROR", "최대 재시도 횟수 초과"); // 에러 상태 업데이트
+      dispatch("status/stopLoading", {}, { root: true });
     },
   },
   // Getters
   getters: {
     getWord: (state) => state,
+    error: (state) => state.error,
   },
 };
