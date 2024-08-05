@@ -82,9 +82,9 @@ export default {
       
     }),
     async handlePromptClick(prompt, index) {
-      this.clearResponse();
+      //this.clearResponse();
 
-      await this.$router.push({ name: 'chat' });
+      this.$router.push({ name: 'chat' });
       this.setCurrentPrompt(prompt);
       await this.fetchResponse();
     },

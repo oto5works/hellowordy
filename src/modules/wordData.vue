@@ -25,11 +25,11 @@
       </div>
     </div>
     <div v-else-if="error" class="errorContainer">
-      <div class="errorMessage font-size_18 color_error">
+      <div class="errorMessage font-size_18 color_error text-align_center width_70">
         {{ common.message.error }}
       </div>
       <div class="spacing-2" />
-      <div class="font-size_10">{{ error }}</div>
+      <div class="font-size_10 text-align_center width_70">{{ error }}</div>
       <div class="spacing-3" />
       <div class="height_40">
         <buttonOutline @click="generateWord">{{
@@ -98,6 +98,8 @@ export default {
   align-items: center;
   justify-content: center;
   height: 50vh;
+  width: 100%;
+  backdrop-filter: blur(18px);
 }
 
 .fade-in {
