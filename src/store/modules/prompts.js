@@ -45,11 +45,24 @@ export default {
       });
   
       const prompt = `
-        '${word.word}'라는 단어를 사용하여 '${settings.targetLanguage}' 학습에 사용할 수 있는 4개의 AI 프롬프트를 JSON 형식으로 제공해주세요.
-        각 프롬프트는 "title"과 "prompt" 필드를 가져야 합니다.
-        응답은 "prompts" 필드가 포함된 JSON 객체여야 합니다.
-        예: {"prompts": [{"title": "예제 제목", "prompt": "예제 프롬프트."}]}
-        프롬프트는 '${settings.nativeLanguage}'로 작성해주세요.
+        Can you create AI prompts using the word '${word.word}' that can be used for '${settings.targetLanguage}' language learning? 
+        I would like these prompts to help learners improve their vocabulary, descriptive skills, and creative writing abilities.
+         Example:
+        {
+          "title": "Examples of sentences using '${word.word}'",
+          "prompt": "Can you show me some examples of sentences that include the word '${word.word}'?",
+        }
+        I would like to receive the answer in '${settings.nativeLanguage}'.
+        Please provide no more than four prompts.
+        Output the word information using this JSON schema:
+        { "type": "array",
+          "prompts": [
+            {
+            "title": { "type": "string" },
+            "prompt": { "type": "string" },
+            }
+          ]
+        }
       `;
   
       let retryCount = 0;
@@ -96,10 +109,11 @@ export default {
       }
       console.error("최대 재시도 횟수 초과");
     },
-    async fetchResponse({ commit, state, dispatch }) {
+    async fetchResponse({ commit, state, dispatch, rootGetters }) {
       commit("SET_RESPONSE", ""); // 이전 응답 초기화
       const { currentPrompt } = state;
       dispatch("status/startLoading", {}, { root: true });
+      const settings = rootGetters["settings/settings"];
 
       if (!currentPrompt.prompt) {
         console.error("currentPrompt.prompt가 설정되지 않았습니다.");
@@ -118,12 +132,15 @@ export default {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `
+          ${currentPrompt.title}
           ${currentPrompt.prompt}
-          Please respond in JSON format. The response should be a JSON object with the following structure:
-          {
-            "response": "<Response Content>"
-          }
-          Ensure the JSON is well-formatted and includes only this JSON object with no additional text or formatting.
+          I would like to receive the answer in '${settings.nativeLanguage}'.
+          Output the word information using this JSON schema:
+                  { 
+                    "type": "object",
+                    "response": { "type": "string" },
+                  }
+
         `;
         const result = await model.generateContent(prompt);
         let responseText = await result.response.text();

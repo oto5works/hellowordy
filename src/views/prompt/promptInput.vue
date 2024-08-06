@@ -71,6 +71,8 @@ export default {
   border-radius: 16px;
   width: 70%;
   text-align: left;
+  word-break: break-all;
+  overflow-wrap: break-work;
 }
 .promptInput .underlay {
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.24);

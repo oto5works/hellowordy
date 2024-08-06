@@ -140,6 +140,8 @@ export default {
   padding: 0 16px;
   width: 100%;
   height: 50vh;
+  word-break: break-all;
+  overflow-wrap: break-work;
 }
 
 .wordData {
