@@ -163,6 +163,7 @@ export default {
   height: 50vh;
   width: 100%;
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .fade-in {

@@ -92,6 +92,7 @@ export default {
   text-align: left;
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.32);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 16px;
   word-break: break-all;
   overflow-wrap: break-work;

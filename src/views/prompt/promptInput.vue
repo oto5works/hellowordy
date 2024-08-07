@@ -76,6 +76,7 @@ export default {
 }
 .promptInput .underlay {
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.24);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .slide-enter-active {
