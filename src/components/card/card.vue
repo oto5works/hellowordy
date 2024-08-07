@@ -51,6 +51,8 @@ export default {
 .card .underlay {
   background-color: rgba(var(--mio-theme-color-on-background-40), 0.24);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
 }
 
 .card:hover .underlay {
