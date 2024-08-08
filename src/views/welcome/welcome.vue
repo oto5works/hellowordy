@@ -150,7 +150,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 4vh;
+  gap: 3vh;
   width: 100%;
   height: fit-content;
   bottom: 0;

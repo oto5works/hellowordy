@@ -47,7 +47,7 @@ export default {
           welcome: "Experience personalized language lessons with `Hello Wordy`, powered by `Gemini AI`. It supports 20 languages and is available in 180 countries.",
           error: "An error occurred. Please try again.",
           empty: "No content available",
-          isTranslating: "Using `Gemini AI` to translate into the user's selected language.",
+          isTranslating: "Using `Gemini AI` to translate into the user's language.",
           translationComplete: "Translation completed successfully.",
         },
       },
