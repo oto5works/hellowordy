@@ -44,9 +44,11 @@ export default {
           retry: "Retry",
         },
         message: {
-          welcome: "Master 20 languages with AI's personalized learning!",
+          welcome: "Experience personalized language lessons with `Hello Wordy`, powered by `Gemini AI`. It supports 20 languages and is available in 180 countries.",
           error: "An error occurred. Please try again.",
           empty: "No content available",
+          isTranslating: "Using `Gemini AI` to translate into the user's selected language.",
+          translationComplete: "Translation completed successfully.",
         },
       },
       settings: {
@@ -129,6 +131,11 @@ console.log ('languageCode: ', languageCode)
       let retryCount = 0;
       const maxRetries = 3;
 
+      // 번역 중 상태를 true로 설정
+      dispatch("status/updateIsTranslating", { isTranslating: true }, { root: true });
+      dispatch("status/updateTranslationComplete", { isComplete: false }, { root: true });
+
+
       console.log("텍스트:", textToTranslate);
       while (retryCount < maxRetries) {
         try {
@@ -151,7 +158,9 @@ translations using this JSON schema:
       "message": {
         "welcome": { "type": "string" },
         "error": { "type": "string" },
-        "empty": { "type": "string" }
+        "empty": { "type": "string" },
+        "isTranslating": { "type": "string" },
+        "translationComplete": { "type": "string" }
       }
     },
     "settings": {
@@ -224,6 +233,9 @@ translations using this JSON schema:
 
             if (jsonResponse && jsonResponse.translations) {
               commit("SET_TRANSLATIONS", jsonResponse.translations);
+              dispatch("status/updateIsTranslating", { isTranslating: false }, { root: true });
+       dispatch("status/updateTranslationComplete", { isComplete: true }, { root: true });
+       
               return;
             } else {
               console.error("translations 데이터를 찾을 수 없습니다.");
@@ -245,7 +257,11 @@ translations using this JSON schema:
           }
         }
       }
-      console.error("최대 재시도 횟수 초과");
+       // 번역 중 상태를 false로 설정
+       
+       // 번역 완료 상태를 업데이트
+      
+         console.error("최대 재시도 횟수 초과");
     },
   },
   getters: {

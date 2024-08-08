@@ -1,9 +1,10 @@
 <template>
   <div class="welcomeText">
     <logo class="logo" />
-    <div class="font-size_16 font-weight_400 line-height_168 text-align_center width_50 opacity_90">
+    
+    <div class="font-size_14 font-weight_400 line-height_148 text-align_center opacity_80">
       {{common.message.welcome}}
-    </div>
+      </div>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ export default {
   computed: {
     ...mapGetters({
       common: "translations/common",
+
     }),
   },
 };
@@ -29,14 +31,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8%;
+  gap: 2vh;
   width: 100%;
-  height: 40%;
   color: rgb(var(--mio-theme-color-on-background));
 overflow: hidden;
 }
 .welcomeText svg {
-  width: 70%;
+  width: 42vh;
 }
 .welcomeText div {
   width: 70%;

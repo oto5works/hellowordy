@@ -150,9 +150,9 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 10%;
+  gap: 4vh;
   width: 100%;
-  height: 46%;
+  height: fit-content;
   bottom: 0;
 }
 .button-wrap {
@@ -163,7 +163,7 @@ export default {
   grid-template-columns: repeat(6, 1fr);
   gap: 16px;
   padding: 16px;
-  height: 45%;
+  height: 20vh;
   align-items: stretch;
 }
 .sign {
