@@ -13,19 +13,26 @@
       v-if="isTranslating"
       :class="{ 'fade-in': isTranslating, 'fade-out': !isTranslating }"
       >
-      {{common.message.isTranslating}}: {{ settings.nativeLanguage }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-dasharray="15" stroke-dashoffset="15" stroke-linecap="round" stroke-width="2" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></svg>
+      
+      
+      {{common.message.isTranslating}} | {{ settings.nativeLanguage }}
       </span>
       <span 
       v-if="translationComplete && !isTranslating"
       :class="{ 'fade-in': translationComplete, 'fade-out': !translationComplete }"
-      >{{common.message.translationComplete}}</span>
+      ><icon class="icon_14"><check /></icon>{{common.message.translationComplete}}</span>
     </div>
   </div>
   </teleport>
 </template><script>
 import { mapActions, mapGetters } from "vuex";
+import check from "@/components/icon/check.vue";
 
 export default {
+  components: {
+    check,
+  },
   data() {
     return {
       loadedSrc: "https://hello-wordy.web.app/image/bg.png",
@@ -125,9 +132,14 @@ export default {
   height: 32px;
 }
 .translationsMessage span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   font-size: 12px;
   overflow: hidden;
   white-space: nowrap;
+  color: rgb(var(--mio-theme-color-on-background));
 }
 .fade-in {
   opacity: 1;
